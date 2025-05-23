@@ -1,0 +1,123 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Estilos generales */
+body {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.neon-accent {
+    color: #00f3ff;
+    text-shadow: 0 0 10px #00f3ff33;
+}
+
+.red-accent {
+    color: #ff4650;
+}
+
+/* Header */
+header {
+    padding: 1rem 5%;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Impact', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 2rem;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #00f3ff;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 4rem 5%;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+                url('https://example.com/hero-bg.jpg');
+    background-size: cover;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    background-color: #ff4650;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: transform 0.3s;
+}
+
+.cta-button:hover {
+    transform: scale(1.05);
+}
+
+/* Sección Destacados */
+.featured {
+    padding: 3rem 5%;
+}
+
+.essentials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.essentials-card {
+    background: #111;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav {
+        display: none;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Efecto Glitch para logo */
+@keyframes glitch {
+    0% { text-shadow: none; }
+    25% { text-shadow: -2px 0 red, 2px 0 blue; }
+    50% { text-shadow: 2px 0 blue, -2px 0 red; }
+    75% { text-shadow: -2px 0 red, 2px 0 blue; }
+    100% { text-shadow: none; }
+}
+
+.logo:hover {
+    animation: glitch 0.5s linear;
+}
