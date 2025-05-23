@@ -1,123 +1,122 @@
-/* CSS Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
+/* Estilos base... (mantén los anteriores) */
 
-/* Estilos generales */
-body {
-    background-color: #0a0a0a;
-    color: #ffffff;
-    line-height: 1.6;
-}
-
-.neon-accent {
-    color: #00f3ff;
-    text-shadow: 0 0 10px #00f3ff33;
-}
-
-.red-accent {
-    color: #ff4650;
-}
-
-/* Header */
-header {
-    padding: 1rem 5%;
-    border-bottom: 1px solid #333;
+/* Logo */
+.logo-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 15px;
 }
 
 .logo {
+    height: 50px;
+    width: auto;
+}
+
+.logo-text {
     font-family: 'Impact', sans-serif;
-    font-size: 2.5rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
 }
 
-nav a {
-    color: #fff;
-    text-decoration: none;
-    margin-left: 2rem;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-nav a:hover {
-    color: #00f3ff;
-}
-
-/* Hero Section */
-.hero {
-    text-align: center;
-    padding: 4rem 5%;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-                url('https://example.com/hero-bg.jpg');
-    background-size: cover;
-}
-
-.cta-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    margin-top: 2rem;
-    background-color: #ff4650;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: transform 0.3s;
-}
-
-.cta-button:hover {
-    transform: scale(1.05);
-}
-
-/* Sección Destacados */
-.featured {
+/* Productos */
+.products {
     padding: 3rem 5%;
 }
 
-.essentials-grid {
+.product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
 
-.essentials-card {
+.product-card {
     background: #111;
-    padding: 1.5rem;
     border-radius: 10px;
+    overflow: hidden;
     border: 1px solid #333;
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.product-card h3 {
+    padding: 1rem 1rem 0;
+    font-size: 1.2rem;
+}
+
+.price {
+    padding: 0 1rem;
+    color: #00f3ff;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+/* Botones */
+.whatsapp-btn {
+    display: block;
+    width: calc(100% - 2rem);
+    margin: 1rem;
+    padding: 0.8rem;
+    background: #25D366;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.whatsapp-btn:hover {
+    background: #128C7E;
+}
+
+.contact-methods {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 2rem;
+}
+
+.contact-btn {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s;
+}
+
+.contact-btn:hover {
+    transform: scale(1.05);
+}
+
+.whatsapp {
+    background: #25D366;
+}
+
+.instagram {
+    background: #E1306C;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    nav {
-        display: none;
+    .logo-text {
+        font-size: 1.2rem;
     }
-
-    .logo {
-        font-size: 1.8rem;
+    
+    .product-grid {
+        grid-template-columns: 1fr;
     }
-
-    .hero h1 {
-        font-size: 1.5rem;
-    }
-}
-
-/* Efecto Glitch para logo */
-@keyframes glitch {
-    0% { text-shadow: none; }
-    25% { text-shadow: -2px 0 red, 2px 0 blue; }
-    50% { text-shadow: 2px 0 blue, -2px 0 red; }
-    75% { text-shadow: -2px 0 red, 2px 0 blue; }
-    100% { text-shadow: none; }
-}
-
-.logo:hover {
-    animation: glitch 0.5s linear;
 }
