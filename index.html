@@ -6,13 +6,10 @@
     <title>GUZZOCORP - THE BEST STYLE | Streetwear & Sneakers</title>
     <meta name="description" content="Venta de sneakers y streetwear de edición limitada. Productos 100% originales.">
     <link rel="stylesheet" href="styles.css">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 <body>
@@ -29,13 +26,18 @@
             <a href="#encargos"><i class="fas fa-star"></i> Encargos</a>
             <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
         </nav>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
     </header>
 
     <!-- Hero Section -->
     <section id="inicio" class="hero">
-        <h1>STREETWEAR <span class="neon-accent">EXCLUSIVO</span></h1>
-        <p class="neon-accent text-glow">Ediciones limitadas • Auténticos • Envíos a todo el país</p>
-        <a href="#productos" class="cta-button">VER COLECCIÓN</a>
+        <div class="hero-content">
+            <h1>STREETWEAR <span class="neon-accent">EXCLUSIVO</span></h1>
+            <p class="neon-accent text-glow">Ediciones limitadas • Auténticos • Envíos a todo el país</p>
+            <a href="#productos" class="cta-button">VER COLECCIÓN</a>
+        </div>
     </section>
 
     <!-- Productos Destacados -->
@@ -45,11 +47,13 @@
         <div class="product-grid">
             <!-- Producto 1 -->
             <div class="product-card">
-                <img src="assets/products/zallas-chantrys.jpg" alt="Zapatillas Zallas Chantry's">
+                <div class="product-image-container">
+                    <img src="assets/products/zallas-chantrys.jpg" alt="Zapatillas Zallas Chantry's" class="product-image">
+                </div>
                 <div class="product-info">
                     <h3>Zallas Chantry's</h3>
                     <p class="price">$120.000</p>
-                    <p>Talle: 38 al 44</p>
+                    <p class="size">Talle: 38 al 44</p>
                     <button class="whatsapp-btn" onclick="buyViaWhatsapp('Zallas Chantry\'s', 120000, 'https://guzzocorp.com.ar/assets/products/zallas-chantrys.jpg')">
                         <i class="fab fa-whatsapp"></i> COMPRAR
                     </button>
@@ -58,11 +62,13 @@
             
             <!-- Producto 2 -->
             <div class="product-card">
-                <img src="assets/products/cofa-vintage.jpg" alt="Cofa Vintage">
+                <div class="product-image-container">
+                    <img src="assets/products/cofa-vintage.jpg" alt="Cofa Vintage" class="product-image">
+                </div>
                 <div class="product-info">
                     <h3>Cofa Vintage</h3>
                     <p class="price">$85.000</p>
-                    <p>Talle: S, M, L, XL</p>
+                    <p class="size">Talle: S, M, L, XL</p>
                     <button class="whatsapp-btn" onclick="buyViaWhatsapp('Cofa Vintage', 85000, 'https://guzzocorp.com.ar/assets/products/cofa-vintage.jpg')">
                         <i class="fab fa-whatsapp"></i> COMPRAR
                     </button>
@@ -71,11 +77,13 @@
             
             <!-- Producto 3 -->
             <div class="product-card">
-                <img src="assets/products/roda-america.jpg" alt="Roda América">
+                <div class="product-image-container">
+                    <img src="assets/products/roda-america.jpg" alt="Roda América" class="product-image">
+                </div>
                 <div class="product-info">
                     <h3>Roda América</h3>
                     <p class="price">$95.000</p>
-                    <p>Talle: 39 al 45</p>
+                    <p class="size">Talle: 39 al 45</p>
                     <button class="whatsapp-btn" onclick="buyViaWhatsapp('Roda América', 95000, 'https://guzzocorp.com.ar/assets/products/roda-america.jpg')">
                         <i class="fab fa-whatsapp"></i> COMPRAR
                     </button>
@@ -92,11 +100,13 @@
             <!-- Producto 4 -->
             <div class="product-card">
                 <span class="tag-new">NUEVO</span>
-                <img src="assets/products/snarkers-black.jpg" alt="Snarkers Black Edition">
+                <div class="product-image-container">
+                    <img src="assets/products/snarkers-black.jpg" alt="Snarkers Black Edition" class="product-image">
+                </div>
                 <div class="product-info">
                     <h3>Snarkers Black</h3>
                     <p class="price">$135.000</p>
-                    <p>Edición Limitada</p>
+                    <p class="size">Edición Limitada</p>
                     <button class="whatsapp-btn" onclick="buyViaWhatsapp('Snarkers Black Edition', 135000, 'https://guzzocorp.com.ar/assets/products/snarkers-black.jpg')">
                         <i class="fab fa-whatsapp"></i> COMPRAR
                     </button>
@@ -105,11 +115,13 @@
             
             <!-- Producto 5 -->
             <div class="product-card">
-                <img src="assets/products/essentials-white.jpg" alt="Essentials White">
+                <div class="product-image-container">
+                    <img src="assets/products/essentials-white.jpg" alt="Essentials White" class="product-image">
+                </div>
                 <div class="product-info">
                     <h3>Essentials White</h3>
                     <p class="price">$110.000</p>
-                    <p>Talle: 37 al 43</p>
+                    <p class="size">Talle: 37 al 43</p>
                     <button class="whatsapp-btn" onclick="buyViaWhatsapp('Essentials White', 110000, 'https://guzzocorp.com.ar/assets/products/essentials-white.jpg')">
                         <i class="fab fa-whatsapp"></i> COMPRAR
                     </button>
@@ -119,12 +131,14 @@
             <!-- Producto 6 -->
             <div class="product-card">
                 <span class="tag-soldout">AGOTADO</span>
-                <img src="assets/products/volley-special.jpg" alt="Volley Special">
+                <div class="product-image-container">
+                    <img src="assets/products/volley-special.jpg" alt="Volley Special" class="product-image">
+                </div>
                 <div class="product-info">
                     <h3>Volley Special</h3>
                     <p class="price">$90.000</p>
-                    <p>Próximo restock</p>
-                    <button class="whatsapp-btn" disabled onclick="notifyRestock('Volley Special')">
+                    <p class="size">Próximo restock</p>
+                    <button class="notify-btn" onclick="notifyRestock('Volley Special')">
                         <i class="fas fa-bell"></i> AVISAME
                     </button>
                 </div>
@@ -139,11 +153,13 @@
         <div class="product-grid">
             <!-- Producto 7 -->
             <div class="product-card">
-                <img src="assets/products/cloching-hoodie.jpg" alt="Cloching Hoodie">
+                <div class="product-image-container">
+                    <img src="assets/products/cloching-hoodie.jpg" alt="Cloching Hoodie" class="product-image">
+                </div>
                 <div class="product-info">
                     <h3>Cloching Hoodie</h3>
                     <p class="price">$65.000</p>
-                    <p>Talle: S, M, L</p>
+                    <p class="size">Talle: S, M, L</p>
                     <button class="whatsapp-btn" onclick="buyViaWhatsapp('Cloching Hoodie', 65000, 'https://guzzocorp.com.ar/assets/products/cloching-hoodie.jpg')">
                         <i class="fab fa-whatsapp"></i> COMPRAR
                     </button>
@@ -153,11 +169,13 @@
             <!-- Producto 8 -->
             <div class="product-card">
                 <span class="tag-bestseller">MÁS VENDIDO</span>
-                <img src="assets/products/viganas-crewneck.jpg" alt="Viganas Crewneck">
+                <div class="product-image-container">
+                    <img src="assets/products/viganas-crewneck.jpg" alt="Viganas Crewneck" class="product-image">
+                </div>
                 <div class="product-info">
                     <h3>Viganas Crewneck</h3>
                     <p class="price">$55.000</p>
-                    <p>Talle: M, L, XL</p>
+                    <p class="size">Talle: M, L, XL</p>
                     <button class="whatsapp-btn" onclick="buyViaWhatsapp('Viganas Crewneck', 55000, 'https://guzzocorp.com.ar/assets/products/viganas-crewneck.jpg')">
                         <i class="fab fa-whatsapp"></i> COMPRAR
                     </button>
@@ -166,11 +184,13 @@
             
             <!-- Producto 9 -->
             <div class="product-card">
-                <img src="assets/products/bessaux-tee.jpg" alt="Bessaux Tee">
+                <div class="product-image-container">
+                    <img src="assets/products/bessaux-tee.jpg" alt="Bessaux Tee" class="product-image">
+                </div>
                 <div class="product-info">
                     <h3>Bessaux Tee</h3>
                     <p class="price">$45.000</p>
-                    <p>Talle: S, M, L</p>
+                    <p class="size">Talle: S, M, L</p>
                     <button class="whatsapp-btn" onclick="buyViaWhatsapp('Bessaux Tee', 45000, 'https://guzzocorp.com.ar/assets/products/bessaux-tee.jpg')">
                         <i class="fab fa-whatsapp"></i> COMPRAR
                     </button>
@@ -180,10 +200,10 @@
     </section>
 
     <!-- Sección Encargos -->
-    <section id="encargos" class="products" style="background: #111; padding: 4rem 5%;">
-        <div style="max-width: 800px; margin: 0 auto;">
+    <section id="encargos" class="special-orders">
+        <div class="orders-container">
             <h2 class="section-title neon-accent">ENCARGOS <span class="red-accent">ESPECIALES</span></h2>
-            <p style="text-align: center; margin-bottom: 2rem;">¿Buscas un modelo específico? Contamos con servicio de encargos internacionales.</p>
+            <p class="orders-description">¿Buscas un modelo específico? Contamos con servicio de encargos internacionales.</p>
             
             <form id="order-form" class="contact-form">
                 <div class="form-group">
@@ -196,9 +216,9 @@
                     <input type="text" id="model" name="model" placeholder="Modelo que buscas" required>
                 </div>
                 <div class="form-group">
-                    <textarea id="details" name="details" placeholder="Detalles (talle, color, etc.)" rows="4"></textarea>
+                    <textarea id="details" name="details" placeholder="Detalles (talle, color, etc.)" rows="4" required></textarea>
                 </div>
-                <button type="button" onclick="submitOrderForm()" class="cta-button" style="width: 100%;">
+                <button type="button" onclick="submitOrderForm()" class="cta-button full-width-btn">
                     <i class="fas fa-paper-plane"></i> ENVIAR CONSULTA
                 </button>
             </form>
@@ -208,16 +228,16 @@
     <!-- Sección Contacto -->
     <section id="contacto" class="contact">
         <h2 class="section-title">CONTACTO <span class="neon-accent">GUZZOCORP</span></h2>
-        <p style="text-align: center; max-width: 600px; margin: 0 auto 2rem;">¿Preguntas? Contactanos directamente por estos medios:</p>
+        <p class="contact-description">¿Preguntas? Contactanos directamente por estos medios:</p>
         
         <div class="contact-methods">
-            <a href="https://wa.me/5491112345678" class="contact-btn whatsapp">
+            <a href="https://wa.me/5492664633010" class="contact-btn whatsapp">
                 <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
-            <a href="https://www.instagram.com/guzzocorp" class="contact-btn instagram">
+            <a href="https://www.instagram.com/guzzo.corp" class="contact-btn instagram">
                 <i class="fab fa-instagram"></i> Instagram
             </a>
-            <a href="mailto:contacto@guzzocorp.com.ar" class="contact-btn" style="background: #4285F4;">
+            <a href="mailto:contacto@guzzocorp.com.ar" class="contact-btn email">
                 <i class="fas fa-envelope"></i> Email
             </a>
         </div>
@@ -225,27 +245,37 @@
 
     <!-- Footer -->
     <footer>
-        <div class="logo-container" style="justify-content: center; margin-bottom: 1rem;">
-            <img src="assets/logo-guzzocorp.png" alt="GUZZOCORP" class="logo" style="height: 40px;">
-            <span class="logo-text">THE BEST STYLE</span>
+        <div class="footer-logo-container">
+            <img src="assets/logo-guzzocorp.png" alt="GUZZOCORP" class="footer-logo">
+            <span class="footer-logo-text">THE BEST STYLE</span>
+        </div>
+        <div class="footer-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#sneakers">Sneakers</a>
+            <a href="#ropa">Ropa</a>
+            <a href="#encargos">Encargos</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.instagram.com/guzzo.corp" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5492664633010" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
         <div class="copyright">
             &copy; 2023 GUZZOCORP - Todos los derechos reservados
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
         // Función para comprar por WhatsApp
         function buyViaWhatsapp(productName, price, productImage) {
-            const phoneNumber = "54926694008408"; // Reemplaza con tu número
+            const phoneNumber = "5492664633010";
             const message = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${productName}\n*Precio:* $${price.toLocaleString('es-AR')}\n\n[Ver imagen](${productImage})\n\nMi información:\n- Nombre: \n- Dirección: \n- Método de pago: (Efectivo/Transferencia)\n\n¡Gracias!`;
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
         }
         
         // Función para aviso de restock
         function notifyRestock(productName) {
-            const phoneNumber = "54926694008408";
+            const phoneNumber = "5492664633010";
             const message = `¡Hola GUZZOCORP! 👋\n\nQuiero que me avises cuando tengas restock de:\n\n*Producto:* ${productName}\n\nMi nombre: \n\n¡Gracias!`;
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
         }
@@ -258,7 +288,7 @@
             const model = form.elements['model'].value;
             const details = form.elements['details'].value;
             
-            const phoneNumber = "54926694008408";
+            const phoneNumber = "5492664633010";
             const message = `¡Hola GUZZOCORP! 👋\n\n*Nuevo pedido de encargo:*\n\n- Nombre: ${name}\n- Email: ${email}\n- Modelo buscado: ${model}\n\n*Detalles:*\n${details}\n\nPor favor contactar al cliente para continuar.`;
             
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
@@ -276,6 +306,14 @@
                     behavior: 'smooth'
                 });
             });
+        });
+
+        // Menú móvil
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('header nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('show');
         });
     </script>
 </body>
