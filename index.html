@@ -238,14 +238,14 @@
     <script>
         // Función para comprar por WhatsApp
         function buyViaWhatsapp(productName, price, productImage) {
-            const phoneNumber = "5491112345678"; // Reemplaza con tu número
+            const phoneNumber = "54926694008408"; // Reemplaza con tu número
             const message = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${productName}\n*Precio:* $${price.toLocaleString('es-AR')}\n\n[Ver imagen](${productImage})\n\nMi información:\n- Nombre: \n- Dirección: \n- Método de pago: (Efectivo/Transferencia)\n\n¡Gracias!`;
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
         }
         
         // Función para aviso de restock
         function notifyRestock(productName) {
-            const phoneNumber = "5491112345678";
+            const phoneNumber = "54926694008408";
             const message = `¡Hola GUZZOCORP! 👋\n\nQuiero que me avises cuando tengas restock de:\n\n*Producto:* ${productName}\n\nMi nombre: \n\n¡Gracias!`;
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
         }
@@ -258,7 +258,7 @@
             const model = form.elements['model'].value;
             const details = form.elements['details'].value;
             
-            const phoneNumber = "5491112345678";
+            const phoneNumber = "54926694008408";
             const message = `¡Hola GUZZOCORP! 👋\n\n*Nuevo pedido de encargo:*\n\n- Nombre: ${name}\n- Email: ${email}\n- Modelo buscado: ${model}\n\n*Detalles:*\n${details}\n\nPor favor contactar al cliente para continuar.`;
             
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
