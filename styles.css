@@ -328,7 +328,7 @@ nav a:hover::after {
 }
 
 /* ===== ETIQUETAS DE PRODUCTO ===== */
-.tag-new, .tag-bestseller, .tag-soldout {
+.tag-new, .tag-bestseller, .tag-soldout, .tag-discount {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -352,6 +352,35 @@ nav a:hover::after {
 .tag-soldout {
     background-color: var(--neon-pink);
     color: white;
+}
+
+.tag-discount {
+    background-color: var(--neon-pink);
+    color: white;
+    left: 15px; /* Posición izquierda para diferenciarla */
+    right: auto; /* Anulamos el right heredado */
+}
+
+/* Contenedor de precios */
+.price-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0.5rem 0;
+}
+
+/* Precio anterior tachado */
+.old-price {
+    text-decoration: line-through;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+/* Precio actual */
+.price {
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: var(--neon-cyan);
 }
 
 /* ===== BOTONES DE PRODUCTO ===== */
