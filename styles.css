@@ -80,19 +80,6 @@ p {
 }
 
 /* ===== HEADER ===== */
-header {
-    padding: 1.5rem 5%;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    background-color: rgba(10, 10, 10, 0.98);
-    z-index: 1000;
-    backdrop-filter: blur(5px);
-}
-
 .logo-container {
     display: flex;
     align-items: center;
@@ -119,6 +106,23 @@ header {
     background-clip: text;
     color: transparent;
     transition: all 0.3s ease;
+    line-height: 1; /* Añadido para eliminar espacio extra */
+    margin: 0; /* Añadido para eliminar márgenes */
+    padding: 0; /* Añadido para eliminar padding */
+}
+
+/* Añadir esto para alinear mejor el logo y texto */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 5%;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    background-color: rgba(10, 10, 10, 0.98);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
 nav {
