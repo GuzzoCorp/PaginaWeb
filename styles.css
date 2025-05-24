@@ -250,9 +250,10 @@ nav a:hover::after {
     text-align: center;
     margin-bottom: 3rem;
     position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
+    display: block; /* Cambiado de inline-block a block */
+    left: auto; /* Eliminamos el posicionamiento lateral */
+    transform: none; /* Eliminamos la transformación */
+    width: 100%; /* Ocupa todo el ancho */
 }
 
 .section-title::after {
@@ -448,8 +449,11 @@ nav a:hover::after {
 
 /* ===== SECCIÓN CONTACTO ===== */
 .contact {
-    padding: 5rem 5%;
     text-align: center;
+}
+
+.contact .section-title::after {
+    margin: 0.5rem auto 0; /* Centra la línea decorativa */
 }
 
 .contact-description {
