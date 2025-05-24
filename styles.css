@@ -344,6 +344,17 @@ nav a:hover::after {
     color: white;
 }
 
+/* Nota de personalización */
+.custom-notice {
+    color: var(--neon-cyan);
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin: 0.5rem 0;
+    text-align: center;
+    animation: pulse 2s infinite;
+}
+
+/* Ajuste para múltiples etiquetas "más vendido" */
 .tag-bestseller {
     background-color: var(--neon-yellow);
     color: black;
