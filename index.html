@@ -312,11 +312,11 @@ function submitOrderForm() {
     
     // Opción 1: Enviar por WhatsApp (como estaba antes)
     const phoneNumber = "5492664633010";
-    const whatsappMessage = `¡Hola GUZZOCORP! 👋\n\n*Nuevo pedido de encargo:*\n\n- Nombre: ${name}\n- Contacto: ${email}\n- Modelo buscado: ${model}\n\n*Detalles:*\n${details}\n\nPor favor contactar al cliente para continuar.`;
+    const whatsappMessage = `¡Hola GUZZO.CORP! 👋\n\n*Nuevo encargo o sugerencia:*\n\n- Nombre: ${name}\n- Contacto: ${email}\n- Modelo buscado: ${model}\n\n*Detalles:*\n${details}\n\nPor favor contactar al cliente para continuar.`;
     window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
     
     // Opción 2: Enviar por correo electrónico (nuevo)
-    const mailtoLink = `mailto:guzzoinbusiness@gmail.com?subject=Nuevo encargo GUZZOCORP&body=${encodeURIComponent(whatsappMessage)}`;
+    const mailtoLink = `mailto:guzzoinbusiness@gmail.com?subject=Nuevo encargo o sugerencia GUZZOCORP&body=${encodeURIComponent(whatsappMessage)}`;
     window.location.href = mailtoLink;
     
     // Reset form
