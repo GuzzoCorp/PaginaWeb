@@ -1,35 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Mismos meta tags que en index.html -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GUZZOCORP | Catálogo</title>
+    <meta name="description" content="Catálogo completo de GUZZOCORP - Sneakers y streetwear de edición limitada">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="GuzzoCorp.png">
 </head>
 <body>
-    <!-- Mismo header que index.html -->
+    <!-- Header actualizado -->
+    <header>
+        <div class="logo-container">
+            <img src="GuzzoCorp.png" alt="GUZZOCORP" class="logo">
+            <span class="logo-text">GUZZO CORPORATION</span>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="catalogo.html"><i class="fas fa-search"></i> Catálogo</a>
+            <a href="#encargos"><i class="fas fa-star"></i> Encargos</a>
+            <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+        </nav>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
 
+    <!-- Resto del contenido de catalogo.html -->
     <section class="catalog-search">
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="Buscar productos...">
-            <button id="search-btn"><i class="fas fa-search"></i></button>
-        </div>
-        <div class="filter-options">
-            <button class="filter-btn active" data-filter="all">Todo</button>
-            <button class="filter-btn" data-filter="sneakers">Zapatillas</button>
-            <button class="filter-btn" data-filter="ropa">Ropa</button>
-            <button class="filter-btn" data-filter="ofertas">Ofertas</button>
-        </div>
-    </section>
-
-    <section class="catalog-products">
-        <!-- Los productos se cargarán dinámicamente con JavaScript -->
-        <div class="product-grid" id="product-grid">
-            <!-- Contenido generado por JS -->
-        </div>
+        <!-- ... -->
     </section>
 
     <!-- Mismo footer que index.html -->
+    <footer>
+    <script src="catalog.js"></script>
+    </footer>
 
     <script src="catalog.js"></script>
+    <script>
+        // Añadir el mismo script del menú móvil que en index.html
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('header nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('show');
+        });
+
+        // Smooth scrolling (opcional, si tienes anclas)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId !== '#') {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
