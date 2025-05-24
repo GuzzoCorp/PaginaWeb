@@ -31,24 +31,20 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>TRANSFORMANDO <span class="neon-accent">ESTILO Y NEGOCIOS</span></h1>
-            <p class="neon-accent text-glow">Ropa de calidad • Educación financiera • Reparaciones técnicas</p>
-            <div class="hero-buttons">
-                <a href="#pilares" class="cta-button">NUESTROS PILARES</a>
-                <a href="index.html" class="cta-button secondary">IR A LA TIENDA</a>
-            </div>
-        </div>
-    </section>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>LA SOLUCIÓN A TUS PROBLEMAS, <span class="neon-accent">GUZZO CORP</span></h1>
+        <p class="neon-accent text-glow">Ropa de calidad • Educación financiera • Reparaciones técnicas</p>
+    </div>
+</section>
 
-    <!-- Sección Pilares -->
-    <section id="pilares" class="pillars">
-        <div class="section-header">
-            <h2 class="section-title">LOS <span class="neon-accent">PILARES</span> DE GUZZO CORP</h2>
-            <p class="section-subtitle">Tres áreas de negocio, una misma filosofía de excelencia</p>
-        </div>
+<!-- Sección Pilares -->
+<section id="pilares" class="pillars">
+    <div class="section-header">
+        <h2 class="section-title">LOS <span class="neon-accent">PILARES</span> DE GUZZO CORP</h2>
+        <p class="section-subtitle">Tres áreas de negocio, una misma filosofía de perfección</p>
+    </div>
         
         <div class="pillars-grid">
             <!-- Pilar 1 - Ropa -->
@@ -63,7 +59,7 @@
                     <li><i class="fas fa-check"></i> Calidad premium garantizada</li>
                     <li><i class="fas fa-check"></i> Estilo urbano y sofisticado</li>
                 </ul>
-                <a href="index.html#ropa" class="pillar-link">Ver colección <i class="fas fa-arrow-right"></i></a>
+                <a href="#contacto" class="pillar-link">Ver colección <i class="fas fa-arrow-right"></i></a>
             </div>
             
             <!-- Pilar 2 - Educación Financiera -->
@@ -78,7 +74,8 @@
                     <li><i class="fas fa-check"></i> Cursos de inversión</li>
                     <li><i class="fas fa-check"></i> Asesoramiento personalizado</li>
                 </ul>
-                <a href="#contacto" class="pillar-link">Más información <i class="fas fa-arrow-right"></i></a>
+                <a href="#contacto" class="pillar-link">Más Informacion <i class="fas fa-arrow-right"></i></a>
+
             </div>
             
             <!-- Pilar 3 - Reparaciones -->
@@ -93,7 +90,7 @@
                     <li><i class="fas fa-check"></i> Técnicos certificados</li>
                     <li><i class="fas fa-check"></i> Garantía por escrito</li>
                 </ul>
-                <a href="#contacto" class="pillar-link">Solicitar servicio <i class="fas fa-arrow-right"></i></a>
+                <a href="#contacto" class="pillar-link">Solicitar Servicio <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -125,7 +122,7 @@
         </div>
     </section>
 
-    <!-- Sección Métodos de Pago -->
+<!-- Sección Métodos de Pago -->
 <section class="payment-methods">
     <div class="section-header">
         <h2 class="section-title">MÉTODOS DE <span class="neon-accent">PAGO</span></h2>
@@ -258,5 +255,21 @@
             });
         });
     </script>
+    <!-- Agrega este script -->
+<script>
+    function scrollToContact() {
+        document.getElementById('contacto').scrollIntoView({
+            behavior: 'smooth'
+        });
+        // Opcional: auto-seleccionar el campo de mensaje
+        setTimeout(() => {
+            const textarea = document.getElementById('contact-message');
+            if (textarea) textarea.focus();
+        }, 800);
+    }
+</script>
+
+<!-- Y modifica los enlaces para usar: -->
+<a href="#contacto" onclick="scrollToContact()" class="pillar-link">Ver colección <i class="fas fa-arrow-right"></i></a>
 </body>
 </html>
