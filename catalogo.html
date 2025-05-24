@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GUZZOCORP | Catálogo</title>
+    <title>GUZZOCORP | Catálogo Completo</title>
     <meta name="description" content="Catálogo completo de GUZZOCORP - Sneakers y streetwear de edición limitada">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png" href="GuzzoCorp.png">
 </head>
 <body>
-    <!-- Header actualizado -->
+    <!-- Header -->
     <header>
         <div class="logo-container">
             <img src="GuzzoCorp.png" alt="GUZZOCORP" class="logo">
@@ -22,45 +22,94 @@
         <nav>
             <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
             <a href="catalogo.html"><i class="fas fa-search"></i> Catálogo</a>
-            <a href="#encargos"><i class="fas fa-star"></i> Encargos</a>
-            <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+            <a href="index.html#encargos"><i class="fas fa-star"></i> Encargos</a>
+            <a href="index.html#contacto"><i class="fas fa-envelope"></i> Contacto</a>
         </nav>
         <div class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
         </div>
     </header>
 
-    <!-- Resto del contenido de catalogo.html -->
-    <section class="catalog-search">
-        <!-- ... -->
+    <!-- Filtros y búsqueda -->
+    <section class="catalog-controls">
+        <div class="controls-container">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Buscar productos...">
+                <button id="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label for="category-filter">Categoría:</label>
+                    <select id="category-filter" class="filter-select">
+                        <option value="all">Todas las categorías</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="sort-select">Ordenar por:</label>
+                    <select id="sort-select" class="filter-select">
+                        <option value="default">Recomendados</option>
+                        <option value="price-asc">Precio: menor a mayor</option>
+                        <option value="price-desc">Precio: mayor a menor</option>
+                        <option value="name-asc">Nombre: A-Z</option>
+                        <option value="name-desc">Nombre: Z-A</option>
+                        <option value="newest">Más nuevos primero</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="filter-options">
+                <button class="filter-btn active" data-filter="all">Todo</button>
+                <button class="filter-btn" data-filter="sneakers">Zapatillas</button>
+                <button class="filter-btn" data-filter="ropa">Ropa</button>
+                <button class="filter-btn" data-filter="accesorios">Accesorios</button>
+                <button class="filter-btn" data-filter="ofertas">Ofertas</button>
+            </div>
+        </div>
     </section>
 
-    <!-- Mismo footer que index.html -->
+    <!-- Resultados -->
+    <section class="catalog-results">
+        <div class="results-header">
+            <h2>NUESTROS PRODUCTOS</h2>
+            <p id="results-count">Cargando productos...</p>
+        </div>
+        
+        <div class="product-grid" id="product-grid">
+            <!-- Los productos se cargarán aquí con JavaScript -->
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-    <script src="catalog.js"></script>
+        <div class="footer-logo-container">
+            <img src="GuzzoCorp.png" alt="GUZZOCORP" class="footer-logo">
+            <span class="footer-logo-text">THE BEST STYLE</span>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Inicio</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="index.html#encargos">Encargos</a>
+            <a href="index.html#contacto">Contacto</a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.instagram.com/guzzo.corp" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5492664633010" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 GUZZOCORP - Todos los derechos reservados - By: Nahuel Guzzo
+        </div>
     </footer>
 
     <script src="catalog.js"></script>
     <script>
-        // Añadir el mismo script del menú móvil que en index.html
+        // Menú móvil
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const nav = document.querySelector('header nav');
         
         mobileMenuBtn.addEventListener('click', () => {
             nav.classList.toggle('show');
-        });
-
-        // Smooth scrolling (opcional, si tienes anclas)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId !== '#') {
-                    document.querySelector(targetId).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
         });
     </script>
 </body>
