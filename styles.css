@@ -1148,6 +1148,39 @@ footer {
     color: var(--text-light);
 }
 
+/* Estilos para los métodos de pago */
+.payments-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.payments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+.payment-card {
+    width: 100%;
+    max-width: 220px;
+    text-align: center;
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 600px) {
+    .payments-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 400px) {
+    .payments-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .payment-notice strong {
     color: var(--neon-cyan);
 }
