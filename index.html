@@ -247,7 +247,7 @@
         </div>
     </section>
 
-    <!-- Sección Contacto -->
+<!-- Sección Contacto -->
 <section id="contacto" class="contact">
     <h2 class="section-title centered-title">CONTACTO <span class="neon-accent">GUZZO.CORPORATION</span></h2>
     <p class="contact-description">¿Preguntas? Contactanos directamente por estos medios:</p>
@@ -259,32 +259,33 @@
         <a href="https://www.instagram.com/guzzo.corp" class="contact-btn instagram">
             <i class="fab fa-instagram"></i> Instagram
         </a>
-        <a href="mailto:contacto@guzzocorp.com.ar" class="contact-btn email">
+        <a href="mailto:guzzoinbusiness@gmail.com" class="contact-btn email">
             <i class="fas fa-envelope"></i> Email
         </a>
     </div>
 </section>
-    <!-- Footer -->
-    <footer>
-        <div class="footer-logo-container">
-            <img src="GuzzoCorp.png" alt="GUZZOCORP" class="footer-logo">
-            <span class="footer-logo-text">THE BEST STYLE</span>
-        </div>
-        <div class="footer-links">
-            <a href="#inicio">Inicio</a>
-            <a href="#sneakers">Sneakers</a>
-            <a href="#ropa">Ropa</a>
-            <a href="#encargos">Encargos</a>
-            <a href="#contacto">Contacto</a>
-        </div>
-        <div class="social-links">
-            <a href="https://www.instagram.com/guzzo.corp" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/5492664633010" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        </div>
-        <div class="copyright">
-            &copy; 2025 GUZZOCORP - Todos los derechos reservados - By: Nahuel Guzzo
-        </div>
-    </footer>
+   <!-- Footer -->
+<footer>
+    <div class="footer-logo-container">
+        <img src="GuzzoCorp.png" alt="GUZZOCORP" class="footer-logo">
+        <span class="footer-logo-text">THE BEST STYLE</span>
+    </div>
+    <div class="footer-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#sneakers">Sneakers</a>
+        <a href="#ropa">Ropa</a>
+        <a href="#encargos">Encargos</a>
+        <a href="#contacto">Contacto</a>
+    </div>
+    <div class="social-links">
+        <a href="https://www.instagram.com/guzzo.corp" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/5492664633010" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:guzzoinbusiness@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+    </div>
+    <div class="copyright">
+        &copy; 2025 GUZZOCORP - Todos los derechos reservados - By: Nahuel Guzzo
+    </div>
+</footer>
 
     <script>
         // Función para comprar por WhatsApp
@@ -301,23 +302,27 @@
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
         }
         
-        // Función para formulario de encargos
-        function submitOrderForm() {
-            const form = document.getElementById('order-form');
-            const name = form.elements['name'].value;
-            const email = form.elements['email'].value;
-            const model = form.elements['model'].value;
-            const details = form.elements['details'].value;
-            
-            const phoneNumber = "5492664633010";
-            const message = `¡Hola GUZZOCORP! 👋\n\n*Nuevo pedido de encargo:*\n\n- Nombre: ${name}\n- Email: ${email}\n- Modelo buscado: ${model}\n\n*Detalles:*\n${details}\n\nPor favor contactar al cliente para continuar.`;
-            
-            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-            
-            // Reset form
-            form.reset();
-            alert('¡Gracias! Nos contactaremos pronto contigo.');
-        }
+// Función para formulario de encargos
+function submitOrderForm() {
+    const form = document.getElementById('order-form');
+    const name = form.elements['name'].value;
+    const email = form.elements['email'].value;
+    const model = form.elements['model'].value;
+    const details = form.elements['details'].value;
+    
+    // Opción 1: Enviar por WhatsApp (como estaba antes)
+    const phoneNumber = "5492664633010";
+    const whatsappMessage = `¡Hola GUZZOCORP! 👋\n\n*Nuevo pedido de encargo:*\n\n- Nombre: ${name}\n- Contacto: ${email}\n- Modelo buscado: ${model}\n\n*Detalles:*\n${details}\n\nPor favor contactar al cliente para continuar.`;
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+    
+    // Opción 2: Enviar por correo electrónico (nuevo)
+    const mailtoLink = `mailto:guzzoinbusiness@gmail.com?subject=Nuevo encargo GUZZOCORP&body=${encodeURIComponent(whatsappMessage)}`;
+    window.location.href = mailtoLink;
+    
+    // Reset form
+    form.reset();
+    alert('¡Gracias! Nos contactaremos pronto contigo.');
+}
         
         // Smooth scrolling para anclas
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
