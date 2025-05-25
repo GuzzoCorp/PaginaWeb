@@ -11,6 +11,730 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="GuzzoCorp.png">
+    <style>
+    /* Estilos para la sección de encargos personalizados */
+    .custom-orders-section {
+        background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+        padding: 5rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .custom-orders-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(0,170,255,0.03)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+        background-size: cover;
+        z-index: 0;
+    }
+
+    .custom-orders-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem;
+        background: rgba(20, 20, 20, 0.95);
+        border-radius: 16px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        position: relative;
+        z-index: 1;
+        border: 1px solid rgba(0, 170, 255, 0.15);
+    }
+
+    .orders-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .orders-subtitle {
+        color: #aaa;
+        font-size: 1.1rem;
+        margin-top: 0.75rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .custom-order-form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .form-row {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .form-row .form-group {
+        flex: 1;
+    }
+
+    .input-container {
+        position: relative;
+        margin-top: 20px;
+    }
+
+    .input-container label {
+        position: absolute;
+        top: -10px;
+        left: 15px;
+        background: #141414;
+        padding: 0 8px;
+        font-size: 0.85rem;
+        color: #0af;
+        z-index: 1;
+        transition: all 0.3s ease;
+    }
+
+    .input-container input,
+    .input-container textarea,
+    .select-container select {
+        width: 100%;
+        padding: 16px 20px 16px 50px;
+        background: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .select-container select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        padding-right: 50px;
+    }
+
+    .input-container textarea {
+        min-height: 150px;
+        resize: vertical;
+        padding-top: 20px;
+    }
+
+    .textarea-hint {
+        color: #666;
+        font-size: 0.8rem;
+        margin-top: 5px;
+        padding-left: 50px;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #0af;
+        font-size: 1.1rem;
+    }
+
+    .select-icon {
+        position: absolute;
+        right: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #0af;
+        font-size: 1rem;
+        pointer-events: none;
+    }
+
+    .input-container input:focus,
+    .input-container textarea:focus,
+    .select-container select:focus {
+        outline: none;
+        border-color: #0af;
+        box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.15);
+    }
+
+    .input-container input:focus + label,
+    .input-container textarea:focus + label,
+    .select-container select:focus + label {
+        color: #0ff;
+    }
+
+    /* Estilos para la subida de archivos */
+    .file-upload-group {
+        margin-top: 1.5rem;
+    }
+
+    .file-upload-container {
+        border: 2px dashed #333;
+        border-radius: 10px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .file-upload-container:hover {
+        border-color: #0af;
+        background: rgba(0, 170, 255, 0.05);
+    }
+
+    .file-upload-label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .upload-icon {
+        font-size: 2.5rem;
+        color: #0af;
+        margin-bottom: 1rem;
+    }
+
+    .upload-text {
+        font-size: 1.1rem;
+        color: #fff;
+        margin-bottom: 0.5rem;
+    }
+
+    .file-types {
+        font-size: 0.85rem;
+        color: #777;
+    }
+
+    .file-upload-container input[type="file"] {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .file-preview-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+        justify-content: center;
+    }
+
+    .file-preview-item {
+        width: 80px;
+        height: 80px;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #333;
+    }
+
+    .file-preview-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .file-preview-item .remove-file {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 10px;
+    }
+
+    /* Estilos para el pie del formulario */
+    .form-footer {
+        margin-top: 1.5rem;
+    }
+
+    .form-actions {
+        text-align: center;
+    }
+
+    .form-note {
+        color: #777;
+        font-size: 0.85rem;
+        margin-top: 1.5rem;
+    }
+
+    .terms-link {
+        color: #0af;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .terms-link:hover {
+        color: #0ff;
+        text-decoration: underline;
+    }
+
+    /* Estilos para el botón CTA */
+    .cta-button {
+        padding: 16px 30px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        font-weight: 600;
+    }
+
+    /* Efectos de hover y focus */
+    .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 170, 255, 0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .custom-orders-container {
+            padding: 2rem 1.5rem;
+        }
+        
+        .form-row {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .orders-header {
+            margin-bottom: 2rem;
+        }
+        
+        .file-upload-container {
+            padding: 1.5rem;
+        }
+    }
+
+    /* Estilos generales */
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #0a0a0a;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: #111;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo {
+        height: 40px;
+    }
+
+    .logo-text {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        color: #fff;
+    }
+
+    nav {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    nav a {
+        color: #aaa;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    nav a:hover {
+        color: #0af;
+    }
+
+    .mobile-menu-btn {
+        display: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/hero-bg.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 60vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 2rem;
+    }
+
+    .hero-content h1 {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 4rem;
+        margin: 0;
+        letter-spacing: 3px;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 1rem auto 0;
+    }
+
+    .neon-accent {
+        color: #0af;
+        text-shadow: 0 0 10px rgba(0, 170, 255, 0.7);
+    }
+
+    .text-glow {
+        text-shadow: 0 0 15px rgba(0, 170, 255, 0.5);
+    }
+
+    .section-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 3rem;
+        letter-spacing: 2px;
+        margin: 0;
+    }
+
+    .section-subtitle {
+        color: #aaa;
+        font-size: 1.1rem;
+        margin-top: 0.5rem;
+    }
+
+    .blue-accent {
+        color: #0af;
+    }
+
+    .text-light {
+        color: #fff;
+    }
+
+    .full-width-btn {
+        width: 100%;
+        background: linear-gradient(135deg, #0af 0%, #08c 100%);
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .form-message {
+        margin-top: 1rem;
+        padding: 0.75rem;
+        border-radius: 5px;
+        text-align: center;
+        display: none;
+    }
+
+    .form-message.success {
+        background-color: rgba(0, 255, 0, 0.1);
+        color: #0f0;
+        border: 1px solid #0f0;
+        display: block;
+    }
+
+    .form-message.error {
+        background-color: rgba(255, 0, 0, 0.1);
+        color: #f00;
+        border: 1px solid #f00;
+        display: block;
+    }
+
+    /* Ejemplos de encargos */
+    .examples {
+        padding: 0 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .examples-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .example-card {
+        background: #1a1a1a;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .example-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .example-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .example-card h3 {
+        padding: 1rem 1rem 0;
+        margin: 0;
+    }
+
+    .example-card p {
+        padding: 0.5rem 1rem 1rem;
+        margin: 0;
+        color: #aaa;
+        font-size: 0.9rem;
+    }
+
+    /* Métodos de pago */
+    .payment-methods {
+        padding: 0 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .payments-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem 0;
+    }
+
+    .payment-card {
+        background: #1a1a1a;
+        border-radius: 10px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .payment-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .payment-card i {
+        font-size: 2.5rem;
+        color: #0af;
+        margin-bottom: 1rem;
+    }
+
+    .payment-card h3 {
+        margin: 0 0 0.5rem;
+    }
+
+    .payment-card p {
+        margin: 0;
+        color: #aaa;
+        font-size: 0.9rem;
+    }
+
+    .payment-notice {
+        background: rgba(255, 255, 0, 0.1);
+        border: 1px solid rgba(255, 255, 0, 0.3);
+        border-radius: 5px;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .payment-notice i {
+        color: yellow;
+        font-size: 1.5rem;
+    }
+
+    .payment-notice p {
+        margin: 0;
+    }
+
+    /* Sección de contacto */
+    .contact {
+        padding: 0 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .centered-title {
+        text-align: center;
+    }
+
+    .contact-description {
+        color: #aaa;
+        margin-bottom: 2rem;
+    }
+
+    .contact-methods {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .contact-btn {
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .contact-btn i {
+        font-size: 1.2rem;
+    }
+
+    .contact-btn.whatsapp {
+        background: #25D366;
+        color: white;
+    }
+
+    .contact-btn.instagram {
+        background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        color: white;
+    }
+
+    .contact-btn.email {
+        background: #0af;
+        color: white;
+    }
+
+    .contact-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Footer */
+    footer {
+        background: #111;
+        padding: 3rem 2rem 1.5rem;
+        text-align: center;
+    }
+
+    .footer-logo-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .footer-logo {
+        height: 60px;
+        margin-bottom: 1rem;
+    }
+
+    .footer-logo-text {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        color: #0af;
+    }
+
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .footer-links a {
+        color: #aaa;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        color: #0af;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .social-links a {
+        color: #aaa;
+        font-size: 1.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+        color: #0af;
+    }
+
+    .copyright {
+        color: #666;
+        font-size: 0.8rem;
+    }
+
+    @media (max-width: 768px) {
+        nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #111;
+            flex-direction: column;
+            padding: 1rem 2rem;
+            gap: 1rem;
+        }
+
+        nav.show {
+            display: flex;
+        }
+
+        .mobile-menu-btn {
+            display: block;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .contact-btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+        }
+    }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -39,474 +763,89 @@
         </div>
     </section>
 
-<!-- Sección de Encargos Personalizados - VERSIÓN MEJORADA -->
-<section id="encargos" class="custom-orders-section">
-    <div class="custom-orders-container">
-        <div class="orders-header">
-            <h2 class="section-title"><span class="blue-accent">ENCARGOS</span> <span class="text-light">ESPECIALES</span></h2>
-            <p class="orders-subtitle">¿Querés algo que no esté en la página o tenés una idea única? Hacemos productos personalizados a tu medida. Contanos qué querés y lo diseñamos juntos. Además, por confiar en nosotros y ayudarnos a innovar, te damos un 5% a 10% de descuento según la complejidad del pedido.</p>
+    <!-- Sección de Encargos Personalizados -->
+    <section id="encargos" class="custom-orders-section">
+        <div class="custom-orders-container">
+            <div class="orders-header">
+                <h2 class="section-title"><span class="blue-accent">ENCARGOS</span> <span class="text-light">ESPECIALES</span></h2>
+                <p class="orders-subtitle">¿Querés algo que no esté en la página o tenés una idea única? Hacemos productos personalizados a tu medida. Contanos qué querés y lo diseñamos juntos. Además, por confiar en nosotros y ayudarnos a innovar, te damos un 5% a 10% de descuento según la complejidad del pedido.</p>
+            </div>
+            
+            <form id="order-form" class="custom-order-form">
+                <!-- Grupo 1: Nombre + Contacto -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="input-container">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Nombre completo</label>
+                            <i class="fas fa-user input-icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Email</label>
+                            <i class="fas fa-envelope input-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grupo 2: Tipo de producto + Presupuesto -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="input-container select-container">
+                            <select id="product-type" name="product-type" required>
+                                <option value=""></option>
+                                <option value="sneakers">Zapatillas/Sneakers</option>
+                                <option value="ropa">Ropa/Streetwear</option>
+                                <option value="accesorios">Accesorios</option>
+                            </select>
+                            <label for="product-type">Tipo de producto</label>
+                            <i class="fas fa-chevron-down select-icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            <input type="text" id="budget" name="budget">
+                            <label for="budget">Presupuesto aproximado (opcional)</label>
+                            <i class="fas fa-coins input-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Detalles -->
+                <div class="form-group">
+                    <div class="input-container textarea-container">
+                        <textarea id="details" name="details" rows="5" required></textarea>
+                        <label for="details">Descripción detallada</label>
+                        <i class="fas fa-edit input-icon"></i>
+                        <div class="textarea-hint">Colores, materiales, talles, diseños especiales, etc.</div>
+                    </div>
+                </div>
+                
+                <!-- Subida de archivos -->
+                <div class="form-group file-upload-group">
+                    <div class="file-upload-container">
+                        <label for="references" class="file-upload-label">
+                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                            <span class="upload-text">Sube imágenes de referencia</span>
+                            <span class="file-types">(JPG/PNG, máximo 5MB)</span>
+                        </label>
+                        <input type="file" id="references" name="references" multiple accept="image/*">
+                        <div class="file-preview-container" id="file-preview"></div>
+                    </div>
+                </div>
+                
+                <!-- Botón de envío -->
+                <div class="form-footer">
+                    <button type="submit" class="cta-button full-width-btn">
+                        <i class="fas fa-paper-plane"></i> ENVIAR SOLICITUD
+                    </button>
+                    <div id="form-message" class="form-message"></div>
+                </div>
+            </form>
         </div>
-        
-        <form id="order-form" class="custom-order-form" enctype="multipart/form-data">
-            <!-- Grupo 1: Nombre + Contacto -->
-            <div class="form-row">
-                <div class="form-group">
-                    <div class="input-container">
-                        <input type="text" id="name" name="name" required>
-                        <label for="name">Nombre completo</label>
-                        <i class="fas fa-user input-icon"></i>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-container">
-                        <input type="email" id="email" name="email" required>
-                        <label for="email">Email</label>
-                        <i class="fas fa-envelope input-icon"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Grupo 2: Tipo de producto + Presupuesto -->
-            <div class="form-row">
-                <div class="form-group">
-                    <div class="input-container select-container">
-                        <select id="product-type" name="product-type" required>
-                            <option value=""></option>
-                            <option value="sneakers">Zapatillas/Sneakers</option>
-                            <option value="ropa">Ropa/Streetwear</option>
-                            <option value="accesorios">Accesorios</option>
-                        </select>
-                        <label for="product-type">Tipo de producto</label>
-                        <i class="fas fa-chevron-down select-icon"></i>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-container">
-                        <input type="text" id="budget" name="budget">
-                        <label for="budget">Presupuesto aproximado (opcional)</label>
-                        <i class="fas fa-coins input-icon"></i>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Detalles -->
-            <div class="form-group">
-                <div class="input-container textarea-container">
-                    <textarea id="details" name="details" rows="5" required></textarea>
-                    <label for="details">Descripción detallada</label>
-                    <i class="fas fa-edit input-icon"></i>
-                    <div class="textarea-hint">Colores, materiales, talles, diseños especiales, etc.</div>
-                </div>
-            </div>
-            
-            <!-- Subida de archivos -->
-            <div class="form-group file-upload-group">
-                <div class="file-upload-container">
-                    <label for="references" class="file-upload-label">
-                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                        <span class="upload-text">Sube imágenes de referencia</span>
-                        <span class="file-types">(JPG/PNG, máximo 5MB)</span>
-                    </label>
-                    <input type="file" id="references" name="references" multiple accept="image/*">
-                    <div class="file-preview-container" id="file-preview"></div>
-                </div>
-            </div>
-            
-            <!-- Botón de envío -->
-            <div class="form-footer">
-                <button type="submit" class="cta-button full-width-btn">
-                    <i class="fas fa-paper-plane"></i> ENVIAR SOLICITUD
-                </button>
-                <div id="form-message" class="form-message"></div>
-            </div>
-        </form>
-    </div>
-</section>
-
-<style>
-/* Estilos para la sección de encargos personalizados */
-.custom-orders-section {
-    background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
-    padding: 5rem 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.custom-orders-section::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(0,170,255,0.03)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
-    background-size: cover;
-    z-index: 0;
-}
-
-.custom-orders-container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 3rem;
-    background: rgba(20, 20, 20, 0.95);
-    border-radius: 16px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
-    position: relative;
-    z-index: 1;
-    border: 1px solid rgba(0, 170, 255, 0.15);
-}
-
-.orders-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.orders-subtitle {
-    color: #aaa;
-    font-size: 1.1rem;
-    margin-top: 0.75rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.custom-order-form {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.form-row {
-    display: flex;
-    gap: 2rem;
-}
-
-.form-row .form-group {
-    flex: 1;
-}
-
-.input-container {
-    position: relative;
-    margin-top: 20px;
-}
-
-.input-container label {
-    position: absolute;
-    top: -10px;
-    left: 15px;
-    background: #141414;
-    padding: 0 8px;
-    font-size: 0.85rem;
-    color: #0af;
-    z-index: 1;
-    transition: all 0.3s ease;
-}
-
-.input-container input,
-.input-container textarea,
-.select-container select {
-    width: 100%;
-    padding: 16px 20px 16px 50px;
-    background: #1a1a1a;
-    border: 1px solid #333;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.select-container select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    padding-right: 50px;
-}
-
-.input-container textarea {
-    min-height: 150px;
-    resize: vertical;
-    padding-top: 20px;
-}
-
-.textarea-hint {
-    color: #666;
-    font-size: 0.8rem;
-    margin-top: 5px;
-    padding-left: 50px;
-}
-
-.input-icon {
-    position: absolute;
-    left: 18px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #0af;
-    font-size: 1.1rem;
-}
-
-.select-icon {
-    position: absolute;
-    right: 18px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #0af;
-    font-size: 1rem;
-    pointer-events: none;
-}
-
-.input-container input:focus,
-.input-container textarea:focus,
-.select-container select:focus {
-    outline: none;
-    border-color: #0af;
-    box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.15);
-}
-
-.input-container input:focus + label,
-.input-container textarea:focus + label,
-.select-container select:focus + label {
-    color: #0ff;
-}
-
-/* Estilos para la subida de archivos */
-.file-upload-group {
-    margin-top: 1.5rem;
-}
-
-.file-upload-container {
-    border: 2px dashed #333;
-    border-radius: 10px;
-    padding: 2rem;
-    text-align: center;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-.file-upload-container:hover {
-    border-color: #0af;
-    background: rgba(0, 170, 255, 0.05);
-}
-
-.file-upload-label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-}
-
-.upload-icon {
-    font-size: 2.5rem;
-    color: #0af;
-    margin-bottom: 1rem;
-}
-
-.upload-text {
-    font-size: 1.1rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
-}
-
-.file-types {
-    font-size: 0.85rem;
-    color: #777;
-}
-
-.file-upload-container input[type="file"] {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    cursor: pointer;
-}
-
-.file-preview-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
-    justify-content: center;
-}
-
-.file-preview-item {
-    width: 80px;
-    height: 80px;
-    border-radius: 5px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid #333;
-}
-
-.file-preview-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.file-preview-item .remove-file {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 10px;
-}
-
-/* Estilos para el pie del formulario */
-.form-footer {
-    margin-top: 1.5rem;
-}
-
-.form-actions {
-    text-align: center;
-}
-
-.form-note {
-    color: #777;
-    font-size: 0.85rem;
-    margin-top: 1.5rem;
-}
-
-.terms-link {
-    color: #0af;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.terms-link:hover {
-    color: #0ff;
-    text-decoration: underline;
-}
-
-/* Estilos para el botón CTA */
-.cta-button {
-    padding: 16px 30px;
-    font-size: 1.1rem;
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    font-weight: 600;
-}
-
-/* Efectos de hover y focus */
-.cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 170, 255, 0.3);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .custom-orders-container {
-        padding: 2rem 1.5rem;
-    }
-    
-    .form-row {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    
-    .orders-header {
-        margin-bottom: 2rem;
-    }
-    
-    .file-upload-container {
-        padding: 1.5rem;
-    }
-}
-</style>
-
-<script>
-// Script para la vista previa de imágenes
-document.getElementById('references').addEventListener('change', function(e) {
-    const filePreview = document.getElementById('file-preview');
-    filePreview.innerHTML = '';
-    
-    if (this.files && this.files.length > 0) {
-        for (let i = 0; i < this.files.length; i++) {
-            const file = this.files[i];
-            if (!file.type.match('image.*')) continue;
-            
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const previewItem = document.createElement('div');
-                previewItem.className = 'file-preview-item';
-                
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.alt = 'Preview';
-                
-                const removeBtn = document.createElement('button');
-                removeBtn.className = 'remove-file';
-                removeBtn.innerHTML = '&times;';
-                removeBtn.onclick = function() {
-                    previewItem.remove();
-                    // Aquí podrías añadir lógica para remover el archivo del input si es necesario
-                };
-                
-                previewItem.appendChild(img);
-                previewItem.appendChild(removeBtn);
-                filePreview.appendChild(previewItem);
-            }
-            reader.readAsDataURL(file);
-        }
-    }
-});
-
-// Mantener el script existente para el envío del formulario
-document.getElementById('order-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formData = {
-        name: this.elements['name'].value,
-        contact: this.elements['contact'].value,
-        productType: this.elements['product-type'].value,
-        budget: this.elements['budget'].value,
-        details: this.elements['details'].value,
-        date: new Date().toLocaleString()
-    };
-
-    // Enviar a WhatsApp
-    const phone = "5492664633010";
-    const message = `*Nuevo encargo GUZZOCORP*%0A%0A` +
-                    `*Nombre:* ${formData.name}%0A` +
-                    `*Contacto:* ${formData.contact}%0A` +
-                    `*Tipo de producto:* ${formData.productType}%0A` +
-                    (formData.budget ? `*Presupuesto aproximado:* ${formData.budget}%0A` : '') +
-                    `*Detalles:*%0A${formData.details}%0A%0A` +
-                    `*Fecha:* ${formData.date}`;
-    
-    window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-    
-    // Resetear formulario
-    this.reset();
-    document.getElementById('file-preview').innerHTML = '';
-    
-    // Mostrar mensaje de éxito
-    const successMsg = document.createElement('div');
-    successMsg.className = 'success-message';
-    successMsg.innerHTML = `
-        <i class="fas fa-check-circle"></i>
-        <h3>¡Solicitud enviada con éxito!</h3>
-        <p>Nos contactaremos contigo en menos de 24 horas.</p>
-    `;
-    
-    const formContainer = document.querySelector('.custom-orders-container');
-    formContainer.appendChild(successMsg);
-    
-    setTimeout(() => {
-        successMsg.remove();
-    }, 5000);
-});
-</script>
+    </section>
 
     <!-- Ejemplos de Encargos -->
     <section class="examples" style="margin-bottom: 5rem;">
@@ -534,41 +873,41 @@ document.getElementById('order-form').addEventListener('submit', function(e) {
         </div>
     </section>
 
-<!-- Métodos de Pago -->
-<section class="payment-methods" style="margin-bottom: 5rem;">
-    <div class="section-header" style="text-align:center;">
-        <h2 class="section-title">MÉTODOS DE <span class="neon-accent">PAGO</span></h2>
-        <p class="section-subtitle">Transacciones seguras y sin complicaciones</p>
-    </div>
+    <!-- Métodos de Pago -->
+    <section class="payment-methods" style="margin-bottom: 5rem;">
+        <div class="section-header" style="text-align:center;">
+            <h2 class="section-title">MÉTODOS DE <span class="neon-accent">PAGO</span></h2>
+            <p class="section-subtitle">Transacciones seguras y sin complicaciones</p>
+        </div>
 
-    <div class="payments-grid">
-        <div class="payment-card">
-            <i class="fas fa-money-bill-wave"></i>
-            <h3>EFECTIVO</h3>
-            <p>Con descuento especial</p>
+        <div class="payments-grid">
+            <div class="payment-card">
+                <i class="fas fa-money-bill-wave"></i>
+                <h3>EFECTIVO</h3>
+                <p>Con descuento especial</p>
+            </div>
+            <div class="payment-card">
+                <i class="fas fa-university"></i>
+                <h3>TRANSFERENCIA</h3>
+                <p>Banco o Mercado Pago</p>
+            </div>
+            <div class="payment-card">
+                <i class="fab fa-cc-visa"></i>
+                <h3>TARJETAS DÉBITO</h3>
+                <p>Visa y Mastercard</p>
+            </div>
+            <div class="payment-card">
+                <i class="fab fa-bitcoin"></i>
+                <h3>CRIPTOMONEDAS</h3>
+                <p>Bitcoin, USDT, más</p>
+            </div>
         </div>
-        <div class="payment-card">
-            <i class="fas fa-university"></i>
-            <h3>TRANSFERENCIA</h3>
-            <p>Banco o Mercado Pago</p>
-        </div>
-        <div class="payment-card">
-            <i class="fab fa-cc-visa"></i>
-            <h3>TARJETAS DÉBITO</h3>
-            <p>Visa y Mastercard</p>
-        </div>
-        <div class="payment-card">
-            <i class="fab fa-bitcoin"></i>
-            <h3>CRIPTOMONEDAS</h3>
-            <p>Bitcoin, USDT, más</p>
-        </div>
-    </div>
 
-    <div class="payment-notice">
-        <i class="fas fa-info-circle"></i>
-        <p><strong>Política clara:</strong> No aceptamos cuotas ni crédito.</p>
-    </div>
-</section>
+        <div class="payment-notice">
+            <i class="fas fa-info-circle"></i>
+            <p><strong>Política clara:</strong> No aceptamos cuotas ni crédito.</p>
+        </div>
+    </section>
     
     <!-- Sección Contacto -->
     <section id="contacto" class="contact" style="margin-bottom: 5rem;">
@@ -612,14 +951,14 @@ document.getElementById('order-form').addEventListener('submit', function(e) {
     </footer>
 
     <script>
-    // 1. Menú móvil (conservado)
+    // 1. Menú móvil
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const nav = document.querySelector('header nav');
     mobileMenuBtn.addEventListener('click', () => {
         nav.classList.toggle('show');
     });
 
-    // 2. Vista previa de imágenes (mejorada)
+    // 2. Vista previa de imágenes
     document.getElementById('references').addEventListener('change', function(e) {
         const filePreview = document.getElementById('file-preview');
         filePreview.innerHTML = '';
@@ -643,12 +982,11 @@ document.getElementById('order-form').addEventListener('submit', function(e) {
         }
     });
 
-    // 3. Nuevo manejo del formulario (con Google Apps Script)
-    document.getElementById('order-form').addEventListener('submit', async function(e) {
+    // 3. Manejo del formulario para enviar a WhatsApp
+    document.getElementById('order-form').addEventListener('submit', function(e) {
         e.preventDefault();
         
         const form = e.target;
-        const formData = new FormData(form);
         const submitBtn = form.querySelector('button[type="submit"]');
         const messageDiv = document.getElementById('form-message');
         
@@ -659,46 +997,48 @@ document.getElementById('order-form').addEventListener('submit', function(e) {
         messageDiv.className = 'form-message';
 
         try {
-            // URL de tu Google Apps Script (¡usa el tuyo!)
-            const scriptUrl = 'https://script.google.com/macros/s/AKfycbw5SDt7TRTdCmnl8hFQVghwoyaC2cI-VbXSQ2XBEUwFOBmF5YrgGH8wPLFz3xkG2RPC/exec';
+            // Obtener datos del formulario
+            const formData = {
+                name: form.elements['name'].value,
+                email: form.elements['email'].value,
+                productType: form.elements['product-type'].value,
+                budget: form.elements['budget'].value,
+                details: form.elements['details'].value,
+                date: new Date().toLocaleString()
+            };
+
+            // Enviar a WhatsApp
+            const phone = "5492664633010";
+            const message = `*Nuevo encargo GUZZOCORP*%0A%0A` +
+                            `*Nombre:* ${formData.name}%0A` +
+                            `*Email:* ${formData.email}%0A` +
+                            `*Tipo de producto:* ${formData.productType}%0A` +
+                            (formData.budget ? `*Presupuesto aproximado:* ${formData.budget}%0A` : '') +
+                            `*Detalles:*%0A${formData.details}%0A%0A` +
+                            `*Fecha:* ${formData.date}`;
             
-            // Enviar datos al script
-            const response = await fetch(scriptUrl, {
-                method: 'POST',
-                body: formData
-            });
+            // Abrir WhatsApp
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
             
-            const result = await response.json();
+            // Mostrar mensaje de éxito
+            messageDiv.textContent = '✅ ¡Solicitud enviada con éxito! Nos contactaremos pronto.';
+            messageDiv.className = 'form-message success';
             
-            if (result.success) {
-                messageDiv.textContent = '✅ ¡Solicitud enviada con éxito! Nos contactaremos pronto.';
-                messageDiv.className = 'form-message success';
-                form.reset();
-                document.getElementById('file-preview').innerHTML = '';
-            } else {
-                throw new Error(result.message || 'Error al enviar');
-            }
+            // Resetear formulario
+            form.reset();
+            document.getElementById('file-preview').innerHTML = '';
             
         } catch (error) {
             console.error('Error:', error);
             messageDiv.textContent = '⚠️ Error al enviar. Por favor contáctanos por WhatsApp.';
             messageDiv.className = 'form-message error';
-            
-            // Opción alternativa (abre WhatsApp como respaldo)
-            const phone = "5492664633010";
-            const message = `*Nuevo encargo GUZZOCORP*%0A%0A` +
-                            `*Nombre:* ${formData.get('name')}%0A` +
-                            `*Email:* ${formData.get('email')}%0A` +
-                            `*Producto:* ${formData.get('product-type')}%0A` +
-                            `*Detalles:*%0A${formData.get('details')}`;
-            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         } finally {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ENVIAR SOLICITUD';
         }
     });
 
-    // 4. Scroll suave (conservado)
+    // 4. Scroll suave
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -706,6 +1046,6 @@ document.getElementById('order-form').addEventListener('submit', function(e) {
             if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
     });
-</script>
+    </script>
 </body>
 </html>
