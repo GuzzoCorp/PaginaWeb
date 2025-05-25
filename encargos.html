@@ -39,32 +39,34 @@
         </div>
     </section>
 
-<!-- Sección de Encargos Personalizados - Versión Mejorada -->
-<section class="custom-orders-section">
+<!-- Sección de Encargos Personalizados - VERSIÓN MEJORADA -->
+<section id="encargos" class="custom-orders-section">
     <div class="custom-orders-container">
         <div class="orders-header">
-            <h2 class="section-title">SOLICITA TU <span class="neon-accent">ENCARGO PERSONALIZADO</span></h2>
-            <p class="orders-subtitle">Transformamos tus ideas en productos únicos con los mejores materiales y acabados</p>
+            <h2 class="section-title"><span class="blue-accent">ENCARGOS</span> <span class="text-light">ESPECIALES</span></h2>
+            <p class="orders-subtitle">¿Buscas algo específico? ¡Diseñémoslo juntos!</p>
         </div>
         
-        <form id="order-form" class="custom-order-form">
+        <form id="order-form" class="custom-order-form" enctype="multipart/form-data">
+            <!-- Grupo 1: Nombre + Contacto -->
             <div class="form-row">
                 <div class="form-group">
                     <div class="input-container">
                         <input type="text" id="name" name="name" required>
                         <label for="name">Nombre completo</label>
-                        <i class="fas fa-user-tie input-icon"></i>
+                        <i class="fas fa-user input-icon"></i>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-container">
-                        <input type="text" id="contact" name="contact" required>
-                        <label for="contact">WhatsApp/Email</label>
-                        <i class="fas fa-address-book input-icon"></i>
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email</label>
+                        <i class="fas fa-envelope input-icon"></i>
                     </div>
                 </div>
             </div>
             
+            <!-- Grupo 2: Tipo de producto + Presupuesto -->
             <div class="form-row">
                 <div class="form-group">
                     <div class="input-container select-container">
@@ -73,7 +75,6 @@
                             <option value="sneakers">Zapatillas/Sneakers</option>
                             <option value="ropa">Ropa/Streetwear</option>
                             <option value="accesorios">Accesorios</option>
-                            <option value="otros">Otros productos</option>
                         </select>
                         <label for="product-type">Tipo de producto</label>
                         <i class="fas fa-chevron-down select-icon"></i>
@@ -88,34 +89,35 @@
                 </div>
             </div>
             
+            <!-- Detalles -->
             <div class="form-group">
                 <div class="input-container textarea-container">
                     <textarea id="details" name="details" rows="5" required></textarea>
-                    <label for="details">Detalles del encargo</label>
+                    <label for="details">Descripción detallada</label>
                     <i class="fas fa-edit input-icon"></i>
-                    <div class="textarea-hint">Describe colores, materiales, talles, diseños especiales, etc.</div>
+                    <div class="textarea-hint">Colores, materiales, talles, diseños especiales, etc.</div>
                 </div>
             </div>
             
+            <!-- Subida de archivos -->
             <div class="form-group file-upload-group">
                 <div class="file-upload-container">
                     <label for="references" class="file-upload-label">
                         <i class="fas fa-cloud-upload-alt upload-icon"></i>
                         <span class="upload-text">Sube imágenes de referencia</span>
-                        <span class="file-types">(JPG, PNG, máximo 5MB cada una)</span>
+                        <span class="file-types">(JPG/PNG, máximo 5MB)</span>
                     </label>
                     <input type="file" id="references" name="references" multiple accept="image/*">
                     <div class="file-preview-container" id="file-preview"></div>
                 </div>
             </div>
             
+            <!-- Botón de envío -->
             <div class="form-footer">
-                <div class="form-actions">
-                    <button type="submit" class="cta-button full-width-btn">
-                        <i class="fas fa-paper-plane"></i> ENVIAR SOLICITUD
-                    </button>
-                    <p class="form-note">Al enviar este formulario, aceptas nuestros <a href="#" class="terms-link">términos de servicio</a></p>
-                </div>
+                <button type="submit" class="cta-button full-width-btn">
+                    <i class="fas fa-paper-plane"></i> ENVIAR SOLICITUD
+                </button>
+                <div id="form-message" class="form-message"></div>
             </div>
         </form>
     </div>
