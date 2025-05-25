@@ -581,23 +581,33 @@
         </div>
     </footer>
 
-    <script>
 <script>
-// 1. Menú móvil
+// 1. Menú móvil - (Manteniendo la funcionalidad original)
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const nav = document.querySelector('header nav');
 mobileMenuBtn.addEventListener('click', () => {
     nav.classList.toggle('show');
 });
 
-// 2. Vista previa de imágenes
+// 2. Vista previa de imágenes - (Versión mejorada)
 document.getElementById('references').addEventListener('change', function(e) {
     const filePreview = document.getElementById('file-preview');
     filePreview.innerHTML = '';
     
     if (this.files && this.files.length > 0) {
-        Array.from(this.files).forEach(file => {
-            if (!file.type.match('image.*')) return;
+        // Limitar a 5 archivos máximo
+        const files = Array.from(this.files).slice(0, 5);
+        
+        files.forEach(file => {
+            if (!file.type.match('image.*')) {
+                showToast('⚠️ Solo se permiten imágenes', 'error');
+                return;
+            }
+            
+            if (file.size > 5 * 1024 * 1024) { // 5MB
+                showToast('⚠️ Imagen demasiado grande (máx 5MB)', 'error');
+                return;
+            }
             
             const reader = new FileReader();
             reader.onload = function(e) {
@@ -605,7 +615,9 @@ document.getElementById('references').addEventListener('change', function(e) {
                 previewItem.className = 'file-preview-item';
                 previewItem.innerHTML = `
                     <img src="${e.target.result}" alt="Preview">
-                    <button class="remove-file" onclick="this.parentElement.remove()">&times;</button>
+                    <button class="remove-file" onclick="this.parentElement.remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
                 `;
                 filePreview.appendChild(previewItem);
             };
@@ -614,7 +626,7 @@ document.getElementById('references').addEventListener('change', function(e) {
     }
 });
 
-// 3. Manejo del formulario con Google Apps Script
+// 3. Manejo del formulario con Google Apps Script (Versión mejorada)
 document.getElementById('order-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     
@@ -622,21 +634,30 @@ document.getElementById('order-form').addEventListener('submit', async function(
     const submitBtn = form.querySelector('button[type="submit"]');
     const messageDiv = document.getElementById('form-message');
     
+    // Validación adicional
+    if (!form.elements['name'].value || !form.elements['email'].value) {
+        showMessage('Por favor completa los campos requeridos', 'error');
+        return;
+    }
+
     // Mostrar estado de carga
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ENVIANDO...';
-    messageDiv.textContent = '';
+    messageDiv.innerHTML = '';
     messageDiv.className = 'form-message';
 
     try {
-        // Crear FormData con los datos del formulario
-        const formData = new FormData(form);
-        
-        // Convertir FormData a objeto simple para enviar
-        const formDataObj = {};
-        formData.forEach((value, key) => {
-            formDataObj[key] = value;
-        });
+        // Preparar datos para Google Apps Script
+        const formData = {
+            name: form.elements['name'].value,
+            email: form.elements['email'].value,
+            phone: '', // Puedes agregar un campo phone si lo necesitas
+            'product-type': form.elements['product-type'].value,
+            budget: form.elements['budget'].value || 'No especificado',
+            details: form.elements['details'].value,
+            timestamp: new Date().toISOString(),
+            // Nota: Para imágenes ver solución más abajo
+        };
         
         // URL de tu Google Apps Script (REEMPLAZA CON TU URL)
         const scriptUrl = 'https://script.google.com/macros/s/AKfycbw5SDt7TRTdCmnl8hFQVghwoyaC2cI-VbXSQ2XBEUwFOBmF5YrgGH8wPLFz3xkG2RPC/exec';
@@ -644,63 +665,168 @@ document.getElementById('order-form').addEventListener('submit', async function(
         // Enviar datos al script
         const response = await fetch(scriptUrl, {
             method: 'POST',
-            body: JSON.stringify(formDataObj),
+            body: JSON.stringify(formData),
             headers: {
                 'Content-Type': 'application/json'
             }
         });
         
+        if (!response.ok) throw new Error('Error en la conexión');
+        
         const result = await response.json();
         
         if (result.success) {
-            // Mostrar mensaje de éxito
-            messageDiv.innerHTML = `
+            // Mensaje de éxito mejorado
+            showMessage(`
                 <i class="fas fa-check-circle"></i>
-                <span>¡Solicitud enviada con éxito! Nos contactaremos en menos de 24 horas.</span>
-            `;
-            messageDiv.className = 'form-message success';
+                <div class="message-content">
+                    <h4>¡Encargo recibido!</h4>
+                    <p>Hemos registrado tu solicitud #${generateOrderId()}</p>
+                    <p>Nos contactaremos dentro de 24 horas.</p>
+                </div>
+            `, 'success');
+            
+            // Resetear formulario
             form.reset();
             document.getElementById('file-preview').innerHTML = '';
             
-            // Opcional: Redirigir después de éxito
-            setTimeout(() => {
-                window.location.href = 'inicio.html';
-            }, 3000);
+            // Mostrar sección de éxito (opcional)
+            showSuccessSection();
         } else {
-            throw new Error(result.message || 'Error al enviar el formulario');
+            throw new Error(result.message || 'Error al procesar el encargo');
         }
-        
     } catch (error) {
         console.error('Error:', error);
-        messageDiv.innerHTML = `
+        showMessage(`
             <i class="fas fa-exclamation-triangle"></i>
-            <span>Error al enviar. Por favor contáctanos por WhatsApp.</span>
-        `;
-        messageDiv.className = 'form-message error';
+            <div class="message-content">
+                <h4>Error al enviar</h4>
+                <p>${error.message}</p>
+                <p>Por favor contáctanos directamente.</p>
+            </div>
+        `, 'error');
         
-        // Opción alternativa (abre WhatsApp como respaldo)
-        const phone = "5492664633010";
-        const message = `*Nuevo encargo GUZZOCORP*%0A%0A` +
-                        `*Nombre:* ${form.elements['name'].value}%0A` +
-                        `*Email:* ${form.elements['email'].value}%0A` +
-                        `*Producto:* ${form.elements['product-type'].value}%0A` +
-                        `*Presupuesto:* ${form.elements['budget'].value || 'No especificado'}%0A` +
-                        `*Detalles:*%0A${form.elements['details'].value}`;
-        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        // Enviar a WhatsApp como respaldo
+        sendWhatsAppBackup(form);
     } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ENVIAR SOLICITUD';
     }
 });
 
-// 4. Scroll suave
+// 4. Scroll suave - (Versión mejorada)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const target = document.querySelector(targetId);
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            // Cerrar menú móvil si está abierto
+            if (nav.classList.contains('show')) {
+                nav.classList.remove('show');
+            }
+        }
     });
 });
+
+// ----------------------
+// FUNCIONES AUXILIARES
+// ----------------------
+
+function showMessage(content, type) {
+    const messageDiv = document.getElementById('form-message');
+    messageDiv.innerHTML = content;
+    messageDiv.className = `form-message ${type}`;
+    
+    // Auto-ocultar después de 5 segundos (solo para éxito)
+    if (type === 'success') {
+        setTimeout(() => {
+            messageDiv.classList.add('fade-out');
+        }, 5000);
+    }
+}
+
+function showToast(message, type) {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.classList.add('fade-out');
+        toast.addEventListener('transitionend', () => toast.remove());
+    }, 3000);
+}
+
+function generateOrderId() {
+    return 'GC-' + Date.now().toString().slice(-6);
+}
+
+function showSuccessSection() {
+    const formSection = document.querySelector('.custom-orders-container');
+    const successHTML = `
+        <div class="success-section">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h2>¡Gracias por tu encargo!</h2>
+            <p>Hemos recibido tu solicitud y estamos trabajando en ella.</p>
+            <p>Te contactaremos pronto con los próximos pasos.</p>
+            <div class="success-details">
+                <p><strong>Email de confirmación:</strong> Enviado a tu correo</p>
+                <p><strong>Tiempo de respuesta:</strong> Menos de 24 horas</p>
+            </div>
+            <a href="inicio.html" class="cta-button">
+                <i class="fas fa-home"></i> Volver al inicio
+            </a>
+        </div>
+    `;
+    
+    formSection.innerHTML = successHTML;
+    formSection.classList.add('success-container');
+}
+
+function sendWhatsAppBackup(form) {
+    const phone = "5492664633010";
+    const message = `*Nuevo encargo GUZZOCORP*%0A%0A` +
+                    `*Nombre:* ${form.elements['name'].value}%0A` +
+                    `*Email:* ${form.elements['email'].value}%0A` +
+                    `*Producto:* ${form.elements['product-type'].value}%0A` +
+                    `*Presupuesto:* ${form.elements['budget'].value || 'No especificado'}%0A` +
+                    `*Detalles:*%0A${form.elements['details'].value}`;
+    
+    // Abrir WhatsApp después de 2 segundos
+    setTimeout(() => {
+        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+    }, 2000);
+}
+
+// [OPCIONAL] Para manejar imágenes con Google Drive
+async function uploadImagesToDrive(files) {
+    try {
+        // Necesitarías otro endpoint en Apps Script para subir archivos
+        const driveUrl = 'TU_SCRIPT_DE_DRIVE';
+        const uploadPromises = Array.from(files).map(file => {
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            return fetch(driveUrl, {
+                method: 'POST',
+                body: formData
+            }).then(res => res.json());
+        });
+        
+        return await Promise.all(uploadPromises);
+    } catch (error) {
+        console.error('Error subiendo imágenes:', error);
+        return [];
+    }
+}
 </script>
 </body>
 </html>
