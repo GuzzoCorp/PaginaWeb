@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUZZOCORP - Encargos Personalizados</title>
+    <meta name="description" content="Solicita productos personalizados y exclusivos en GUZZOCORP">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="GuzzoCorp.png">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <img src="GuzzoCorp.png" alt="GUZZOCORP" class="logo">
+            <span class="logo-text">GUZZO CORPORATION</span>
+        </div>
+        <nav>
+            <a href="inicio.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="index.html"><i class="fas fa-tshirt"></i> Tienda</a>
+            <a href="catalogo.html"><i class="fas fa-search"></i> Catálogo</a>
+            <a href="encargos.html"><i class="fas fa-star"></i> Encargos</a>
+            <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+        </nav>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>ENCARGOS <span class="neon-accent">PERSONALIZADOS</span></h1>
+            <p class="neon-accent text-glow">Diseños exclusivos • Prendas a medida • Sneakers únicos • Totalmente adaptado a ti</p>
+        </div>
+    </section>
+
+    <!-- Sección de Encargos Personalizados -->
+    <section id="encargos" class="custom-orders-section">
+        <div class="custom-orders-container">
+            <div class="orders-header">
+                <h2 class="section-title"><span class="blue-accent">ENCARGOS</span> <span class="text-light">ESPECIALES</span></h2>
+                <p class="orders-subtitle">¿Querés algo que no esté en la página o tenés una idea única? Hacemos productos personalizados a tu medida. Contanos qué querés y lo diseñamos juntos. Además, por confiar en nosotros y ayudarnos a innovar, te damos un 5% a 10% de descuento según la complejidad del pedido.</p>
+            </div>
+            
+            <form id="order-form" class="custom-order-form" enctype="multipart/form-data">
+                <!-- Grupo 1: Nombre + Contacto -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="input-container">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Nombre completo</label>
+                            <i class="fas fa-user input-icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            <input type="email" id="email" name="contact" required>
+                            <label for="email">Email</label>
+                            <i class="fas fa-envelope input-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Grupo 2: Tipo de producto + Presupuesto -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <div class="input-container select-container">
+                            <select id="product-type" name="product-type" required>
+                                <option value=""></option>
+                                <option value="sneakers">Zapatillas/Sneakers</option>
+                                <option value="ropa">Ropa/Streetwear</option>
+                                <option value="accesorios">Accesorios</option>
+                            </select>
+                            <label for="product-type">Tipo de producto</label>
+                            <i class="fas fa-chevron-down select-icon"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-container">
+                            <input type="text" id="budget" name="budget">
+                            <label for="budget">Presupuesto aproximado (opcional)</label>
+                            <i class="fas fa-coins input-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Detalles -->
+                <div class="form-group">
+                    <div class="input-container textarea-container">
+                        <textarea id="details" name="details" rows="5" required></textarea>
+                        <label for="details">Descripción detallada</label>
+                        <i class="fas fa-edit input-icon"></i>
+                        <div class="textarea-hint">Colores, materiales, talles, diseños especiales, etc.</div>
+                    </div>
+                </div>
+                
+                <!-- Subida de archivos -->
+                <div class="form-group file-upload-group">
+                    <div class="file-upload-container">
+                        <label for="references" class="file-upload-label">
+                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                            <span class="upload-text">Sube imágenes de referencia</span>
+                            <span class="file-types">(JPG/PNG, máximo 5MB)</span>
+                        </label>
+                        <input type="file" id="references" name="references" multiple accept="image/*">
+                        <div class="file-preview-container" id="file-preview"></div>
+                    </div>
+                </div>
+                
+                <!-- Botón de envío -->
+                <div class="form-footer">
+                    <button type="submit" class="cta-button full-width-btn">
+                        <i class="fas fa-paper-plane"></i> ENVIAR SOLICITUD
+                    </button>
+                    <div id="form-message" class="form-message"></div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <style>
+    /* Estilos para la sección de encargos personalizados */
+    .custom-orders-section {
+        background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+        padding: 5rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .custom-orders-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(0,170,255,0.03)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+        background-size: cover;
+        z-index: 0;
+    }
+
+    .custom-orders-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem;
+        background: rgba(20, 20, 20, 0.95);
+        border-radius: 16px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        position: relative;
+        z-index: 1;
+        border: 1px solid rgba(0, 170, 255, 0.15);
+    }
+
+    .orders-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .orders-subtitle {
+        color: #aaa;
+        font-size: 1.1rem;
+        margin-top: 0.75rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .custom-order-form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .form-row {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .form-row .form-group {
+        flex: 1;
+    }
+
+    .input-container {
+        position: relative;
+        margin-top: 20px;
+    }
+
+    .input-container label {
+        position: absolute;
+        top: -10px;
+        left: 15px;
+        background: #141414;
+        padding: 0 8px;
+        font-size: 0.85rem;
+        color: #0af;
+        z-index: 1;
+        transition: all 0.3s ease;
+    }
+
+    .input-container input,
+    .input-container textarea,
+    .select-container select {
+        width: 100%;
+        padding: 16px 20px 16px 50px;
+        background: #1a1a1a;
+        border: 1px solid #333;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .select-container select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        padding-right: 50px;
+    }
+
+    .input-container textarea {
+        min-height: 150px;
+        resize: vertical;
+        padding-top: 20px;
+    }
+
+    .textarea-hint {
+        color: #666;
+        font-size: 0.8rem;
+        margin-top: 5px;
+        padding-left: 50px;
+    }
+
+    .input-icon {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #0af;
+        font-size: 1.1rem;
+    }
+
+    .select-icon {
+        position: absolute;
+        right: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #0af;
+        font-size: 1rem;
+        pointer-events: none;
+    }
+
+    .input-container input:focus,
+    .input-container textarea:focus,
+    .select-container select:focus {
+        outline: none;
+        border-color: #0af;
+        box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.15);
+    }
+
+    .input-container input:focus + label,
+    .input-container textarea:focus + label,
+    .select-container select:focus + label {
+        color: #0ff;
+    }
+
+    /* Estilos para la subida de archivos */
+    .file-upload-group {
+        margin-top: 1.5rem;
+    }
+
+    .file-upload-container {
+        border: 2px dashed #333;
+        border-radius: 10px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .file-upload-container:hover {
+        border-color: #0af;
+        background: rgba(0, 170, 255, 0.05);
+    }
+
+    .file-upload-label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .upload-icon {
+        font-size: 2.5rem;
+        color: #0af;
+        margin-bottom: 1rem;
+    }
+
+    .upload-text {
+        font-size: 1.1rem;
+        color: #fff;
+        margin-bottom: 0.5rem;
+    }
+
+    .file-types {
+        font-size: 0.85rem;
+        color: #777;
+    }
+
+    .file-upload-container input[type="file"] {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .file-preview-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+        justify-content: center;
+    }
+
+    .file-preview-item {
+        width: 80px;
+        height: 80px;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+        border: 1px solid #333;
+    }
+
+    .file-preview-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .file-preview-item .remove-file {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 10px;
+    }
+
+    /* Estilos para el pie del formulario */
+    .form-footer {
+        margin-top: 1.5rem;
+    }
+
+    .form-actions {
+        text-align: center;
+    }
+
+    .form-note {
+        color: #777;
+        font-size: 0.85rem;
+        margin-top: 1.5rem;
+    }
+
+    .terms-link {
+        color: #0af;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .terms-link:hover {
+        color: #0ff;
+        text-decoration: underline;
+    }
+
+    /* Estilos para el botón CTA */
+    .cta-button {
+        padding: 16px 30px;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        font-weight: 600;
+    }
+
+    /* Efectos de hover y focus */
+    .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 170, 255, 0.3);
+    }
+
+    /* Mensajes del formulario */
+    .form-message {
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.95rem;
+    }
+
+    .form-message i {
+        font-size: 1.2rem;
+    }
+
+    .form-message.success {
+        background: rgba(0, 200, 83, 0.15);
+        border: 1px solid #00c853;
+        color: #00c853;
+    }
+
+    .form-message.error {
+        background: rgba(255, 23, 68, 0.15);
+        border: 1px solid #ff1744;
+        color: #ff1744;
+    }
+
+    .success-message {
+        background: rgba(20, 20, 20, 0.9);
+        border: 1px solid #0af;
+        color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 2rem;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .success-message i {
+        color: #0af;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .success-message h3 {
+        margin: 0.5rem 0;
+        color: #0af;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .custom-orders-container {
+            padding: 2rem 1.5rem;
+        }
+        
+        .form-row {
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .orders-header {
+            margin-bottom: 2rem;
+        }
+        
+        .file-upload-container {
+            padding: 1.5rem;
+        }
+    }
+    </style>
+
+    <!-- Ejemplos de Encargos -->
+    <section class="examples" style="margin-bottom: 5rem;">
+        <div class="section-header">
+            <h2 class="section-title">ENCARGOS <span class="neon-accent">RECIENTES</span></h2>
+            <p class="section-subtitle">Algunos ejemplos de lo que hemos creado para nuestros clientes</p>
+        </div>
+        
+        <div class="examples-grid">
+            <div class="example-card">
+                <img src="assets/examples/custom-sneakers.jpg" alt="Sneakers personalizados">
+                <h3>Sneakers Pintados a Mano</h3>
+                <p>Diseño exclusivo basado en el arte del cliente</p>
+            </div>
+            <div class="example-card">
+                <img src="assets/examples/custom-hoodie.jpg" alt="Buzo personalizado">
+                <h3>Buzo con Bordado Personalizado</h3>
+                <p>Bordado complejo con el logo del negocio del cliente</p>
+            </div>
+            <div class="example-card">
+                <img src="assets/examples/custom-jacket.jpg" alt="Campera personalizada">
+                <h3>Campera de Cuero Grabada</h3>
+                <p>Grabado láser con diseño geométrico personalizado</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Métodos de Pago -->
+    <section class="payment-methods" style="margin-bottom: 5rem;">
+        <div class="section-header" style="text-align:center;">
+            <h2 class="section-title">MÉTODOS DE <span class="neon-accent">PAGO</span></h2>
+            <p class="section-subtitle">Transacciones seguras y sin complicaciones</p>
+        </div>
+
+        <div class="payments-grid">
+            <div class="payment-card">
+                <i class="fas fa-money-bill-wave"></i>
+                <h3>EFECTIVO</h3>
+                <p>Con descuento especial</p>
+            </div>
+            <div class="payment-card">
+                <i class="fas fa-university"></i>
+                <h3>TRANSFERENCIA</h3>
+                <p>Banco o Mercado Pago</p>
+            </div>
+            <div class="payment-card">
+                <i class="fab fa-cc-visa"></i>
+                <h3>TARJETAS DÉBITO</h3>
+                <p>Visa y Mastercard</p>
+            </div>
+            <div class="payment-card">
+                <i class="fab fa-bitcoin"></i>
+                <h3>CRIPTOMONEDAS</h3>
+                <p>Bitcoin, USDT, más</p>
+            </div>
+        </div>
+
+        <div class="payment-notice">
+            <i class="fas fa-info-circle"></i>
+            <p><strong>Política clara:</strong> No aceptamos cuotas ni crédito.</p>
+        </div>
+    </section>
+    
+    <!-- Sección Contacto -->
+    <section id="contacto" class="contact" style="margin-bottom: 5rem;">
+        <h2 class="section-title centered-title">CONTACTO <span class="neon-accent">GUZZO.CORPORATION</span></h2>
+        <p class="contact-description">¿Tienes dudas sobre encargos? Contáctanos directamente:</p>
+        
+        <div class="contact-methods">
+            <a href="https://wa.me/5492664633010" class="contact-btn whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://www.instagram.com/guzzo.corp" class="contact-btn instagram">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="mailto:encargos@guzzoinbusiness@gmail.com" class="contact-btn email">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo-container">
+            <img src="GuzzoCorp.png" alt="GUZZOCORP" class="footer-logo">
+            <span class="footer-logo-text">CREANDO TUS IDEAS</span>
+        </div>
+        <div class="footer-links">
+            <a href="inicio.html">Inicio</a>
+            <a href="index.html">Tienda</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="encargos.html">Encargos</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.instagram.com/guzzo.corp" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5492664633010" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:guzzoinbusiness@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 GUZZOCORP - Todos los derechos reservados - By: Nahuel Guzzo
+        </div>
+    </footer>
+
+<script>
+// 1. Menú móvil - (Manteniendo la funcionalidad original)
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const nav = document.querySelector('header nav');
+mobileMenuBtn.addEventListener('click', () => {
+    nav.classList.toggle('show');
+});
+
+// 2. Vista previa de imágenes - (Versión mejorada)
+document.getElementById('references').addEventListener('change', function(e) {
+    const filePreview = document.getElementById('file-preview');
+    filePreview.innerHTML = '';
+    
+    if (this.files && this.files.length > 0) {
+        // Limitar a 5 archivos máximo
+        const files = Array.from(this.files).slice(0, 5);
+        
+        files.forEach(file => {
+            if (!file.type.match('image.*')) {
+                showToast('⚠️ Solo se permiten imágenes', 'error');
+                return;
+            }
+            
+            if (file.size > 5 * 1024 * 1024) { // 5MB
+                showToast('⚠️ Imagen demasiado grande (máx 5MB)', 'error');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const previewItem = document.createElement('div');
+                previewItem.className = 'file-preview-item';
+                previewItem.innerHTML = `
+                    <img src="${e.target.result}" alt="Preview">
+                    <button class="remove-file" onclick="this.parentElement.remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                filePreview.appendChild(previewItem);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+});
+
+// 3. Manejo del formulario con Google Apps Script (Versión mejorada)
+document.getElementById('order-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const messageDiv = document.getElementById('form-message');
+    
+    // Validación adicional
+    if (!form.elements['name'].value || !form.elements['email'].value) {
+        showMessage('Por favor completa los campos requeridos', 'error');
+        return;
+    }
+
+    // Mostrar estado de carga
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ENVIANDO...';
+    messageDiv.innerHTML = '';
+    messageDiv.className = 'form-message';
+
+    try {
+        // Preparar datos para Google Apps Script
+        const formData = {
+            name: form.elements['name'].value,
+            email: form.elements['email'].value,
+            phone: '', // Puedes agregar un campo phone si lo necesitas
+            'product-type': form.elements['product-type'].value,
+            budget: form.elements['budget'].value || 'No especificado',
+            details: form.elements['details'].value,
+            timestamp: new Date().toISOString(),
+            // Nota: Para imágenes ver solución más abajo
+        };
+        
+        // URL de tu Google Apps Script (REEMPLAZA CON TU URL)
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbw5SDt7TRTdCmnl8hFQVghwoyaC2cI-VbXSQ2XBEUwFOBmF5YrgGH8wPLFz3xkG2RPC/exec';
+        
+        // Enviar datos al script
+const response = await fetch(scriptUrl, {
+    method: 'POST',
+    body: JSON.stringify(formData),
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    mode: 'no-cors' // ← Añade esta línea
+});
+
+        
+        if (!response.ok) throw new Error('Error en la conexión');
+        
+        const result = await response.json();
+        
+        if (result.success) {
+            // Mensaje de éxito mejorado
+            showMessage(`
+                <i class="fas fa-check-circle"></i>
+                <div class="message-content">
+                    <h4>¡Encargo recibido!</h4>
+                    <p>Hemos registrado tu solicitud #${generateOrderId()}</p>
+                    <p>Nos contactaremos dentro de 24 horas.</p>
+                </div>
+            `, 'success');
+            
+            // Resetear formulario
+            form.reset();
+            document.getElementById('file-preview').innerHTML = '';
+            
+            // Mostrar sección de éxito (opcional)
+            showSuccessSection();
+        } else {
+            throw new Error(result.message || 'Error al procesar el encargo');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showMessage(`
+            <i class="fas fa-exclamation-triangle"></i>
+            <div class="message-content">
+                <h4>Error al enviar</h4>
+                <p>${error.message}</p>
+                <p>Por favor contáctanos directamente.</p>
+            </div>
+        `, 'error');
+        
+        // Enviar a WhatsApp como respaldo
+        sendWhatsAppBackup(form);
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ENVIAR SOLICITUD';
+    }
+});
+
+// 4. Scroll suave - (Versión mejorada)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const target = document.querySelector(targetId);
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            // Cerrar menú móvil si está abierto
+            if (nav.classList.contains('show')) {
+                nav.classList.remove('show');
+            }
+        }
+    });
+});
+
+// ----------------------
+// FUNCIONES AUXILIARES
+// ----------------------
+
+function showMessage(content, type) {
+    const messageDiv = document.getElementById('form-message');
+    messageDiv.innerHTML = content;
+    messageDiv.className = `form-message ${type}`;
+    
+    // Auto-ocultar después de 5 segundos (solo para éxito)
+    if (type === 'success') {
+        setTimeout(() => {
+            messageDiv.classList.add('fade-out');
+        }, 5000);
+    }
+}
+
+function showToast(message, type) {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.classList.add('fade-out');
+        toast.addEventListener('transitionend', () => toast.remove());
+    }, 3000);
+}
+
+function generateOrderId() {
+    return 'GC-' + Date.now().toString().slice(-6);
+}
+
+function showSuccessSection() {
+    const formSection = document.querySelector('.custom-orders-container');
+    const successHTML = `
+        <div class="success-section">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h2>¡Gracias por tu encargo!</h2>
+            <p>Hemos recibido tu solicitud y estamos trabajando en ella.</p>
+            <p>Te contactaremos pronto con los próximos pasos.</p>
+            <div class="success-details">
+                <p><strong>Email de confirmación:</strong> Enviado a tu correo</p>
+                <p><strong>Tiempo de respuesta:</strong> Menos de 24 horas</p>
+            </div>
+            <a href="inicio.html" class="cta-button">
+                <i class="fas fa-home"></i> Volver al inicio
+            </a>
+        </div>
+    `;
+    
+    formSection.innerHTML = successHTML;
+    formSection.classList.add('success-container');
+}
+
+function sendWhatsAppBackup(form) {
+    const phone = "5492664633010";
+    const message = `*Nuevo encargo GUZZOCORP*%0A%0A` +
+                    `*Nombre:* ${form.elements['name'].value}%0A` +
+                    `*Email:* ${form.elements['email'].value}%0A` +
+                    `*Producto:* ${form.elements['product-type'].value}%0A` +
+                    `*Presupuesto:* ${form.elements['budget'].value || 'No especificado'}%0A` +
+                    `*Detalles:*%0A${form.elements['details'].value}`;
+    
+    // Abrir WhatsApp después de 2 segundos
+    setTimeout(() => {
+        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+    }, 2000);
+}
+
+// [OPCIONAL] Para manejar imágenes con Google Drive
+async function uploadImagesToDrive(files) {
+    try {
+        // Necesitarías otro endpoint en Apps Script para subir archivos
+        const driveUrl = 'TU_SCRIPT_DE_DRIVE';
+        const uploadPromises = Array.from(files).map(file => {
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            return fetch(driveUrl, {
+                method: 'POST',
+                body: formData
+            }).then(res => res.json());
+        });
+        
+        return await Promise.all(uploadPromises);
+    } catch (error) {
+        console.error('Error subiendo imágenes:', error);
+        return [];
+    }
+}
+</script>
+</body>
+</html>
