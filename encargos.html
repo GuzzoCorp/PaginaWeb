@@ -663,13 +663,15 @@ document.getElementById('order-form').addEventListener('submit', async function(
         const scriptUrl = 'https://script.google.com/macros/s/AKfycbw5SDt7TRTdCmnl8hFQVghwoyaC2cI-VbXSQ2XBEUwFOBmF5YrgGH8wPLFz3xkG2RPC/exec';
         
         // Enviar datos al script
-        const response = await fetch(scriptUrl, {
-            method: 'POST',
-            body: JSON.stringify(formData),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+const response = await fetch(scriptUrl, {
+    method: 'POST',
+    body: JSON.stringify(formData),
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    mode: 'no-cors' // ← Añade esta línea
+});
+
         
         if (!response.ok) throw new Error('Error en la conexión');
         
