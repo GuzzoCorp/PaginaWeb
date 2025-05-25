@@ -972,22 +972,22 @@ footer {
     background: rgba(0, 243, 255, 0.1);
 }
 
-/* Sección Pilares */
+/* ===== PILARES ===== */
 .pillars {
     padding: 5rem 5%;
     background: var(--bg-darker);
+    position: relative;
 }
 
-.section-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.section-subtitle {
-    color: var(--text-gray);
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
+.pillars::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 70% 30%, rgba(0, 119, 255, 0.1) 0%, transparent 40%);
+    z-index: 0;
 }
 
 .pillars-grid {
@@ -995,7 +995,9 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 3rem auto 0;
+    position: relative;
+    z-index: 1;
 }
 
 .pillar-card {
@@ -1006,40 +1008,58 @@ footer {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .pillar-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 15px 30px rgba(0, 119, 255, 0.2);
     border-color: var(--neon-cyan);
 }
 
 .pillar-icon {
     font-size: 2.5rem;
     color: var(--neon-cyan);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.pillar-card:hover .pillar-icon {
+    transform: scale(1.1);
+    color: #4285F4;
 }
 
 .pillar-card h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
     color: var(--neon-cyan);
+    font-weight: 700;
+}
+
+.pillar-card p {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
 }
 
 .pillar-features {
     margin: 1.5rem 0;
     list-style: none;
+    padding-left: 0;
 }
 
 .pillar-features li {
     margin-bottom: 0.8rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.8rem;
+    color: var(--text-light);
+    font-size: 0.95rem;
 }
 
 .pillar-features i {
-    color: var(--neon-cyan);
+    color: #4285F4;
+    font-size: 1rem;
 }
 
 .pillar-link {
@@ -1048,15 +1068,41 @@ footer {
     gap: 0.5rem;
     color: var(--neon-cyan);
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    margin-top: 1rem;
     transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    background: rgba(66, 133, 244, 0.1);
 }
 
 .pillar-link:hover {
+    background: rgba(66, 133, 244, 0.2);
+    color: #4285F4;
     gap: 1rem;
-    color: var(--neon-purple);
+    text-decoration: none;
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+    .pillars {
+        padding: 3rem 5%;
+    }
+    
+    .pillar-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pillars-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .pillar-card h3 {
+        font-size: 1.3rem;
+    }
+}
 /* Sección Quiénes Somos */
 .about {
     padding: 5rem 5%;
@@ -1265,3 +1311,5 @@ footer {
         padding: 1rem;
     }
 }
+
+
