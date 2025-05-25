@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', function() {
             image: "https://example.com/rayban.jpg",
             description: "Estilo clásico Aviator",
             tags: ["nuevo"]
-        }
+        },
     {
         id: 15,
         name: "Calza One Leg",
