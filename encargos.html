@@ -1,61 +1,220 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Mismos meta tags que index.html -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GUZZOCORP - Encargos Personalizados</title>
-    <!-- Mismos estilos y scripts que index.html -->
+    <meta name="description" content="Solicita productos personalizados y exclusivos en GUZZOCORP">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="GuzzoCorp.png">
 </head>
 <body>
-    <!-- Mismo header que index.html -->
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <img src="GuzzoCorp.png" alt="GUZZOCORP" class="logo">
+            <span class="logo-text">GUZZO CORPORATION</span>
+        </div>
+        <nav>
+            <a href="inicio.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="index.html"><i class="fas fa-tshirt"></i> Tienda</a>
+            <a href="catalogo.html"><i class="fas fa-search"></i> Catálogo</a>
+            <a href="encargos.html"><i class="fas fa-star"></i> Encargos</a>
+            <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+        </nav>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>ENCARGOS <span class="neon-accent">PERSONALIZADOS</span></h1>
+            <p class="neon-accent text-glow">Diseños exclusivos • Prendas a medida • Sneakers únicos • Totalmente adaptado a ti</p>
+        </div>
+    </section>
+
+    <!-- Proceso de Encargos -->
+    <section class="process">
+        <div class="section-header">
+            <h2 class="section-title">NUESTRO <span class="neon-accent">PROCESO</span></h2>
+            <p class="section-subtitle">Cómo trabajamos en tus encargos especiales</p>
+        </div>
+        
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Consulta</h3>
+                <p>Cuéntanos tu idea o sube imágenes de referencia</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Diseño</h3>
+                <p>Crearemos propuestas personalizadas para ti</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Presupuesto</h3>
+                <p>Te enviaremos un presupuesto detallado</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Producción</h3>
+                <p>Fabricamos tu producto con los mejores materiales</p>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <h3>Entrega</h3>
+                <p>Recibe tu producto exclusivo en casa</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Encargos -->
     <section class="special-orders">
         <div class="orders-container">
-            <h2 class="section-title neon-accent">ENCARGOS <span class="blue-accent">PERSONALIZADOS</span></h2>
-            <p class="orders-description">¿Qué necesitas? Cuéntanos y lo haremos realidad.</p>
+            <h2 class="section-title neon-accent">SOLICITA TU <span class="blue-accent">ENCARGO</span></h2>
+            <p class="orders-description">Completa este formulario y nos pondremos en contacto contigo en menos de 24 horas</p>
             
             <form id="order-form" class="contact-form">
-                <div class="form-group">
-                    <input type="text" id="name" name="name" placeholder="Nombre completo" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Nombre completo</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contacto (WhatsApp/Email)</label>
+                        <input type="text" id="contact" name="contact" required>
+                    </div>
                 </div>
+                
                 <div class="form-group">
-                    <input type="tel" id="phone" name="phone" placeholder="WhatsApp" required>
-                </div>
-                <div class="form-group">
-                    <select id="service-type" name="service-type" required>
-                        <option value="">Tipo de servicio</option>
-                        <option value="ropa">Ropa personalizada</option>
-                        <option value="finanzas">Asesoría financiera</option>
-                        <option value="reparaciones">Reparación técnica</option>
+                    <label for="product-type">Tipo de producto</label>
+                    <select id="product-type" name="product-type" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="sneakers">Zapatillas/Sneakers</option>
+                        <option value="ropa">Ropa/Streetwear</option>
+                        <option value="accesorios">Accesorios</option>
+                        <option value="otros">Otros</option>
                     </select>
                 </div>
+                
                 <div class="form-group">
-                    <textarea id="details" name="details" placeholder="Describe exactamente lo que necesitas..." rows="6" required></textarea>
+                    <label for="details">Detalles del encargo</label>
+                    <textarea id="details" name="details" rows="6" required placeholder="Describe exactamente lo que necesitas, incluyendo colores, materiales, talles, diseños especiales, etc."></textarea>
                 </div>
+                
+                <div class="form-group">
+                    <label for="references">Imágenes de referencia (opcional)</label>
+                    <input type="file" id="references" name="references" multiple accept="image/*">
+                </div>
+                
                 <button type="submit" class="cta-button full-width-btn">
-                    <i class="fas fa-paper-plane"></i> ENVIAR PEDIDO
+                    <i class="fas fa-paper-plane"></i> ENVIAR SOLICITUD
                 </button>
             </form>
         </div>
     </section>
 
+    <!-- Ejemplos de Encargos -->
+    <section class="examples">
+        <div class="section-header">
+            <h2 class="section-title">ENCARGOS <span class="neon-accent">RECIENTES</span></h2>
+            <p class="section-subtitle">Algunos ejemplos de lo que hemos creado para nuestros clientes</p>
+        </div>
+        
+        <div class="examples-grid">
+            <div class="example-card">
+                <img src="assets/examples/custom-sneakers.jpg" alt="Sneakers personalizados">
+                <h3>Sneakers Pintados a Mano</h3>
+                <p>Diseño exclusivo basado en el arte del cliente</p>
+            </div>
+            <div class="example-card">
+                <img src="assets/examples/custom-hoodie.jpg" alt="Buzo personalizado">
+                <h3>Buzo con Bordado Personalizado</h3>
+                <p>Bordado complejo con el logo del negocio del cliente</p>
+            </div>
+            <div class="example-card">
+                <img src="assets/examples/custom-jacket.jpg" alt="Campera personalizada">
+                <h3>Campera de Cuero Grabada</h3>
+                <p>Grabado láser con diseño geométrico personalizado</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto" class="contact">
+        <h2 class="section-title centered-title">CONTACTO <span class="neon-accent">GUZZO.CORPORATION</span></h2>
+        <p class="contact-description">¿Tienes dudas sobre encargos? Contáctanos directamente:</p>
+        
+        <div class="contact-methods">
+            <a href="https://wa.me/5492664633010" class="contact-btn whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="https://www.instagram.com/guzzo.corp" class="contact-btn instagram">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="mailto:encargos@guzzoinbusiness@gmail.com" class="contact-btn email">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo-container">
+            <img src="GuzzoCorp.png" alt="GUZZOCORP" class="footer-logo">
+            <span class="footer-logo-text">CREANDO TUS IDEAS</span>
+        </div>
+        <div class="footer-links">
+            <a href="inicio.html">Inicio</a>
+            <a href="index.html">Tienda</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="encargos.html">Encargos</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.instagram.com/guzzo.corp" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5492664633010" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:guzzoinbusiness@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 GUZZOCORP - Todos los derechos reservados - By: Nahuel Guzzo
+        </div>
+    </footer>
+
     <script>
+        // Menú móvil
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('header nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('show');
+        });
+
+        // Formulario de encargos
         document.getElementById('order-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const formData = {
                 name: this.elements['name'].value,
-                phone: this.elements['phone'].value,
-                service: this.elements['service-type'].value,
+                contact: this.elements['contact'].value,
+                productType: this.elements['product-type'].value,
                 details: this.elements['details'].value,
                 date: new Date().toLocaleString()
             };
 
             // Enviar a WhatsApp
             const phone = "5492664633010";
-            const message = `*Nuevo pedido GUZZOCORP*%0A%0A` +
+            const message = `*Nuevo encargo GUZZOCORP*%0A%0A` +
                             `*Nombre:* ${formData.name}%0A` +
-                            `*WhatsApp:* ${formData.phone}%0A` +
-                            `*Servicio:* ${formData.service}%0A` +
+                            `*Contacto:* ${formData.contact}%0A` +
+                            `*Tipo de producto:* ${formData.productType}%0A` +
                             `*Detalles:*%0A${formData.details}%0A%0A` +
                             `*Fecha:* ${formData.date}`;
             
@@ -63,7 +222,20 @@
             
             // Resetear formulario
             this.reset();
-            alert('¡Pedido enviado! Nos contactaremos pronto contigo.');
+            alert('¡Solicitud enviada! Nos contactaremos contigo pronto.');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>
