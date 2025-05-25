@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Mismos meta tags que index.html -->
+    <title>GUZZOCORP - Encargos Personalizados</title>
+    <!-- Mismos estilos y scripts que index.html -->
+</head>
+<body>
+    <!-- Mismo header que index.html -->
+
+    <section class="special-orders">
+        <div class="orders-container">
+            <h2 class="section-title neon-accent">ENCARGOS <span class="blue-accent">PERSONALIZADOS</span></h2>
+            <p class="orders-description">¿Qué necesitas? Cuéntanos y lo haremos realidad.</p>
+            
+            <form id="order-form" class="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Nombre completo" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" name="phone" placeholder="WhatsApp" required>
+                </div>
+                <div class="form-group">
+                    <select id="service-type" name="service-type" required>
+                        <option value="">Tipo de servicio</option>
+                        <option value="ropa">Ropa personalizada</option>
+                        <option value="finanzas">Asesoría financiera</option>
+                        <option value="reparaciones">Reparación técnica</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="details" name="details" placeholder="Describe exactamente lo que necesitas..." rows="6" required></textarea>
+                </div>
+                <button type="submit" class="cta-button full-width-btn">
+                    <i class="fas fa-paper-plane"></i> ENVIAR PEDIDO
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('order-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: this.elements['name'].value,
+                phone: this.elements['phone'].value,
+                service: this.elements['service-type'].value,
+                details: this.elements['details'].value,
+                date: new Date().toLocaleString()
+            };
+
+            // Enviar a WhatsApp
+            const phone = "5492664633010";
+            const message = `*Nuevo pedido GUZZOCORP*%0A%0A` +
+                            `*Nombre:* ${formData.name}%0A` +
+                            `*WhatsApp:* ${formData.phone}%0A` +
+                            `*Servicio:* ${formData.service}%0A` +
+                            `*Detalles:*%0A${formData.details}%0A%0A` +
+                            `*Fecha:* ${formData.date}`;
+            
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+            
+            // Resetear formulario
+            this.reset();
+            alert('¡Pedido enviado! Nos contactaremos pronto contigo.');
+        });
+    </script>
+</body>
+</html>
