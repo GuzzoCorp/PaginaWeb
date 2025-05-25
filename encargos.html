@@ -612,15 +612,14 @@ document.getElementById('order-form').addEventListener('submit', function(e) {
     </footer>
 
     <script>
-        <script>
-    // 1. Menú móvil (conservar)
+    // 1. Menú móvil (conservado)
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const nav = document.querySelector('header nav');
     mobileMenuBtn.addEventListener('click', () => {
         nav.classList.toggle('show');
     });
 
-    // 2. Nueva vista previa de imágenes
+    // 2. Vista previa de imágenes (mejorada)
     document.getElementById('references').addEventListener('change', function(e) {
         const filePreview = document.getElementById('file-preview');
         filePreview.innerHTML = '';
@@ -638,13 +637,13 @@ document.getElementById('order-form').addEventListener('submit', function(e) {
                         <button class="remove-file" onclick="this.parentElement.remove()">&times;</button>
                     `;
                     filePreview.appendChild(previewItem);
-                }
+                };
                 reader.readAsDataURL(file);
             });
         }
     });
 
-    // 3. Nuevo manejo del formulario
+    // 3. Nuevo manejo del formulario (con Google Apps Script)
     document.getElementById('order-form').addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -653,47 +652,53 @@ document.getElementById('order-form').addEventListener('submit', function(e) {
         const submitBtn = form.querySelector('button[type="submit"]');
         const messageDiv = document.getElementById('form-message');
         
-        // Mostrar carga
+        // Mostrar estado de carga
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ENVIANDO...';
         messageDiv.textContent = '';
         messageDiv.className = 'form-message';
 
         try {
-            // Enviar por email (solución temporal)
-            const mailBody = `
-                NUEVO ENCARGO GUZZOCORP
-                ========================
-                Nombre: ${formData.get('name')}
-                Email: ${formData.get('email')}
-                Teléfono: ${formData.get('phone') || 'No proporcionado'}
-                Tipo: ${formData.get('product-type')}
-                Presupuesto: ${formData.get('budget') || 'No especificado'}
-                
-                DETALLES:
-                ${formData.get('details')}
-                
-                (Fotos adjuntas en el correo)
-            `;
+            // URL de tu Google Apps Script (¡usa el tuyo!)
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbw5SDt7TRTdCmnl8hFQVghwoyaC2cI-VbXSQ2XBEUwFOBmF5YrgGH8wPLFz3xkG2RPC/exec';
             
-            window.location.href = `mailto:guzzoinbusiness@gmail.com?subject=Encargo GUZZOCORP - ${formData.get('name')}&body=${encodeURIComponent(mailBody)}`;
+            // Enviar datos al script
+            const response = await fetch(scriptUrl, {
+                method: 'POST',
+                body: formData
+            });
             
-            // Mensaje de éxito
-            messageDiv.innerHTML = '✅ Formulario enviado<br>Revisa tu correo para adjuntar las fotos';
-            messageDiv.className = 'form-message success';
-            form.reset();
-            document.getElementById('file-preview').innerHTML = '';
+            const result = await response.json();
+            
+            if (result.success) {
+                messageDiv.textContent = '✅ ¡Solicitud enviada con éxito! Nos contactaremos pronto.';
+                messageDiv.className = 'form-message success';
+                form.reset();
+                document.getElementById('file-preview').innerHTML = '';
+            } else {
+                throw new Error(result.message || 'Error al enviar');
+            }
             
         } catch (error) {
-            messageDiv.textContent = '⚠️ Error al enviar. Por favor contáctanos directamente.';
+            console.error('Error:', error);
+            messageDiv.textContent = '⚠️ Error al enviar. Por favor contáctanos por WhatsApp.';
             messageDiv.className = 'form-message error';
+            
+            // Opción alternativa (abre WhatsApp como respaldo)
+            const phone = "5492664633010";
+            const message = `*Nuevo encargo GUZZOCORP*%0A%0A` +
+                            `*Nombre:* ${formData.get('name')}%0A` +
+                            `*Email:* ${formData.get('email')}%0A` +
+                            `*Producto:* ${formData.get('product-type')}%0A` +
+                            `*Detalles:*%0A${formData.get('details')}`;
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
         } finally {
             submitBtn.disabled = false;
             submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> ENVIAR SOLICITUD';
         }
     });
 
-    // 4. Scroll suave (conservar)
+    // 4. Scroll suave (conservado)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
