@@ -70,16 +70,6 @@ p {
     color: #ffffff !important;
 }
 
-/* Nuevas etiquetas de producto */
-.tag-exclusive {
-    background-color: #4285F4;
-    color: white;
-}
-
-.tag-collector {
-    background: linear-gradient(45deg, #9d00ff, #4285F4);
-    color: white;
-}
 .neon-accent {
     color: var(--neon-cyan);
     text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
@@ -361,6 +351,7 @@ nav a:hover::after {
 }
 
 /* ===== ETIQUETAS DE PRODUCTO ===== */
+
 .tag-new, .tag-bestseller, .tag-soldout, .tag-discount {
     position: absolute;
     top: 15px;
@@ -404,6 +395,17 @@ nav a:hover::after {
     left: 15px;
     right: auto;
     box-shadow: 0 2px 10px rgba(255, 70, 80, 0.5);
+}
+
+/* Nuevas etiquetas de producto */
+.tag-exclusive {
+    background-color: #4285F4;
+    color: white;
+}
+
+.tag-collector {
+    background: linear-gradient(45deg, #9d00ff, #4285F4);
+    color: white;
 }
 
 /* ===== PRECIO TACHADO ===== */
