@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
             price: 169999,
             category: "sneakers",
             subcategory: "retro",
-            image: "assets/products/puma-180.jpg",
+            image: "puma-180.jpg",
             description: "Edición Super Exclusiva",
             sizes: ["38", "39", "40", "41", "42"],
             tags: ["original", "ultima-unidad"],
