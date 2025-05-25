@@ -742,18 +742,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // FUNCIONES AUXILIARES MODIFICADAS
 // ----------------------
 
-function showMessage(content, type = 'success') {
-    // Cambiamos el parámetro type para que por defecto sea 'success'
+function showMessage(content, type = 'success') {  // 'success' es ahora el valor por defecto
     const messageDiv = document.getElementById('form-message');
     messageDiv.innerHTML = content;
-    messageDiv.className = `form-message ${type}`;
+    messageDiv.className = `form-message success`; // Forzar clase 'success'
     
-    // Auto-ocultar después de 5 segundos (solo para éxito)
-    if (type === 'success') {
-        setTimeout(() => {
-            messageDiv.classList.add('fade-out');
-        }, 5000);
-    }
+    // Auto-ocultar después de 5 segundos
+    setTimeout(() => {
+        messageDiv.classList.add('fade-out');
+    }, 5000);
 }
 
 function showToast(message, type) {
