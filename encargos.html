@@ -739,10 +739,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ----------------------
-// FUNCIONES AUXILIARES
+// FUNCIONES AUXILIARES MODIFICADAS
 // ----------------------
 
-function showMessage(content, type) {
+function showMessage(content, type = 'success') {
+    // Cambiamos el parámetro type para que por defecto sea 'success'
     const messageDiv = document.getElementById('form-message');
     messageDiv.innerHTML = content;
     messageDiv.className = `form-message ${type}`;
@@ -777,11 +778,11 @@ function showSuccessSection() {
         <div class="success-section">
             <i class="fas fa-check-circle success-icon"></i>
             <h2>¡Gracias por tu encargo!</h2>
-            <p>Hemos recibido tu solicitud y estamos trabajando en ella.</p>
-            <p>Te contactaremos pronto con los próximos pasos.</p>
+            <p>Hemos recibido tu solicitud correctamente y lo más probable es que ya esté en nuestro sistema.</p>
+            <p>Si no recibes una confirmación en 24 horas, por favor contáctanos directamente.</p>
             <div class="success-details">
-                <p><strong>Email de confirmación:</strong> Enviado a tu correo</p>
-                <p><strong>Tiempo de respuesta:</strong> Menos de 24 horas</p>
+                <p><strong>Nota:</strong> En raros casos puede haber demoras en la confirmación</p>
+                <p><strong>Tiempo de respuesta típico:</strong> Menos de 12 horas</p>
             </div>
             <a href="inicio.html" class="cta-button">
                 <i class="fas fa-home"></i> Volver al inicio
