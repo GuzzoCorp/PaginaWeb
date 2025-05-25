@@ -168,6 +168,97 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Estilo clásico Aviator",
             tags: ["nuevo"]
         }
+    {
+        id: 15,
+        name: "Calza One Leg",
+        price: 19999,
+        category: "ropa",
+        subcategory: "calzas",
+        image: "assets/products/calza-one-leg.jpg",
+        description: "Calza deportiva one leg de alta calidad",
+        sizes: ["S", "M", "L", "XL"],
+        tags: ["nuevo"]
+    },
+    {
+        id: 16,
+        name: "Calza Larga",
+        price: 24999,
+        category: "ropa",
+        subcategory: "calzas",
+        image: "assets/products/calza-larga.jpg",
+        description: "Calza larga para entrenamiento",
+        sizes: ["S", "M", "L", "XL"],
+        tags: ["nuevo"]
+    },
+    {
+        id: 17,
+        name: "Pelota de Basquet Molten BG4500",
+        price: 129999,
+        category: "accesorios",
+        subcategory: "pelotas",
+        image: "assets/products/molten-bg4500.jpg",
+        description: "Pelota oficial de básquet Molten",
+        tags: ["nuevo"]
+    },
+    {
+        id: 18,
+        name: "Nike Lebron XXI",
+        price: 259999,
+        category: "sneakers",
+        subcategory: "basquet",
+        image: "assets/products/lebron-xxi.jpg",
+        description: "Zapatillas de basquetbol de élite",
+        sizes: ["39", "40", "41", "42", "43", "44"],
+        tags: ["nuevo"],
+        stock: 0  // Sin stock
+    },
+    {
+        id: 19,
+        name: "Nike Lebron Witness 7",
+        price: 259999,
+        category: "sneakers",
+        subcategory: "basquet",
+        image: "assets/products/lebron-witness7.jpg",
+        description: "Zapatillas para jugadores de basquet",
+        sizes: ["39", "40", "41", "42", "43", "44"],
+        tags: ["nuevo"],
+        stock: 0  // Sin stock
+    },
+    {
+        id: 20,
+        name: "Calza Corta Deportiva Mujer",
+        price: 7999,
+        category: "ropa",
+        subcategory: "calzas",
+        image: "assets/products/calza-corta-mujer.jpg",
+        description: "Calza deportiva para mujer",
+        sizes: ["XS", "S", "M", "L"],
+        tags: ["nuevo"]
+    },
+    {
+        id: 21,
+        name: "Giannis Immortality 4",
+        price: 149999,
+        category: "sneakers",
+        subcategory: "basquet",
+        image: "assets/products/giannis-immortality4.jpg",
+        description: "Zapatillas de basquet Giannis Antetokounmpo",
+        sizes: ["39", "40", "41", "42", "43", "44"],
+        tags: ["nuevo"],
+        stock: 0  // Sin stock
+    },
+    {
+        id: 22,
+        name: "Nike G.T. Cut Academy",
+        price: 119999,
+        category: "sneakers",
+        subcategory: "basquet",
+        image: "assets/products/nike-gt-cut.jpg",
+        description: "Zapatillas de performance para basquet",
+        sizes: ["39", "40", "41", "42", "43", "44"],
+        tags: ["nuevo"],
+        stock: 0  // Sin stock
+    }
     ];
 
     // Elementos del DOM
