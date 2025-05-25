@@ -808,28 +808,6 @@ function sendWhatsAppBackup(form) {
         window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
     }, 2000);
 }
-
-// [OPCIONAL] Para manejar imágenes con Google Drive
-async function uploadImagesToDrive(files) {
-    try {
-        // Necesitarías otro endpoint en Apps Script para subir archivos
-        const driveUrl = 'TU_SCRIPT_DE_DRIVE';
-        const uploadPromises = Array.from(files).map(file => {
-            const formData = new FormData();
-            formData.append('file', file);
-            
-            return fetch(driveUrl, {
-                method: 'POST',
-                body: formData
-            }).then(res => res.json());
-        });
-        
-        return await Promise.all(uploadPromises);
-    } catch (error) {
-        console.error('Error subiendo imágenes:', error);
-        return [];
-    }
-}
 </script>
 </body>
 </html>
