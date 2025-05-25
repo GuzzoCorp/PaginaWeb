@@ -45,55 +45,78 @@
         <h2 class="section-title">LOS <span class="neon-accent">PILARES</span> DE GUZZO CORP</h2>
         <p class="section-subtitle">Tres áreas de negocio, una misma filosofía de perfección</p>
     </div>
-        
-        <div class="pillars-grid">
-            <!-- Pilar 1 - Ropa -->
-            <div class="pillar-card">
-                <div class="pillar-icon">
-                    <i class="fas fa-tshirt"></i>
-                </div>
-                <h3>ROPA Y STREETWEAR</h3>
-                <p>La base de nuestra empresa. Ofrecemos prendas exclusivas, ediciones limitadas y calidad premium para los amantes del streetwear.</p>
-                <ul class="pillar-features">
-                    <li><i class="fas fa-check"></i> Prendas exclusivas y limitadas</li>
-                    <li><i class="fas fa-check"></i> Calidad premium garantizada</li>
-                    <li><i class="fas fa-check"></i> Estilo urbano y sofisticado</li>
-                </ul>
-                <a href="#contacto" class="pillar-link">Ver colección <i class="fas fa-arrow-right"></i></a>
+    
+    <div class="pillars-grid">
+        <!-- Pilar 1 - Ropa -->
+        <div class="pillar-card">
+            <div class="pillar-icon">
+                <i class="fas fa-tshirt"></i>
             </div>
-            
-            <!-- Pilar 2 - Educación Financiera -->
-            <div class="pillar-card">
-                <div class="pillar-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3>EDUCACIÓN FINANCIERA</h3>
-                <p>Te enseñamos a revender nuestra ropa y a invertir tus ganancias en acciones y bonos para multiplicar tu capital.</p>
-                <ul class="pillar-features">
-                    <li><i class="fas fa-check"></i> Programa de revendedores</li>
-                    <li><i class="fas fa-check"></i> Cursos de inversión</li>
-                    <li><i class="fas fa-check"></i> Asesoramiento personalizado</li>
-                </ul>
-                <a href="#contacto" class="pillar-link">Más Informacion <i class="fas fa-arrow-right"></i></a>
-
-            </div>
-            
-            <!-- Pilar 3 - Reparaciones -->
-            <div class="pillar-card">
-                <div class="pillar-icon">
-                    <i class="fas fa-tools"></i>
-                </div>
-                <h3>REPARACIONES TÉCNICAS</h3>
-                <p>Servicio técnico especializado en electrónica de consumo: microondas, computadoras, auriculares y más.</p>
-                <ul class="pillar-features">
-                    <li><i class="fas fa-check"></i> Reparaciones rápidas</li>
-                    <li><i class="fas fa-check"></i> Técnicos certificados</li>
-                    <li><i class="fas fa-check"></i> Garantía por escrito</li>
-                </ul>
-                <a href="#contacto" class="pillar-link">Solicitar Servicio <i class="fas fa-arrow-right"></i></a>
-            </div>
+            <h3>ROPA Y STREETWEAR</h3>
+            <p>La base de nuestra empresa. Ofrecemos prendas exclusivas, ediciones limitadas y calidad premium para los amantes del streetwear.</p>
+            <ul class="pillar-features">
+                <li><i class="fas fa-check"></i> Prendas exclusivas y limitadas</li>
+                <li><i class="fas fa-check"></i> Calidad premium garantizada</li>
+                <li><i class="fas fa-check"></i> Estilo urbano y sofisticado</li>
+            </ul>
+            <a href="index.html" class="pillar-link" onclick="event.preventDefault(); redirectToService('ropa')">
+                Ver colección <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
-    </section>
+        
+        <!-- Pilar 2 - Educación Financiera -->
+        <div class="pillar-card">
+            <div class="pillar-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h3>EDUCACIÓN FINANCIERA</h3>
+            <p>Te enseñamos a revender nuestra ropa y a invertir tus ganancias en acciones y bonos para multiplicar tu capital.</p>
+            <ul class="pillar-features">
+                <li><i class="fas fa-check"></i> Programa de revendedores</li>
+                <li><i class="fas fa-check"></i> Cursos de inversión</li>
+                <li><i class="fas fa-check"></i> Asesoramiento personalizado</li>
+            </ul>
+            <a href="finanzas.html" class="pillar-link" onclick="event.preventDefault(); redirectToService('finanzas')">
+                Más Información <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        
+        <!-- Pilar 3 - Reparaciones -->
+        <div class="pillar-card">
+            <div class="pillar-icon">
+                <i class="fas fa-tools"></i>
+            </div>
+            <h3>REPARACIONES TÉCNICAS</h3>
+            <p>Servicio técnico especializado en electrónica de consumo: microondas, computadoras, auriculares y más.</p>
+            <ul class="pillar-features">
+                <li><i class="fas fa-check"></i> Reparaciones rápidas</li>
+                <li><i class="fas fa-check"></i> Técnicos certificados</li>
+                <li><i class="fas fa-check"></i> Garantía por escrito</li>
+            </ul>
+            <a href="reparaciones.html" class="pillar-link" onclick="event.preventDefault(); redirectToService('reparaciones')">
+                Solicitar Servicio <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Función para redirección con seguimiento
+    function redirectToService(serviceType) {
+        // Guardar en localStorage el servicio seleccionado
+        localStorage.setItem('selectedService', serviceType);
+        
+        // Redirigir a la página de contacto
+        window.location.href = 'contacto.html';
+        
+        // Alternativa si prefieres scroll en la misma página:
+        // document.getElementById('contacto').scrollIntoView({behavior: 'smooth'});
+        // setTimeout(() => {
+        //     document.getElementById('service-type').value = serviceType;
+        //     document.getElementById('service-type').focus();
+        // }, 800);
+    }
+</script>
 
     <!-- Sección Quiénes Somos -->
     <section id="quienes-somos" class="about">
