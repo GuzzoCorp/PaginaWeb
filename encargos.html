@@ -677,26 +677,97 @@ const response = await fetch(scriptUrl, {
         
         const result = await response.json();
         
-        if (result.success) {
-            // Mensaje de éxito mejorado
-            showMessage(`
-                <i class="fas fa-check-circle"></i>
-                <div class="message-content">
-                    <h4>¡Encargo recibido!</h4>
-                    <p>Hemos registrado tu solicitud #${generateOrderId()}</p>
-                    <p>Nos contactaremos dentro de 24 horas.</p>
-                </div>
-            `, 'success');
+// En el evento submit del formulario, modifica la parte del éxito:
+if (result.success) {
+    // Mensaje de éxito mejorado
+    showMessage(`
+        <i class="fas fa-check-circle"></i>
+        <div class="message-content">
+            <h4>¡Encargo recibido con éxito!</h4>
+            <p>Hemos registrado tu solicitud #${generateOrderId()}</p>
+            <p class="notice-text">📢 Por el momento no recibimos imágenes adjuntas. Por favor envíalas por WhatsApp si son necesarias.</p>
+            <p>Nos contactaremos dentro de 24 horas.</p>
+        </div>
+    `, 'success');
+    
+    // Resetear formulario
+    form.reset();
+    document.getElementById('file-preview').innerHTML = '';
+}
+
+// Añade este estilo CSS adicional:
+<style>
+.notice-text {
+    color: #FFA000;
+    background: rgba(255, 160, 0, 0.1);
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 10px 0;
+    border-left: 3px solid #FFA000;
+    font-size: 0.9rem;
+}
+
+.success-section .notice-text {
+    margin: 15px 0;
+    text-align: center;
+}
+
+/* Animación para el mensaje de éxito */
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.form-message.success {
+    animation: slideIn 0.5s ease-out;
+    background: rgba(0, 200, 83, 0.15);
+    border: 1px solid #00C853;
+    color: #00C853;
+}
+</style>
+
+// Y actualiza la sección de éxito:
+function showSuccessSection() {
+    const formSection = document.querySelector('.custom-orders-container');
+    const successHTML = `
+        <div class="success-section">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h2>¡Gracias por tu encargo!</h2>
+            <p>Hemos recibido tu solicitud correctamente.</p>
             
-            // Resetear formulario
-            form.reset();
-            document.getElementById('file-preview').innerHTML = '';
+            <div class="notice-text">
+                <i class="fas fa-exclamation-circle"></i>
+                <strong>Aviso importante:</strong> Por el momento no recibimos imágenes adjuntas. 
+                Por favor envíalas por WhatsApp si son necesarias para tu pedido.
+            </div>
             
-            // Mostrar sección de éxito (opcional)
-            showSuccessSection();
-        } else {
-            throw new Error(result.message || 'Error al procesar el encargo');
-        }
+            <div class="success-details">
+                <p><i class="fas fa-check-circle"></i> Recibirás un email de confirmación</p>
+                <p><i class="fas fa-clock"></i> Tiempo de respuesta: menos de 24 horas</p>
+            </div>
+            <a href="https://wa.me/5492664633010" class="cta-button whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Enviar imágenes por WhatsApp
+            </a>
+            <a href="inicio.html" class="cta-button">
+                <i class="fas fa-home"></i> Volver al inicio
+            </a>
+        </div>
+    `;
+    
+    formSection.innerHTML = successHTML;
+    formSection.classList.add('success-container');
+}
+
+// Estilo adicional para el botón de WhatsApp
+.whatsapp-btn {
+    background-color: #25D366;
+    margin-bottom: 15px;
+}
+
+.whatsapp-btn:hover {
+    background-color: #128C7E;
+    transform: translateY(-2px);
+}
     } catch (error) {
         console.error('Error:', error);
         showMessage(`
