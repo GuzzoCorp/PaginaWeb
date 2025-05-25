@@ -156,27 +156,36 @@
         </div>
     </section>
 
-    <!-- Formulario de Reparación -->
-    <section class="repair-form-section">
-        <div class="repair-form-container">
+<!-- Formulario de Reparación - Versión Mejorada -->
+<section class="repair-form-section">
+    <div class="repair-form-container">
+        <div class="form-header">
             <h2 class="section-title">SOLICITUD DE <span class="neon-accent">REPARACIÓN</span></h2>
-            
-            <form id="repair-form" class="contact-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="repair-name">Nombre completo</label>
+            <p class="form-subtitle">Complete el formulario y nos pondremos en contacto para coordinar su reparación</p>
+        </div>
+        
+        <form id="repair-form" class="contact-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <div class="input-container">
                         <input type="text" id="repair-name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="repair-phone">Teléfono</label>
-                        <input type="tel" id="repair-phone" name="phone" required>
+                        <label for="repair-name">Nombre completo</label>
+                        <i class="fas fa-user input-icon"></i>
                     </div>
                 </div>
-                
                 <div class="form-group">
-                    <label for="device-type">Dispositivo a reparar</label>
+                    <div class="input-container">
+                        <input type="tel" id="repair-phone" name="phone" required>
+                        <label for="repair-phone">Teléfono</label>
+                        <i class="fas fa-phone input-icon"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="input-container select-container">
                     <select id="device-type" name="device-type" required>
-                        <option value="">Selecciona una opción</option>
+                        <option value=""></option>
                         <option value="computadora">Computadora/Notebook</option>
                         <option value="celular">Celular/Tablet</option>
                         <option value="auriculares">Auriculares</option>
@@ -184,24 +193,208 @@
                         <option value="tv">Televisor/Monitor</option>
                         <option value="otro">Otro dispositivo</option>
                     </select>
+                    <label for="device-type">Dispositivo a reparar</label>
+                    <i class="fas fa-chevron-down select-icon"></i>
                 </div>
-                
-                <div class="form-group">
-                    <label for="device-model">Modelo/Marca</label>
+            </div>
+            
+            <div class="form-group">
+                <div class="input-container">
                     <input type="text" id="device-model" name="model" required>
+                    <label for="device-model">Modelo/Marca</label>
+                    <i class="fas fa-tag input-icon"></i>
                 </div>
-                
-                <div class="form-group">
-                    <label for="repair-problem">Descripción del problema</label>
+            </div>
+            
+            <div class="form-group">
+                <div class="input-container textarea-container">
                     <textarea id="repair-problem" name="problem" rows="4" required></textarea>
+                    <label for="repair-problem">Descripción del problema</label>
+                    <i class="fas fa-comment-alt input-icon"></i>
                 </div>
-                
+            </div>
+            
+            <div class="form-footer">
                 <button type="submit" class="cta-button full-width-btn">
                     <i class="fas fa-wrench"></i> SOLICITAR REPARACIÓN
                 </button>
-            </form>
-        </div>
-    </section>
+                <p class="form-note">Al enviar este formulario, aceptas nuestros <a href="#">términos y condiciones</a></p>
+            </div>
+        </form>
+    </div>
+</section>
+
+<style>
+/* Estilos para el formulario mejorado */
+.repair-form-section {
+    background: #0a0a0a;
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.repair-form-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.05) 0%, rgba(255, 0, 255, 0.05) 100%);
+    z-index: 0;
+}
+
+.repair-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(20, 20, 20, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.form-subtitle {
+    color: #aaa;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.input-container {
+    position: relative;
+    margin-top: 20px;
+}
+
+.input-container label {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    background: #141414;
+    padding: 0 8px;
+    font-size: 0.85rem;
+    color: #0af;
+    z-index: 1;
+}
+
+.input-container input,
+.input-container textarea,
+.select-container select {
+    width: 100%;
+    padding: 15px 20px 15px 45px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.select-container select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 45px;
+}
+
+.input-container textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #0af;
+    font-size: 1rem;
+}
+
+.select-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #0af;
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+.input-container input:focus,
+.input-container textarea:focus,
+.select-container select:focus {
+    outline: none;
+    border-color: #0af;
+    box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.2);
+}
+
+.input-container input:focus + label,
+.input-container textarea:focus + label,
+.select-container select:focus + label {
+    color: #0ff;
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.form-note {
+    color: #777;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+}
+
+.form-note a {
+    color: #0af;
+    text-decoration: none;
+}
+
+.form-note a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para el botón (asumiendo que ya tienes los estilos del botón CTA) */
+.cta-button {
+    padding: 15px 25px;
+    font-size: 1rem;
+    border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .repair-form-container {
+        padding: 1.5rem;
+    }
+}
+</style>
 
     <!-- Contacto -->
     <section id="contacto" class="contact">
