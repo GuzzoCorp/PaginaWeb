@@ -258,7 +258,55 @@ document.addEventListener('DOMContentLoaded', function() {
         sizes: ["39", "40", "41", "42", "43", "44"],
         tags: ["nuevo"],
         stock: 0  // Sin stock
-    }
+    },
+        // Agregar estos productos al array 'products' (después del último producto existente)
+{
+    id: 23,
+    name: "Jordan Tatum 2",
+    price: 219999,
+    category: "sneakers",
+    subcategory: "basquet",
+    image: "assets/products/jordan-tatum2.jpg",
+    description: "Zapatillas de baloncesto signature de Jayson Tatum",
+    sizes: ["39", "40", "41", "42", "43", "44", "45"],
+    tags: ["nuevo", "exclusivo"],
+    stock: 3
+},
+{
+    id: 24,
+    name: "Air Jordan XXXVIII",
+    price: 319999,
+    category: "sneakers",
+    subcategory: "basquet",
+    image: "assets/products/air-jordan-38.jpg",
+    description: "Edición limitada de las Jordan más avanzadas tecnológicamente",
+    sizes: ["40", "41", "42", "43", "44"],
+    tags: ["nuevo", "exclusivo", "coleccionista"],
+    stock: 2
+},
+{
+    id: 25,
+    name: "Kobe VIII Protro",
+    price: 289999,
+    category: "sneakers",
+    subcategory: "basquet",
+    image: "assets/products/kobe-viii-protro.jpg",
+    description: "Homenaje a la leyenda del baloncesto Kobe Bryant",
+    sizes: ["39", "40", "41", "42", "43"],
+    tags: ["nuevo", "coleccionista"],
+    stock: 1
+},
+{
+    id: 26,
+    name: "iPhone 16 128GB - Sellado -",
+    price: 1199999,
+    category: "tecnologia",
+    subcategory: "celulares",
+    image: "assets/products/iphone-16.jpg",
+    description: "Nuevo iPhone 16 128GB sellado de fábrica",
+    tags: ["nuevo", "exclusivo"],
+    stock: 5
+}
     ];
 
     // Elementos del DOM
