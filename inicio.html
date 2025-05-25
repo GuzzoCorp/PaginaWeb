@@ -256,6 +256,14 @@
         </div>
     </footer>
 
+<!-- Y modifica los enlaces para usar: -->
+<a href="#contacto" onclick="scrollToContact()" class="pillar-link">Ver colección <i class="fas fa-arrow-right"></i></a>
+    <script>
+        function redirectToService(serviceType) {
+            localStorage.setItem('selectedService', serviceType);
+            window.location.href = 'contacto.html';
+        }
+    </script>
     <script>
         // Menú móvil
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
@@ -291,8 +299,5 @@
         }, 800);
     }
 </script>
-
-<!-- Y modifica los enlaces para usar: -->
-<a href="#contacto" onclick="scrollToContact()" class="pillar-link">Ver colección <i class="fas fa-arrow-right"></i></a>
 </body>
 </html>
