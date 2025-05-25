@@ -58,6 +58,11 @@ p {
 }
 
 /* ===== EFECTOS Y UTILIDADES ===== */
+.blue-accent {
+    color: #4285F4;
+    text-shadow: 0 0 10px rgba(66, 133, 244, 0.3);
+}
+
 .neon-accent {
     color: var(--neon-cyan);
     text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
@@ -77,6 +82,13 @@ p {
 
 .text-glow {
     text-shadow: 0 0 8px currentColor;
+}
+
+/* ===== NUEVOS ESTILOS ===== */
+.section-subtitle, 
+.orders-description, 
+.contact-description {
+    color: #ffffff !important;
 }
 
 /* ===== HEADER ===== */
@@ -217,14 +229,14 @@ nav a:hover::after {
 .cta-button {
     display: inline-block;
     padding: 1rem 2.5rem;
-    background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
-    color: white;
+    background: linear-gradient(45deg, #4285F4, #ffffff);
+    color: var(--bg-dark); /* Cambiado a oscuro para mejor contraste */
     text-decoration: none;
     border-radius: 50px;
     font-weight: bold;
     font-size: 1.1rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 70, 80, 0.3);
+    box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3); /* Cambiado a azul */
     border: none;
     cursor: pointer;
     position: relative;
