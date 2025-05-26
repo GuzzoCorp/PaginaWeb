@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             image: "osiris-d3.jpeg",
             description: "Edición Coleccionista",
             sizes: ["39", "40", "41", "42"],
-            tags: ["coleccionista", "ultima-unidad"],
+            tags: ["ultima-unidad"],
             stock: 1
         },
         {
