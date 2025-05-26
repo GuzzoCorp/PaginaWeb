@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
             image: "dc-rosas.jpeg",
             description: "Las únicas de San Luis",
             sizes: ["36", "37", "38", "39", "40"],
-            tags: ["exclusivo", "ultima-unidad"],
+            tags: ["ultima-unidad"],
             stock: 1
         },
         {
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
             image: "puma-180.jpeg",
             description: "Edición Super Exclusiva",
             sizes: ["38", "39", "40", "41", "42"],
-            tags: ["original", "ultima-unidad"],
+            tags: ["ultima-unidad"],
             stock: 1
         },
         {
