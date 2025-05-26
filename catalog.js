@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 2,
-            name: "Gorra NBA",
-            price: 19999,
-            oldPrice: 30000,
+            name: "Gorra",
+            price: 24999,
+            oldPrice: 40000,
             category: "accesorios",
             subcategory: "gorras",
             image: "assets/products/gorra-nba.jpg",
