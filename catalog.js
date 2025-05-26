@@ -368,23 +368,20 @@ const products = [
         const selectedCategory = categoryFilter.value;
         const sortOption = sortSelect.value;
         
-        let filtered = products.filter(product => {
-            // Filtro por búsqueda
-            const matchesSearch = product.name.toLowerCase().includes(searchTerm) || 
-                                product.description.toLowerCase().includes(searchTerm);
-            
-            // Filtro por categoría principal
-const matchesFilter = activeFilter === 'all' || 
-                      (activeFilter === 'ofertas' && product.tags?.includes('oferta')) ||
-                      product.category === activeFilter || 
-                      product.tags?.includes(activeFilter);
+let filtered = products.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm) || 
+                          product.description?.toLowerCase().includes(searchTerm);
 
-            
-            // Filtro por subcategoría
-            const matchesCategory = selectedCategory === 'all' || product.subcategory === selectedCategory;
-            
-            return matchesSearch && matchesFilter && matchesCategory;
-        });
+    const matchesFilter = activeFilter === 'all' || 
+                          (activeFilter === 'ofertas' && product.tags?.includes('oferta')) || 
+                          product.category === activeFilter ||
+                          product.tags?.includes(activeFilter);
+
+    const matchesCategory = selectedCategory === 'all' || product.subcategory === selectedCategory;
+
+    return matchesSearch && matchesFilter && matchesCategory;
+});
+
 
         // Ordenar productos
         switch(sortOption) {
