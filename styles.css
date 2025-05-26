@@ -237,6 +237,14 @@ nav a:hover::after {
     color: var(--text-light);
 }
 
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
 /* ===== BOTONES ===== */
 .cta-button {
     display: inline-block;
@@ -255,29 +263,30 @@ nav a:hover::after {
     overflow: hidden;
 }
 
+.cta-button-encargos {
+    background: linear-gradient(45deg, #FF4655, #ffffff);
+    box-shadow: 0 4px 15px rgba(255, 70, 80, 0.3);
+}
+
 .cta-button:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(66, 133, 244, 0.4);
     background: linear-gradient(45deg, #3367d6, #ffffff);
 }
 
-.cta-button:active {
-    transform: translateY(1px);
-}
-
-.cta-button:hover {
+.cta-button-encargos:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(255, 70, 80, 0.4);
+    background: linear-gradient(45deg, #e53e4a, #ffffff);
 }
 
-.cta-button:active {
+.cta-button:active, .cta-button-encargos:active {
     transform: translateY(1px);
 }
 
 .full-width-btn {
     width: 100%;
 }
-
 /* ===== PRODUCTOS ===== */
 .products {
     padding: 5rem 5%;
