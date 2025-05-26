@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
             image: "assets/products/jordan-tatum2.jpg",
             description: "Zapatillas de baloncesto signature de Jayson Tatum",
             sizes: ["39", "40", "41", "42", "43", "44", "45"],
-            tags: ["nuevo", "exclusivo"],
+            tags: ["nuevo"],
             stock: 3
         },
         {
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
             image: "assets/products/air-jordan-38.jpg",
             description: "Edición limitada de las Jordan más avanzadas tecnológicamente",
             sizes: ["40", "41", "42", "43", "44"],
-            tags: ["nuevo", "exclusivo", "coleccionista"],
+            tags: ["nuevo"],
             stock: 2
         },
         {
