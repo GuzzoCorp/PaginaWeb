@@ -1,528 +1,272 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Base de datos de productos ampliada
-    const products = [
+const products = [
     {
         id: 1,
         name: "Remera Térmica",
-        price: 14999,
-        oldPrice: 20000,
-        category: "ropa",
-        subcategory: "remeras",
         image: "remera-termica.jpeg",
-        description: "Remera térmica de alta calidad",
-        sizes: ["S", "M", "L", "XL"],
-        discount: 20,
-        tags: ["oferta", "hombre", "mujer", "deportivo"]
+        tags: ["oferta", "hombre", "mujer"]
     },
     {
         id: 2,
         name: "Gorra",
-        price: 21999,
-        oldPrice: 40000,
-        category: "accesorios",
-        subcategory: "gorras",
         image: "gorra.jpeg",
-        description: "Gorra ajustable NBA edición limitada",
-        sizes: ["Ajustable"],
-        discount: 45,
-        tags: ["oferta", "nuevo", "hombre", "mujer", "para salir"]
+        tags: ["oferta", "nuevo", "hombre", "mujer"]
     },
     {
         id: 3,
         name: "Cuellos Lycra Frizada",
-        price: 3999,
-        oldPrice: 5000,
-        category: "accesorios",
-        subcategory: "cuellos",
         image: "cuellos-lycra-frizada.jpeg",
-        description: "Pack de cuellitos de lycra frizada",
-        sizes: ["Único"],
-        discount: 20,
-        tags: ["oferta", "hombre", "mujer", "deportivo"]
+        tags: ["oferta", "hombre", "mujer"]
     },
     {
         id: 4,
         name: "DC Court Graffick Rosas",
-        price: 199999,
-        category: "sneakers",
-        subcategory: "skate",
         image: "dc-rosas.jpeg",
-        description: "Las únicas de San Luis",
-        sizes: ["36", "37", "38", "39", "40"],
-        tags: ["ultima-unidad", "hombre", "mujer", "para salir"],
-        stock: 1
+        tags: ["ultima-unidad", "hombre", "mujer"]
     },
     {
         id: 5,
         name: "Puma 180",
-        price: 169999,
-        category: "sneakers",
-        subcategory: "retro",
         image: "puma-180.jpeg",
-        description: "Edición Super Exclusiva",
-        sizes: ["38", "39", "40", "41", "42"],
-        tags: ["ultima-unidad", "hombre", "para salir"],
-        stock: 1
+        tags: ["ultima-unidad", "hombre"]
     },
     {
         id: 6,
         name: "Osiris D3 2001",
-        price: 299999,
-        category: "sneakers",
-        subcategory: "coleccionista",
-        image: "osiris-d3-2001.jpeg",
-        description: "Edición Coleccionista",
-        sizes: ["39", "40", "41", "42"],
-        tags: ["ultima-unidad", "hombre", "para salir"],
-        stock: 1
+        image: "osiris-d3.jpeg",
+        tags: ["ultima-unidad", "hombre"]
     },
     {
         id: 7,
         name: "Remera Oversize Negra",
-        price: 18000,
-        category: "ropa",
-        subcategory: "remeras",
         image: "remera-oversize-negra.jpeg",
-        description: "Estampado a elección",
-        sizes: ["S", "M", "L", "XL"],
-        tags: ["mas-vendido", "hombre", "para salir"],
-        customizable: true
+        tags: ["mas-vendido", "hombre", "para salir"]
     },
     {
         id: 8,
         name: "Remera Oversize Blanca",
-        price: 18000,
-        category: "ropa",
-        subcategory: "remeras",
         image: "remera-oversize-blanca.jpeg",
-        description: "Estampado a elección",
-        sizes: ["S", "M", "L", "XL"],
-        tags: ["hombre", "para salir"],
-        customizable: true
+        tags: ["hombre", "para salir"]
     },
     {
         id: 9,
         name: "Buzo Canguro Negro",
-        price: 25000,
-        category: "ropa",
-        subcategory: "buzos",
         image: "buzo-canguro-negro.jpeg",
-        description: "Con bolsillo canguro",
-        sizes: ["S", "M", "L", "XL"],
-        tags: ["mas-vendido", "hombre", "para salir"],
-        customizable: true
-    },{
-            id: 10,
-            name: "Zapatillas Nike Air Max",
-            price: 189999,
-            category: "sneakers",
-            subcategory: "running",
-            image: "https://example.com/nike-airmax.jpg",
-            description: "Tecnología Air Max para máxima comodidad",
-            sizes: ["38", "39", "40", "41", "42", "43"],
-            tags: ["nuevo"],
-            stock: 5
-        },
-        {
-            id: 11,
-            name: "Jeans Rotos Oversize",
-            price: 28999,
-            category: "ropa",
-            subcategory: "pantalones",
-            image: "https://example.com/jeans-rotos.jpg",
-            description: "Jeans estilo streetwear con roturas",
-            sizes: ["28", "30", "32", "34"],
-            tags: ["nuevo"]
-        },
-        {
-            id: 12,
-            name: "Campera Denim",
-            price: 45999,
-            category: "ropa",
-            subcategory: "abrigos",
-            image: "https://example.com/campera-denim.jpg",
-            description: "Campera de jean clásica",
-            sizes: ["S", "M", "L", "XL"],
-            tags: ["nuevo"]
-        },
-        {
-            id: 13,
-            name: "Mochila The North Face",
-            price: 54999,
-            category: "accesorios",
-            subcategory: "mochilas",
-            image: "https://example.com/mochila-tnf.jpg",
-            description: "Resistente al agua y duradera",
-            tags: ["nuevo"]
-        },
-        {
-            id: 14,
-            name: "Gafas de Sol Ray-Ban",
-            price: 67999,
-            category: "accesorios",
-            subcategory: "gafas",
-            image: "https://example.com/rayban.jpg",
-            description: "Estilo clásico Aviator",
-            tags: ["nuevo"]
-        },
-        {
-            id: 15,
-            name: "Calza One Leg",
-            price: 19999,
-            category: "ropa",
-            subcategory: "calzas",
-            image: "assets/products/calza-one-leg.jpg",
-            description: "Calza deportiva one leg de alta calidad",
-            sizes: ["S", "M", "L", "XL"],
-            tags: ["nuevo"]
-        },
-        {
-            id: 16,
-            name: "Calza Larga",
-            price: 24999,
-            category: "ropa",
-            subcategory: "calzas",
-            image: "assets/products/calza-larga.jpg",
-            description: "Calza larga para entrenamiento",
-            sizes: ["S", "M", "L", "XL"],
-            tags: ["nuevo"]
-        },
-        {
-            id: 17,
-            name: "Pelota de Basquet Molten BG4500",
-            price: 129999,
-            category: "accesorios",
-            subcategory: "pelotas",
-            image: "assets/products/molten-bg4500.jpg",
-            description: "Pelota oficial de básquet Molten",
-            tags: ["nuevo"]
-        },
-        {
-            id: 18,
-            name: "Nike Lebron XXI",
-            price: 259999,
-            category: "sneakers",
-            subcategory: "basquet",
-            image: "assets/products/lebron-xxi.jpg",
-            description: "Zapatillas de basquetbol de élite",
-            sizes: ["39", "40", "41", "42", "43", "44"],
-            tags: ["nuevo"],
-            stock: 0
-        },
-        {
-            id: 19,
-            name: "Nike Lebron Witness 7",
-            price: 259999,
-            category: "sneakers",
-            subcategory: "basquet",
-            image: "assets/products/lebron-witness7.jpg",
-            description: "Zapatillas para jugadores de basquet",
-            sizes: ["39", "40", "41", "42", "43", "44"],
-            tags: ["nuevo"],
-            stock: 0
-        },
-        {
-            id: 20,
-            name: "Calza Corta Deportiva Mujer",
-            price: 7999,
-            category: "ropa",
-            subcategory: "calzas",
-            image: "assets/products/calza-corta-mujer.jpg",
-            description: "Calza deportiva para mujer",
-            sizes: ["XS", "S", "M", "L"],
-            tags: ["nuevo"]
-        },
-        {
-            id: 21,
-            name: "Giannis Immortality 4",
-            price: 149999,
-            category: "sneakers",
-            subcategory: "basquet",
-            image: "assets/products/giannis-immortality4.jpg",
-            description: "Zapatillas de basquet Giannis Antetokounmpo",
-            sizes: ["39", "40", "41", "42", "43", "44"],
-            tags: ["nuevo"],
-            stock: 0
-        },
-        {
-            id: 22,
-            name: "Nike G.T. Cut Academy",
-            price: 119999,
-            category: "sneakers",
-            subcategory: "basquet",
-            image: "assets/products/nike-gt-cut.jpg",
-            description: "Zapatillas de performance para basquet",
-            sizes: ["39", "40", "41", "42", "43", "44"],
-            tags: ["nuevo"],
-            stock: 0
-        },
-        {
-            id: 23,
-            name: "Jordan Tatum 2",
-            price: 219999,
-            category: "sneakers",
-            subcategory: "basquet",
-            image: "assets/products/jordan-tatum2.jpg",
-            description: "Zapatillas de baloncesto signature de Jayson Tatum",
-            sizes: ["39", "40", "41", "42", "43", "44", "45"],
-            tags: ["nuevo"],
-            stock: 3
-        },
-        {
-            id: 24,
-            name: "Air Jordan XXXVIII",
-            price: 319999,
-            category: "sneakers",
-            subcategory: "basquet",
-            image: "assets/products/air-jordan-38.jpg",
-            description: "Edición limitada de las Jordan más avanzadas tecnológicamente",
-            sizes: ["40", "41", "42", "43", "44"],
-            tags: ["nuevo"],
-            stock: 2
-        },
-        {
-            id: 25,
-            name: "Kobe VIII Protro",
-            price: 289999,
-            category: "sneakers",
-            subcategory: "basquet",
-            image: "assets/products/kobe-viii-protro.jpg",
-            description: "Homenaje a la leyenda del baloncesto Kobe Bryant",
-            sizes: ["39", "40", "41", "42", "43"],
-            tags: ["nuevo", "coleccionista"],
-            stock: 1
-        },
-        {
-            id: 26,
-            name: "iPhone 16 128GB - Sellado -",
-            price: 1199999,
-            category: "tecnologia",
-            subcategory: "celulares",
-            image: "assets/products/iphone-16.jpg",
-            description: "Nuevo iPhone 16 128GB sellado de fábrica",
-            tags: ["nuevo", "exclusivo"],
-            stock: 5
-        },
-        // Nuevos productos del PDF
-        {
-            id: 27,
-            name: "Botas Bucaneras (gamuza sintética)",
-            price: 39000,
-            category: "calzado",
-            subcategory: "botas",
-            image: "assets/products/botas-bucaneras.jpg",
-            description: "Botas altas negras de caña alta en material elastizado",
-            sizes: ["36", "37", "38", "39", "40"],
-            tags: ["mas-vendido"],
-            colors: ["Negro"]
-        },
-        {
-            id: 28,
-            name: "Borcegos veganos plataforma",
-            price: 43000,
-            category: "calzado",
-            subcategory: "borcegos",
-            image: "assets/products/borcegos-veganos.jpg",
-            description: "Botines altos negros con cordones y plataforma",
-            sizes: ["35", "36", "37", "38", "39", "40"],
-            tags: ["nuevo"],
-            colors: ["Negro"]
-        },
-        {
-            id: 29,
-            name: "Remera oversize 2Pac (All Eyez On Me)",
-            price: 29000,
-            category: "ropa",
-            subcategory: "remeras",
-            image: "assets/products/remera-2pac.jpg",
-            description: "Remera algodón oversize con estampado de Tupac Shakur",
-            sizes: ["M", "L", "XL"],
-            tags: ["mas-vendido"],
-            colors: ["Negro"]
-        },
-        {
-            id: 30,
-            name: "Pantalón cargo alto con strass",
-            price: 71000,
-            category: "ropa",
-            subcategory: "pantalones",
-            image: "assets/products/pantalon-cargo-strass.jpg",
-            description: "Cargo recto con strass tono sobre tono",
-            sizes: ["S", "M", "L", "XL"],
-            tags: ["nuevo"],
-            colors: ["Fucsia", "Verde"]
-        },
-        {
-            id: 31,
-            name: "Remera con malla transparente",
-            price: 20000,
-            category: "ropa",
-            subcategory: "remeras",
-            image: "assets/products/remera-malla.jpg",
-            description: "Remera algodón blanca con detalles en malla translúcida",
-            sizes: ["S", "M"],
-            tags: ["nuevo"],
-            colors: ["Blanco"]
-        },
-        {
-            id: 32,
-            name: "Campera Nike Tech Fleece",
-            price: 150000,
-            category: "ropa",
-            subcategory: "abrigos",
-            image: "assets/products/campera-nike.jpg",
-            description: "Campera polar Tech Fleece, interior forro suave",
-            sizes: ["L", "XL", "XXL"],
-            tags: ["nuevo", "exclusivo"],
-            colors: ["Negro"]
-        },
-        {
-            id: 33,
-            name: "Campera puffer acolchonada",
-            price: 48000,
-            category: "ropa",
-            subcategory: "abrigos",
-            image: "assets/products/campera-puffer.jpg",
-            description: "Campera corta acolchada con cierre frontal",
-            sizes: ["S", "M", "L"],
-            tags: ["mas-vendido"],
-            colors: ["Negro"]
-        },
-        {
-            id: 34,
-            name: "Zapatillas Adidas Superstar 80's",
-            price: 40000,
-            category: "calzado",
-            subcategory: "zapatillas",
-            image: "assets/products/adidas-superstar.jpg",
-            description: "Zapatillas clásicas blancas de cuero con puntera de concha",
-            sizes: ["39.5"],
-            tags: ["clasico"],
-            colors: ["Blanco"]
-        },
-        {
-            id: 35,
-            name: "Top oversize algodón (manga larga)",
-            price: 12000,
-            category: "ropa",
-            subcategory: "tops",
-            image: "assets/products/top-oversize.jpg",
-            description: "Top negro oversize de algodón, cuello redondo",
-            sizes: ["S", "M"],
-            tags: ["nuevo"],
-            colors: ["Negro"]
-        },
-        {
-            id: 36,
-            name: "Pollera larga acampanada lisa",
-            price: 27000,
-            category: "ropa",
-            subcategory: "polleras",
-            image: "assets/products/pollera-acampanada.jpg",
-            description: "Falda maxi lisa con elástico ancho en cintura",
-            sizes: ["S", "M", "L"],
-            tags: ["nuevo"],
-            colors: ["Rojo"]
-        },
-        {
-            id: 37,
-            name: "Top satén liso con tirantes finos",
-            price: 21000,
-            category: "ropa",
-            subcategory: "tops",
-            image: "assets/products/top-saten.jpg",
-            description: "Top satinado con escote en V y cordón de ajuste",
-            sizes: ["S", "M"],
-            tags: ["nuevo"],
-            colors: ["Negro", "Rojo"]
-        },
-        {
-            id: 38,
-            name: "Cinturón ancho metalizado (Tresher)",
-            price: 10000,
-            category: "accesorios",
-            subcategory: "cinturones",
-            image: "assets/products/cinturon-metalizado.jpg",
-            description: "Cinturón tipo fajín ancho rígido con detalle metálico",
-            sizes: ["Único"],
-            tags: ["nuevo"],
-            colors: ["Plateado", "Dorado"]
-        },
-        {
-            id: 39,
-            name: "Jogging oversize lycra deportivo",
-            price: 71000,
-            category: "ropa",
-            subcategory: "pantalones",
-            image: "assets/products/jogging-lycra.jpg",
-            description: "Babucha deportiva oversize en lycra, tiro alto",
-            sizes: ["S", "M", "L"],
-            tags: ["nuevo"],
-            colors: ["Negro"]
-        },
-        {
-            id: 40,
-            name: "Remera estampado animal sobre blanco",
-            price: 25000,
-            category: "ropa",
-            subcategory: "remeras",
-            image: "assets/products/remera-animal.jpg",
-            description: "Remera algodón blanca con estampado animal (leopardo/zebra)",
-            sizes: ["S", "M", "L"],
-            tags: ["nuevo"],
-            colors: ["Blanco"]
-        },
-        {
-            id: 41,
-            name: "Jean wide leg animal print",
-            price: 47000,
-            category: "ropa",
-            subcategory: "pantalones",
-            image: "assets/products/jean-animal.jpg",
-            description: "Jean palazzo ancho blanco con estampado animal zebra",
-            sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"],
-            tags: ["nuevo"],
-            colors: ["Blanco", "Negro"]
-        },
-        {
-            id: 42,
-            name: "Sweater oversize estampado cebra",
-            price: 45000,
-            category: "ropa",
-            subcategory: "sweaters",
-            image: "assets/products/sweater-cebra.jpg",
-            description: "Sweater lana oversize de corte amplio estampado cebra",
-            sizes: ["3XL"],
-            tags: ["nuevo"],
-            colors: ["Verde"]
-        },
-        {
-            id: 43,
-            name: "Top bandeau plisado sin tirantes",
-            price: 18000,
-            category: "ropa",
-            subcategory: "tops",
-            image: "assets/products/top-bandeau.jpg",
-            description: "Top sin tirantes plisado con cordón de ajuste",
-            sizes: ["S", "M"],
-            tags: ["nuevo"],
-            colors: ["Rosa"]
-        },
-        {
-            id: 44,
-            name: "Buzo canguro tela peluche",
-            price: 17000,
-            category: "ropa",
-            subcategory: "buzos",
-            image: "assets/products/buzo-peluche.jpg",
-            description: "Buzo gris forro de peluche bifaz con capucha canguro",
-            sizes: ["S-M", "L-XL", "2XL-3XL"],
-            tags: ["mas-vendido"],
-            colors: ["Gris"]
-        }
-    ];
+        tags: ["mas-vendido", "hombre", "para salir"]
+    },
+    {
+        id: 10,
+        name: "Zapatillas Nike Air Max",
+        image: "nike-air-max.jpeg",
+        tags: ["nuevo", "hombre", "deportivo"]
+    },
+    {
+        id: 11,
+        name: "Jeans Rotos Oversize",
+        image: "jeans-rotos-oversize.jpeg",
+        tags: ["nuevo", "hombre", "para salir"]
+    },
+    {
+        id: 12,
+        name: "Campera Denim",
+        image: "campera-denim.jpeg",
+        tags: ["nuevo", "hombre", "para salir"]
+    },
+    {
+        id: 13,
+        name: "Mochila The North Face",
+        image: "mochila-the-north-face.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 14,
+        name: "Gafas de Sol Ray-Ban",
+        image: "gafas-rayban.jpeg",
+        tags: ["nuevo", "hombre", "para salir"]
+    },
+    {
+        id: 15,
+        name: "Calza One Leg",
+        image: "calza-one-leg.jpeg",
+        tags: ["nuevo", "mujer", "deportivo"]
+    },
+    {
+        id: 16,
+        name: "Calza Larga",
+        image: "calza-larga.jpeg",
+        tags: ["nuevo", "mujer", "deportivo"]
+    },
+    {
+        id: 17,
+        name: "Pelota de Basquet Molten BG4500",
+        image: "molten-bg4500.jpeg",
+        tags: ["nuevo", "deportivo", "hombre"]
+    },
+    {
+        id: 18,
+        name: "Nike Lebron XXI",
+        image: "lebron-xxi.jpeg",
+        tags: ["nuevo", "deportivo", "hombre"]
+    },
+    {
+        id: 19,
+        name: "Nike Lebron Witness 7",
+        image: "lebron-witness7.jpeg",
+        tags: ["nuevo", "deportivo", "hombre"]
+    },
+    {
+        id: 20,
+        name: "Calza Corta Deportiva Mujer",
+        image: "calza-corta-mujer.jpeg",
+        tags: ["nuevo", "mujer", "deportivo"]
+    },
+    {
+        id: 21,
+        name: "Giannis Immortality 4",
+        image: "giannis-immortality4.jpeg",
+        tags: ["nuevo", "deportivo", "hombre"]
+    },
+    {
+        id: 22,
+        name: "Nike G.T. Cut Academy",
+        image: "nike-gt-cut.jpeg",
+        tags: ["nuevo", "deportivo", "hombre"]
+    },
+    {
+        id: 23,
+        name: "Jordan Tatum 2",
+        image: "jordan-tatum2.jpeg",
+        tags: ["nuevo", "deportivo", "hombre"]
+    },
+    {
+        id: 24,
+        name: "Air Jordan XXXVIII",
+        image: "air-jordan-38.jpeg",
+        tags: ["nuevo", "deportivo", "hombre"]
+    },
+    {
+        id: 25,
+        name: "Kobe VIII Protro",
+        image: "kobe-viii-protro.jpeg",
+        tags: ["nuevo", "coleccionista", "deportivo", "hombre"]
+    },
+    {
+        id: 26,
+        name: "iPhone 16",
+        image: "iphone-16.jpeg",
+        tags: ["nuevo", "para salir"]
+    },
+    {
+        id: 27,
+        name: "Producto 27",
+        image: "producto-27.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 28,
+        name: "Producto 28",
+        image: "producto-28.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 29,
+        name: "Producto 29",
+        image: "producto-29.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 30,
+        name: "Producto 30",
+        image: "producto-30.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 31,
+        name: "Producto 31",
+        image: "producto-31.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 32,
+        name: "Producto 32",
+        image: "producto-32.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 33,
+        name: "Producto 33",
+        image: "producto-33.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 34,
+        name: "Producto 34",
+        image: "producto-34.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 35,
+        name: "Producto 35",
+        image: "producto-35.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 36,
+        name: "Producto 36",
+        image: "producto-36.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 37,
+        name: "Producto 37",
+        image: "producto-37.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 38,
+        name: "Producto 38",
+        image: "producto-38.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 39,
+        name: "Producto 39",
+        image: "producto-39.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 40,
+        name: "Producto 40",
+        image: "producto-40.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 41,
+        name: "Producto 41",
+        image: "producto-41.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 42,
+        name: "Producto 42",
+        image: "producto-42.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 43,
+        name: "Producto 43",
+        image: "producto-43.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 44,
+        name: "Producto 44",
+        image: "producto-44.jpeg",
+        tags: ["nuevo", "hombre"]
+    }
+];
 
-    // Resto del código permanece igual...
     // Elementos del DOM
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
@@ -531,7 +275,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const sortSelect = document.getElementById('sort-select');
     const productGrid = document.getElementById('product-grid');
     const resultsCount = document.getElementById('results-count');
-
     // Función para renderizar productos
     function renderProducts(filteredProducts) {
         productGrid.innerHTML = '';
