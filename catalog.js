@@ -227,8 +227,122 @@ document.addEventListener('DOMContentLoaded', function() {
             tags: ["nuevo", "coleccionista", "deportivo", "hombre"],
             price: 129990,
             description: "Edición especial en honor a Kobe Bryant"
-        }
-    ];
+        },
+        {
+        id: 26,
+        name: "iPhone 16",
+        image: "iphone-16.jpeg",
+        tags: ["nuevo", "para salir"]
+    },
+    {
+        id: 27,
+        name: "Producto 27",
+        image: "producto-27.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 28,
+        name: "Producto 28",
+        image: "producto-28.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 29,
+        name: "Producto 29",
+        image: "producto-29.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 30,
+        name: "Producto 30",
+        image: "producto-30.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 31,
+        name: "Producto 31",
+        image: "producto-31.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 32,
+        name: "Producto 32",
+        image: "producto-32.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 33,
+        name: "Producto 33",
+        image: "producto-33.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 34,
+        name: "Producto 34",
+        image: "producto-34.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 35,
+        name: "Producto 35",
+        image: "producto-35.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 36,
+        name: "Producto 36",
+        image: "producto-36.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 37,
+        name: "Producto 37",
+        image: "producto-37.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 38,
+        name: "Producto 38",
+        image: "producto-38.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 39,
+        name: "Producto 39",
+        image: "producto-39.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 40,
+        name: "Producto 40",
+        image: "producto-40.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 41,
+        name: "Producto 41",
+        image: "producto-41.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 42,
+        name: "Producto 42",
+        image: "producto-42.jpeg",
+        tags: ["nuevo", "hombre"]
+    },
+    {
+        id: 43,
+        name: "Producto 43",
+        image: "producto-43.jpeg",
+        tags: ["nuevo", "mujer"]
+    },
+    {
+        id: 44,
+        name: "Producto 44",
+        image: "producto-44.jpeg",
+        tags: ["nuevo", "hombre"]
+    }
+];
 
     // Elementos del DOM
     const searchInput = document.getElementById('search-input');
