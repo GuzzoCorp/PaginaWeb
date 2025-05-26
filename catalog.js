@@ -374,9 +374,11 @@ const products = [
                                 product.description.toLowerCase().includes(searchTerm);
             
             // Filtro por categoría principal
-            const matchesFilter = activeFilter === 'all' || 
-                                 (activeFilter === 'ofertas' && product.tags && product.tags.includes('oferta')) || 
-                                 product.category === activeFilter;
+const matchesFilter = activeFilter === 'all' || 
+                      (activeFilter === 'ofertas' && product.tags?.includes('oferta')) ||
+                      product.category === activeFilter || 
+                      product.tags?.includes(activeFilter);
+
             
             // Filtro por subcategoría
             const matchesCategory = selectedCategory === 'all' || product.subcategory === selectedCategory;
