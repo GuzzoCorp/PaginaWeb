@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 7,
             name: "Remera Oversize Negra",
-            price: 18000,
+            price: 18999,
             category: "ropa",
             subcategory: "remeras",
             image: "assets/products/remera-oversize-negra.jpg",
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 8,
             name: "Remera Oversize Blanca",
-            price: 18000,
+            price: 18999,
             category: "ropa",
             subcategory: "remeras",
             image: "assets/products/remera-oversize-blanca.jpg",
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 9,
             name: "Buzo Canguro Negro",
-            price: 25000,
+            price: 29999,
             category: "ropa",
             subcategory: "buzos",
             image: "assets/products/buzo-canguro-negro.jpg",
