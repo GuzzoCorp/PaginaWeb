@@ -159,16 +159,6 @@ document.addEventListener('DOMContentLoaded', function() {
             tags: ["nuevo"]
         },
         {
-            id: 14,
-            name: "Gafas de Sol Ray-Ban",
-            price: 67999,
-            category: "accesorios",
-            subcategory: "gafas",
-            image: "https://example.com/rayban.jpg",
-            description: "Estilo clásico Aviator",
-            tags: ["nuevo"]
-        },
-        {
             id: 15,
             name: "Calza One Leg",
             price: 19999,
@@ -392,18 +382,6 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 34,
-            name: "Zapatillas Adidas Superstar 80's",
-            price: 40000,
-            category: "calzado",
-            subcategory: "zapatillas",
-            image: "assets/products/adidas-superstar.jpg",
-            description: "Zapatillas clásicas blancas de cuero con puntera de concha",
-            sizes: ["39.5"],
-            tags: ["clasico"],
-            colors: ["Blanco"]
-        },
-        {
             id: 35,
             name: "Top oversize algodón (manga larga)",
             price: 12000,
@@ -414,18 +392,6 @@ document.addEventListener('DOMContentLoaded', function() {
             sizes: ["S", "M"],
             tags: ["nuevo"],
             colors: ["Negro"]
-        },
-        {
-            id: 36,
-            name: "Pollera larga acampanada lisa",
-            price: 27000,
-            category: "ropa",
-            subcategory: "polleras",
-            image: "assets/products/pollera-acampanada.jpg",
-            description: "Falda maxi lisa con elástico ancho en cintura",
-            sizes: ["S", "M", "L"],
-            tags: ["nuevo"],
-            colors: ["Rojo"]
         },
         {
             id: 37,
