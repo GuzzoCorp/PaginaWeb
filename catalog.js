@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tags: ["nuevo"]
         },
         {
-            id: 15,
+            id: 14,
             name: "Calza One Leg",
             price: 19999,
             category: "ropa",
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tags: ["nuevo"]
         },
         {
-            id: 16,
+            id: 15,
             name: "Calza Larga",
             price: 24999,
             category: "ropa",
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tags: ["nuevo"]
         },
         {
-            id: 17,
+            id: 16,
             name: "Pelota de Basquet Molten BG4500",
             price: 129999,
             category: "accesorios",
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tags: ["nuevo"]
         },
         {
-            id: 18,
+            id: 17,
             name: "Nike Lebron XXI",
             price: 259999,
             category: "sneakers",
@@ -203,7 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
             stock: 0
         },
         {
-            id: 19,
+            id: 18,
             name: "Nike Lebron Witness 7",
             price: 259999,
             category: "sneakers",
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
             stock: 0
         },
         {
-            id: 20,
+            id: 19,
             name: "Calza Corta Deportiva Mujer",
             price: 7999,
             category: "ropa",
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tags: ["nuevo"]
         },
         {
-            id: 21,
+            id: 20,
             name: "Giannis Immortality 4",
             price: 149999,
             category: "sneakers",
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
             stock: 0
         },
         {
-            id: 22,
+            id: 21,
             name: "Nike G.T. Cut Academy",
             price: 119999,
             category: "sneakers",
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
             stock: 0
         },
         {
-            id: 23,
+            id: 22,
             name: "Jordan Tatum 2",
             price: 219999,
             category: "sneakers",
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
             stock: 3
         },
         {
-            id: 24,
+            id: 23,
             name: "Air Jordan XXXVIII",
             price: 319999,
             category: "sneakers",
@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', function() {
             stock: 2
         },
         {
-            id: 25,
+            id: 24,
             name: "Kobe VIII Protro",
             price: 289999,
             category: "sneakers",
@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
             stock: 1
         },
         {
-            id: 26,
+            id: 25,
             name: "iPhone 16 128GB - Sellado -",
             price: 1199999,
             category: "tecnologia",
@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         // Nuevos productos del PDF
         {
-            id: 27,
+            id: 26,
             name: "Botas Bucaneras (gamuza sintética)",
             price: 39000,
             category: "calzado",
@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 28,
+            id: 27,
             name: "Borcegos veganos plataforma",
             price: 43000,
             category: "calzado",
@@ -322,7 +322,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 29,
+            id: 28,
             name: "Remera oversize 2Pac (All Eyez On Me)",
             price: 29000,
             category: "ropa",
@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 30,
+            id: 29,
             name: "Pantalón cargo alto con strass",
             price: 71000,
             category: "ropa",
@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Fucsia", "Verde"]
         },
         {
-            id: 31,
+            id: 30,
             name: "Remera con malla transparente",
             price: 20000,
             category: "ropa",
@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Blanco"]
         },
         {
-            id: 32,
+            id: 31,
             name: "Campera Nike Tech Fleece",
             price: 150000,
             category: "ropa",
@@ -370,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 33,
+            id: 32,
             name: "Campera puffer acolchonada",
             price: 48000,
             category: "ropa",
@@ -382,7 +382,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 35,
+            id: 33,
             name: "Top oversize algodón (manga larga)",
             price: 12000,
             category: "ropa",
@@ -394,7 +394,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 37,
+            id: 34,
             name: "Top satén liso con tirantes finos",
             price: 21000,
             category: "ropa",
@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro", "Rojo"]
         },
         {
-            id: 38,
+            id: 35,
             name: "Cinturón ancho metalizado (Tresher)",
             price: 10000,
             category: "accesorios",
@@ -418,7 +418,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Plateado", "Dorado"]
         },
         {
-            id: 39,
+            id: 36,
             name: "Jogging oversize lycra deportivo",
             price: 71000,
             category: "ropa",
@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 40,
+            id: 37,
             name: "Remera estampado animal sobre blanco",
             price: 25000,
             category: "ropa",
@@ -442,7 +442,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Blanco"]
         },
         {
-            id: 41,
+            id: 38,
             name: "Jean wide leg animal print",
             price: 47000,
             category: "ropa",
@@ -454,7 +454,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Blanco", "Negro"]
         },
         {
-            id: 42,
+            id: 39,
             name: "Sweater oversize estampado cebra",
             price: 45000,
             category: "ropa",
@@ -466,7 +466,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Verde"]
         },
         {
-            id: 43,
+            id: 40,
             name: "Top bandeau plisado sin tirantes",
             price: 18000,
             category: "ropa",
@@ -478,7 +478,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Rosa"]
         },
         {
-            id: 44,
+            id: 41,
             name: "Buzo canguro tela peluche",
             price: 17000,
             category: "ropa",
