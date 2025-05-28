@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
             price: 45999,
             category: "ropa",
             subcategory: "abrigos",
-            image: "https://example.com/campera-denim.jpg",
+            image: "camperadenim.jpeg",
             description: "Campera de jean clásica",
             sizes: ["S", "M", "L", "XL"],
             tags: ["nuevo"]
