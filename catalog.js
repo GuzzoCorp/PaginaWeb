@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', function() {
             price: 289999,
             category: "sneakers",
             subcategory: "basquet",
-            image: "kobe8proto.jpeg,
+            image: "kobe8proto.jpeg",
             description: "Homenaje a la leyenda del baloncesto Kobe Bryant",
             sizes: ["39", "40", "41", "42", "43"],
             tags: ["nuevo", "coleccionista"],
