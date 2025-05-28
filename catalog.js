@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function() {
             image: "kobe8proto.jpeg",
             description: "Homenaje a la leyenda del baloncesto Kobe Bryant",
             sizes: ["39", "40", "41", "42", "43"],
-            tags: ["nuevo", "coleccionista"],
+            tags: ["nuevo"],
             stock: 1
         },
         {
