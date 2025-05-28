@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 2,
             name: "Gorra",
-            price: 24999,
+            price: 21999,
             oldPrice: 40000,
             category: "accesorios",
             subcategory: "gorras",
