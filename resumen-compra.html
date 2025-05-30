@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUZZOCORP - Lo Mejor Para Vos</title>
+    <meta name="description" content="Venta de sneakers y streetwear de edición limitada. Productos 100% originales.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="GuzzoCorp.png">
+</head>
+<body>
+  <div class="resumen-container">
+    <h1 class="neon-accent">Resumen de tu compra</h1>
+    <div id="producto-detalle" class="resumen-card">
+      <!-- JS va a inyectar aquí los datos -->
+    </div>
+    <button class="cta-button full-width-btn" onclick="confirmarCompra()">Confirmar Compra</button>
+  </div>
+
+  <script src="catalog.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const idProducto = parseInt(params.get("producto"));
+    const contenedor = document.getElementById("producto-detalle");
+
+    const producto = products.find(p => p.id === idProducto);
+
+    if (producto) {
+      contenedor.innerHTML = `
+        <img src="${producto.image}" alt="${producto.name}" class="resumen-img">
+        <div class="resumen-info">
+          <h2>${producto.name}</h2>
+          <p>${producto.description}</p>
+          <p><strong>Precio:</strong> $${producto.price.toLocaleString('es-AR')}</p>
+          <p><strong>Talles:</strong> ${producto.sizes ? producto.sizes.join(', ') : 'Único'}</p>
+        </div>
+      `;
+    } else {
+      contenedor.innerHTML = `<p class="error-msg">Producto no encontrado.</p>`;
+    }
+
+    function confirmarCompra() {
+      alert("¡Gracias por tu compra, capo!");
+      window.location.href = "index.html";
+    }
+  </script>
+  <footer>
+    <div class="footer-logo-container">
+        <img src="GuzzoCorp.png" alt="GUZZOCORP" class="footer-logo">
+        <span class="footer-logo-text">THE BEST STYLE</span>
+    </div>
+    <div class="footer-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#sneakers">Sneakers</a>
+        <a href="#ropa">Ropa</a>
+        <a href="#encargos">Encargos</a>
+        <a href="#contacto">Contacto</a>
+    </div>
+    <div class="social-links">
+        <a href="https://www.instagram.com/guzzo.corp" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/5492664633010" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="mailto:guzzoinbusiness@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+    </div>
+    <div class="copyright">
+        &copy; 2025 GUZZOCORP - Todos los derechos reservados - By: Nahuel Guzzo
+    </div>
+</footer>
+</body>
+</html>
