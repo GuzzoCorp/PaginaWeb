@@ -575,9 +575,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p class="description">${product.description}</p>
                     ${customHTML}
                     ${stockHTML}
-<button class="cta-button full-width-btn" onclick="window.location.href='resumen-compra.html?producto=${product.id}'">
+// Cambia la línea del botón COMPRAR en la función renderProducts por:
+`<button class="cta-button full-width-btn" onclick="window.location.href='personalizar-compra.html?producto=${product.id}'">
     COMPRAR
-</button>
+</button>`
                 </div>
             `;
             productGrid.appendChild(productCard);
