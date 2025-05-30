@@ -1659,3 +1659,134 @@ footer {
 }
 
 
+/* Estilos para la página de personalización */
+.personalizar-container {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid #00aaff;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0,170,255,0.2);
+}
+
+.personalizar-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.producto-resumen {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    border: 1px solid #0af;
+    align-items: center;
+}
+
+.producto-imagen {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 8px;
+    background: white;
+    padding: 10px;
+}
+
+.producto-datos {
+    flex: 1;
+}
+
+.precio-base {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0af;
+    margin: 0.5rem 0;
+}
+
+.formulario-personalizacion {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #0af;
+}
+
+.form-group select, 
+.form-group input {
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #1a1a1a;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-group input {
+    width: 100px;
+}
+
+.descuentos-info {
+    margin-top: 0.5rem;
+    padding: 0.8rem;
+    background: rgba(0, 170, 255, 0.1);
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.descuentos-info ul {
+    margin-top: 0.5rem;
+    padding-left: 1.2rem;
+}
+
+.resumen-pago {
+    margin-top: 1rem;
+    padding: 1.5rem;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    border: 1px solid #0af;
+}
+
+.resumen-pago h3 {
+    margin-top: 0;
+    color: #0af;
+}
+
+.descuento-aplicado {
+    color: #4caf50;
+}
+
+.total-pagar {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    color: #0af;
+}
+
+.error {
+    color: #ff4650;
+    text-align: center;
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .producto-resumen {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .personalizar-container {
+        margin: 2rem auto;
+        padding: 1.5rem;
+    }
+}
