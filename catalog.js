@@ -575,9 +575,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p class="description">${product.description}</p>
                     ${customHTML}
                     ${stockHTML}
-                    <button class="whatsapp-btn" onclick="buyViaWhatsapp('${product.name}', ${product.price}, '${product.image}')">
-                        <i class="fab fa-whatsapp"></i> COMPRAR
-                    </button>
+<button class="cta-button full-width-btn" onclick="window.location.href='resumen-compra.html?producto=${product.id}'">
+    COMPRAR
+</button>
                 </div>
             `;
             productGrid.appendChild(productCard);
