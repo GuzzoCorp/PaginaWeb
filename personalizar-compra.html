@@ -1,1 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUZZOCORP - Personalizar Compra</title>
+    <meta name="description" content="Personaliza tu compra en GUZZOCORP">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="GuzzoCorp.png">
+</head>
+<body>
+    <div class="personalizar-container">
+        <h1 class="neon-accent">Personaliza tu compra</h1>
+        
+        <div id="producto-info" class="producto-resumen">
+            <!-- JS inyectará la información del producto aquí -->
+        </div>
+        
+        <form id="formulario-compra" class="formulario-personalizacion">
+            <div class="form-group">
+                <label for="talle">Talle:</label>
+                <select id="talle" name="talle" required>
+                    <!-- JS llenará las opciones -->
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="color">Color:</label>
+                <select id="color" name="color" required>
+                    <!-- JS llenará las opciones -->
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+                <div id="descuentos-info" class="descuentos-info">
+                    <p>Descuentos por cantidad:</p>
+                    <ul>
+                        <li>1 unidad: Precio normal</li>
+                        <li>2 unidades: 3% OFF</li>
+                        <li>3 o más unidades: 10% OFF</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="resumen-pago">
+                <h3>Resumen de pago</h3>
+                <div id="resumen-detalle">
+                    <!-- JS actualizará esto dinámicamente -->
+                </div>
+            </div>
+            
+            <button type="submit" class="cta-button full-width-btn">
+                <i class="fas fa-whatsapp"></i> FINALIZAR COMPRA
+            </button>
+        </form>
+    </div>
 
+    <script src="catalog.js"></script>
+    <script>
+        // Obtener el ID del producto de la URL
+        const params = new URLSearchParams(window.location.search);
+        const idProducto = parseInt(params.get("producto"));
+        const producto = products.find(p => p.id === idProducto);
+        
+        // Elementos del DOM
+        const productoInfo = document.getElementById('producto-info');
+        const selectTalle = document.getElementById('talle');
+        const selectColor = document.getElementById('color');
+        const inputCantidad = document.getElementById('cantidad');
+        const resumenDetalle = document.getElementById('resumen-detalle');
+        const formulario = document.getElementById('formulario-compra');
+        
+        if (producto) {
+            // Mostrar información del producto
+            productoInfo.innerHTML = `
+                <img src="${producto.image}" alt="${producto.name}" class="producto-imagen">
+                <div class="producto-datos">
+                    <h2>${producto.name}</h2>
+                    <p class="precio-base">$${producto.price.toLocaleString('es-AR')}</p>
+                    <p class="descripcion">${producto.description}</p>
+                </div>
+            `;
+            
+            // Llenar opciones de talles
+            if (producto.sizes && producto.sizes.length > 0) {
+                producto.sizes.forEach(talle => {
+                    const option = document.createElement('option');
+                    option.value = talle;
+                    option.textContent = talle;
+                    selectTalle.appendChild(option);
+                });
+            } else {
+                const option = document.createElement('option');
+                option.value = "unico";
+                option.textContent = "Talle único";
+                selectTalle.appendChild(option);
+            }
+            
+            // Llenar opciones de colores (si el producto tiene colores)
+            const colores = producto.colors || ["Negro", "Blanco", "Gris"];
+            colores.forEach(color => {
+                const option = document.createElement('option');
+                option.value = color;
+                option.textContent = color;
+                selectColor.appendChild(option);
+            });
+            
+            // Actualizar resumen cuando cambia la cantidad
+            inputCantidad.addEventListener('input', actualizarResumen);
+            
+            // Calcular descuentos
+            function calcularDescuento(cantidad) {
+                if (cantidad >= 3) return 10;
+                if (cantidad >= 2) return 3;
+                return 0;
+            }
+            
+            // Actualizar resumen de pago
+            function actualizarResumen() {
+                const cantidad = parseInt(inputCantidad.value) || 1;
+                const descuento = calcularDescuento(cantidad);
+                const precioUnitario = producto.price;
+                const subtotal = precioUnitario * cantidad;
+                const descuentoMonto = subtotal * (descuento / 100);
+                const total = subtotal - descuentoMonto;
+                
+                resumenDetalle.innerHTML = `
+                    <p>${cantidad} x $${precioUnitario.toLocaleString('es-AR')} = $${subtotal.toLocaleString('es-AR')}</p>
+                    ${descuento > 0 ? `<p class="descuento-aplicado">Descuento ${descuento}%: -$${descuentoMonto.toLocaleString('es-AR')}</p>` : ''}
+                    <p class="total-pagar">Total: $${total.toLocaleString('es-AR')}</p>
+                `;
+            }
+            
+            // Inicializar resumen
+            actualizarResumen();
+            
+            // Manejar el envío del formulario
+            formulario.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const talle = selectTalle.value;
+                const color = selectColor.value;
+                const cantidad = inputCantidad.value;
+                const descuento = calcularDescuento(cantidad);
+                const total = producto.price * cantidad * (1 - (descuento / 100));
+                
+                // Crear mensaje para WhatsApp
+                let mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n`;
+                mensaje += `*Producto:* ${producto.name}\n`;
+                mensaje += `*Talle:* ${talle}\n`;
+                mensaje += `*Color:* ${color}\n`;
+                mensaje += `*Cantidad:* ${cantidad}\n`;
+                mensaje += `*Precio unitario:* $${producto.price.toLocaleString('es-AR')}\n`;
+                
+                if (descuento > 0) {
+                    mensaje += `*Descuento aplicado:* ${descuento}%\n`;
+                }
+                
+                mensaje += `*Total a pagar:* $${total.toLocaleString('es-AR')}\n\n`;
+                mensaje += `[Ver producto](${window.location.origin}/${producto.image})\n\n`;
+                mensaje += `Mis datos:\n- Nombre: \n- Dirección: \n- Método de pago: (Efectivo/Transferencia)\n\n¡Gracias!`;
+                
+                // Redirigir a WhatsApp
+                const phoneNumber = "5492664633010";
+                window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensaje)}`, '_blank');
+            });
+            
+        } else {
+            productoInfo.innerHTML = `<p class="error">Producto no encontrado. <a href="catalogo.html">Volver al catálogo</a></p>`;
+            formulario.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
