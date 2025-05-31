@@ -1661,7 +1661,7 @@ footer {
 
 /* Estilos para la página de personalización */
 .personalizar-container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 4rem auto;
     padding: 2rem;
     background: rgba(20, 20, 20, 0.95);
@@ -1675,40 +1675,54 @@ footer {
     margin-bottom: 2rem;
 }
 
-.producto-resumen {
-    display: flex;
+.producto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background-color: #1a1a1a;
-    border-radius: 12px;
-    border: 1px solid #0af;
+}
+
+.producto-imagen-container {
+    display: flex;
     align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    height: 400px;
 }
 
 .producto-imagen {
-    width: 150px;
-    height: 150px;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
-    border-radius: 8px;
-    background: white;
-    padding: 10px;
 }
 
-.producto-datos {
-    flex: 1;
+.producto-info {
+    padding: 1rem;
 }
 
-.precio-base {
+.producto-info h2 {
+    color: #0af;
+    margin-top: 0;
+    font-size: 1.8rem;
+}
+
+.producto-descripcion {
+    color: #ccc;
+    margin: 1rem 0;
+}
+
+.producto-precio {
     font-size: 1.5rem;
     font-weight: bold;
     color: #0af;
-    margin: 0.5rem 0;
+    margin: 1rem 0;
 }
 
 .formulario-personalizacion {
     display: grid;
     gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 .form-group {
@@ -1733,12 +1747,45 @@ footer {
 }
 
 .form-group input {
-    width: 100px;
+    width: 80px;
+}
+
+.resumen-compra {
+    padding: 1.5rem;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    border: 1px solid #0af;
+}
+
+.resumen-compra h3 {
+    margin-top: 0;
+    color: #0af;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.5rem;
+}
+
+.resumen-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 0.8rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed #333;
+}
+
+.resumen-item.total {
+    border-top: 2px solid #0af;
+    padding-top: 0.8rem;
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.resumen-item.descuento {
+    color: #4caf50;
 }
 
 .descuentos-info {
-    margin-top: 0.5rem;
-    padding: 0.8rem;
+    margin-top: 2rem;
+    padding: 1rem;
     background: rgba(0, 170, 255, 0.1);
     border-radius: 8px;
     font-size: 0.9rem;
@@ -1749,44 +1796,42 @@ footer {
     padding-left: 1.2rem;
 }
 
-.resumen-pago {
-    margin-top: 1rem;
-    padding: 1.5rem;
-    background-color: #1a1a1a;
-    border-radius: 12px;
-    border: 1px solid #0af;
-}
-
-.resumen-pago h3 {
-    margin-top: 0;
-    color: #0af;
-}
-
-.descuento-aplicado {
-    color: #4caf50;
-}
-
-.total-pagar {
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-top: 1rem;
-    color: #0af;
-}
-
-.error {
-    color: #ff4650;
+.error-container {
     text-align: center;
     padding: 2rem;
 }
 
+.error {
+    color: #ff4650;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+    .producto-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .resumen-compra {
+        grid-column: span 2;
+    }
+}
+
 @media (max-width: 768px) {
-    .producto-resumen {
-        flex-direction: column;
-        text-align: center;
+    .producto-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .resumen-compra {
+        grid-column: span 1;
     }
     
     .personalizar-container {
         margin: 2rem auto;
         padding: 1.5rem;
+    }
+    
+    .producto-imagen-container {
+        height: 300px;
     }
 }
