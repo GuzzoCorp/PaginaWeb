@@ -16,49 +16,61 @@
     <div class="personalizar-container">
         <h1 class="neon-accent">Personaliza tu compra</h1>
         
-        <div id="producto-info" class="producto-resumen">
-            <!-- JS inyectará la información del producto aquí -->
-        </div>
-        
-        <form id="formulario-compra" class="formulario-personalizacion">
-            <div class="form-group">
-                <label for="talle">Talle:</label>
-                <select id="talle" name="talle" required>
-                    <!-- JS llenará las opciones -->
-                </select>
+        <div class="producto-grid">
+            <!-- Columna 1: Imagen del producto -->
+            <div class="producto-imagen-container">
+                <img id="producto-imagen" src="" alt="Imagen del producto" class="producto-imagen">
             </div>
             
-            <div class="form-group">
-                <label for="color">Color:</label>
-                <select id="color" name="color" required>
-                    <!-- JS llenará las opciones -->
-                </select>
+            <!-- Columna 2: Información y personalización -->
+            <div class="producto-info">
+                <h2 id="producto-nombre"></h2>
+                <p class="producto-descripcion" id="producto-descripcion"></p>
+                <p class="producto-precio" id="producto-precio"></p>
+                
+                <form id="formulario-compra" class="formulario-personalizacion">
+                    <div class="form-group">
+                        <label for="talle">Talle:</label>
+                        <select id="talle" name="talle" required>
+                            <!-- JS llenará las opciones -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="color">Color:</label>
+                        <select id="color" name="color" required>
+                            <!-- JS llenará las opciones -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+                    </div>
+                </form>
             </div>
             
-            <div class="form-group">
-                <label for="cantidad">Cantidad:</label>
-                <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
-                <div id="descuentos-info" class="descuentos-info">
-                    <p>Descuentos por cantidad:</p>
-                    <ul>
-                        <li>1 unidad: Precio normal</li>
-                        <li>2 unidades: 3% OFF</li>
-                        <li>3 o más unidades: 10% OFF</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="resumen-pago">
-                <h3>Resumen de pago</h3>
+            <!-- Columna 3: Resumen de compra -->
+            <div class="resumen-compra">
+                <h3>Resumen de compra</h3>
                 <div id="resumen-detalle">
                     <!-- JS actualizará esto dinámicamente -->
                 </div>
+                
+                <div class="descuentos-info">
+                    <p><strong>Descuentos por cantidad:</strong></p>
+                    <ul>
+                        <li>1 unidad: Precio normal</li>
+                        <li>2 unidades: 3% OFF</li>
+                        <li>3+ unidades: 10% OFF</li>
+                    </ul>
+                </div>
+                
+                <button type="submit" form="formulario-compra" class="cta-button full-width-btn">
+                    <i class="fas fa-whatsapp"></i> FINALIZAR COMPRA
+                </button>
             </div>
-            
-            <button type="submit" class="cta-button full-width-btn">
-                <i class="fas fa-whatsapp"></i> FINALIZAR COMPRA
-            </button>
-        </form>
+        </div>
     </div>
 
     <script src="catalog.js"></script>
@@ -69,7 +81,10 @@
         const producto = products.find(p => p.id === idProducto);
         
         // Elementos del DOM
-        const productoInfo = document.getElementById('producto-info');
+        const productoImagen = document.getElementById('producto-imagen');
+        const productoNombre = document.getElementById('producto-nombre');
+        const productoDescripcion = document.getElementById('producto-descripcion');
+        const productoPrecio = document.getElementById('producto-precio');
         const selectTalle = document.getElementById('talle');
         const selectColor = document.getElementById('color');
         const inputCantidad = document.getElementById('cantidad');
@@ -78,14 +93,11 @@
         
         if (producto) {
             // Mostrar información del producto
-            productoInfo.innerHTML = `
-                <img src="${producto.image}" alt="${producto.name}" class="producto-imagen">
-                <div class="producto-datos">
-                    <h2>${producto.name}</h2>
-                    <p class="precio-base">$${producto.price.toLocaleString('es-AR')}</p>
-                    <p class="descripcion">${producto.description}</p>
-                </div>
-            `;
+            productoImagen.src = producto.image;
+            productoImagen.alt = producto.name;
+            productoNombre.textContent = producto.name;
+            productoDescripcion.textContent = producto.description;
+            productoPrecio.textContent = `$${producto.price.toLocaleString('es-AR')}`;
             
             // Llenar opciones de talles
             if (producto.sizes && producto.sizes.length > 0) {
@@ -102,7 +114,7 @@
                 selectTalle.appendChild(option);
             }
             
-            // Llenar opciones de colores (si el producto tiene colores)
+            // Llenar opciones de colores
             const colores = producto.colors || ["Negro", "Blanco", "Gris"];
             colores.forEach(color => {
                 const option = document.createElement('option');
@@ -113,6 +125,8 @@
             
             // Actualizar resumen cuando cambia la cantidad
             inputCantidad.addEventListener('input', actualizarResumen);
+            selectTalle.addEventListener('change', actualizarResumen);
+            selectColor.addEventListener('change', actualizarResumen);
             
             // Calcular descuentos
             function calcularDescuento(cantidad) {
@@ -124,6 +138,8 @@
             // Actualizar resumen de pago
             function actualizarResumen() {
                 const cantidad = parseInt(inputCantidad.value) || 1;
+                const talle = selectTalle.value;
+                const color = selectColor.value;
                 const descuento = calcularDescuento(cantidad);
                 const precioUnitario = producto.price;
                 const subtotal = precioUnitario * cantidad;
@@ -131,9 +147,36 @@
                 const total = subtotal - descuentoMonto;
                 
                 resumenDetalle.innerHTML = `
-                    <p>${cantidad} x $${precioUnitario.toLocaleString('es-AR')} = $${subtotal.toLocaleString('es-AR')}</p>
-                    ${descuento > 0 ? `<p class="descuento-aplicado">Descuento ${descuento}%: -$${descuentoMonto.toLocaleString('es-AR')}</p>` : ''}
-                    <p class="total-pagar">Total: $${total.toLocaleString('es-AR')}</p>
+                    <div class="resumen-item">
+                        <span>Producto:</span>
+                        <span>${producto.name}</span>
+                    </div>
+                    <div class="resumen-item">
+                        <span>Talle:</span>
+                        <span>${talle}</span>
+                    </div>
+                    <div class="resumen-item">
+                        <span>Color:</span>
+                        <span>${color}</span>
+                    </div>
+                    <div class="resumen-item">
+                        <span>Precio unitario:</span>
+                        <span>$${precioUnitario.toLocaleString('es-AR')}</span>
+                    </div>
+                    <div class="resumen-item">
+                        <span>Cantidad:</span>
+                        <span>${cantidad}</span>
+                    </div>
+                    ${descuento > 0 ? `
+                    <div class="resumen-item descuento">
+                        <span>Descuento (${descuento}%):</span>
+                        <span>-$${descuentoMonto.toLocaleString('es-AR')}</span>
+                    </div>
+                    ` : ''}
+                    <div class="resumen-item total">
+                        <span><strong>Total:</strong></span>
+                        <span><strong>$${total.toLocaleString('es-AR')}</strong></span>
+                    </div>
                 `;
             }
             
@@ -163,7 +206,7 @@
                 }
                 
                 mensaje += `*Total a pagar:* $${total.toLocaleString('es-AR')}\n\n`;
-                mensaje += `[Ver producto](${window.location.origin}/${producto.image})\n\n`;
+                mensaje += `[Ver producto](${producto.image})\n\n`;
                 mensaje += `Mis datos:\n- Nombre: \n- Dirección: \n- Método de pago: (Efectivo/Transferencia)\n\n¡Gracias!`;
                 
                 // Redirigir a WhatsApp
@@ -172,8 +215,12 @@
             });
             
         } else {
-            productoInfo.innerHTML = `<p class="error">Producto no encontrado. <a href="catalogo.html">Volver al catálogo</a></p>`;
-            formulario.style.display = 'none';
+            document.querySelector('.personalizar-container').innerHTML = `
+                <div class="error-container">
+                    <p class="error">Producto no encontrado.</p>
+                    <a href="catalogo.html" class="cta-button">Volver al catálogo</a>
+                </div>
+            `;
         }
     </script>
 </body>
