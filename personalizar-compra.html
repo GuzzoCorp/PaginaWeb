@@ -16,220 +16,149 @@
     <div class="personalizar-container">
         <h1 class="neon-accent">Personaliza tu compra</h1>
         
-        <div class="producto-flex-container">
-            <!-- Sección izquierda: Imagen y detalles -->
-            <div class="producto-detalles">
-                <div class="producto-imagen-container">
-                    <img id="producto-imagen" src="" alt="Imagen del producto" class="producto-imagen">
-                </div>
-                
-                <div class="producto-info">
-                    <h2 id="producto-nombre"></h2>
-                    <p class="producto-descripcion" id="producto-descripcion"></p>
-                    <p class="producto-precio" id="producto-precio"></p>
-                    
-                    <form id="formulario-compra" class="formulario-personalizacion">
-                        <div class="form-group">
-                            <label for="talle">Talle:</label>
-                            <select id="talle" name="talle" required>
-                                <!-- JS llenará las opciones -->
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="color">Color:</label>
-                            <select id="color" name="color" required>
-                                <!-- JS llenará las opciones -->
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="cantidad">Cantidad:</label>
-                            <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
-                        </div>
-                    </form>
-                </div>
+        <div class="producto-layout">
+            <!-- Sección izquierda: Imagen grande -->
+            <div class="producto-imagen-grande">
+                <img id="producto-imagen" src="" alt="Imagen del producto">
             </div>
             
-            <!-- Sección derecha: Resumen de compra -->
-            <div class="resumen-compra">
-                <h3>Resumen de compra</h3>
-                <div id="resumen-detalle">
-                    <!-- JS actualizará esto dinámicamente -->
-                </div>
+            <!-- Sección derecha: Detalles y formulario -->
+            <div class="producto-detalles">
+                <h2 id="producto-nombre"></h2>
+                <p class="precio" id="producto-precio"></p>
+                <p class="descripcion" id="producto-descripcion"></p>
                 
-                <div class="descuentos-info">
-                    <p><strong>Descuentos por cantidad:</strong></p>
-                    <ul>
-                        <li>1 unidad: Precio normal</li>
-                        <li>2 unidades: 3% OFF</li>
-                        <li>3+ unidades: 10% OFF</li>
-                    </ul>
-                </div>
-                
-                <button type="submit" form="formulario-compra" class="cta-button full-width-btn">
-                    <i class="fas fa-whatsapp"></i> FINALIZAR COMPRA
-                </button>
+                <form id="formulario-compra">
+                    <div class="form-group">
+                        <label for="talle">Talle:</label>
+                        <select id="talle" name="talle" required></select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="color">Color:</label>
+                        <select id="color" name="color" required></select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cantidad">Cantidad:</label>
+                        <input type="number" id="cantidad" name="cantidad" min="1" value="1" required>
+                    </div>
+                    
+                    <div class="resumen-pago">
+                        <h3>Resumen</h3>
+                        <div id="resumen-detalle"></div>
+                    </div>
+                    
+                    <button type="submit" class="cta-button">
+                        <i class="fab fa-whatsapp"></i> FINALIZAR COMPRA
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 
     <script>
-        // Obtener el ID del producto de la URL
-        const params = new URLSearchParams(window.location.search);
-        const idProducto = parseInt(params.get("producto"));
-        
-        // Cargar el archivo catalog.js dinámicamente
-        const script = document.createElement('script');
-        script.src = 'catalog.js';
-        script.onload = function() {
-            // Una vez cargado el catálogo, buscar el producto
-            const producto = products.find(p => p.id === idProducto);
-            
-            // Elementos del DOM
-            const productoImagen = document.getElementById('producto-imagen');
-            const productoNombre = document.getElementById('producto-nombre');
-            const productoDescripcion = document.getElementById('producto-descripcion');
-            const productoPrecio = document.getElementById('producto-precio');
-            const selectTalle = document.getElementById('talle');
-            const selectColor = document.getElementById('color');
-            const inputCantidad = document.getElementById('cantidad');
-            const resumenDetalle = document.getElementById('resumen-detalle');
-            const formulario = document.getElementById('formulario-compra');
-            
-            if (producto) {
-                // Mostrar información del producto
-                productoImagen.src = producto.image;
-                productoImagen.alt = producto.name;
-                productoNombre.textContent = producto.name;
-                productoDescripcion.textContent = producto.description;
-                productoPrecio.textContent = `$${producto.price.toLocaleString('es-AR')}`;
+        // Cargar productos primero
+        fetch('catalog.js')
+            .then(response => response.text())
+            .then(data => {
+                // Extraer el array products del archivo JS
+                const script = document.createElement('script');
+                script.textContent = data;
+                document.head.appendChild(script);
                 
-                // Llenar opciones de talles
-                if (producto.sizes && producto.sizes.length > 0) {
-                    producto.sizes.forEach(talle => {
-                        const option = document.createElement('option');
-                        option.value = talle;
-                        option.textContent = talle;
-                        selectTalle.appendChild(option);
-                    });
-                } else {
-                    const option = document.createElement('option');
-                    option.value = "unico";
-                    option.textContent = "Talle único";
-                    selectTalle.appendChild(option);
-                }
+                // Ahora podemos acceder a la variable products
+                const params = new URLSearchParams(window.location.search);
+                const idProducto = parseInt(params.get("producto"));
+                const producto = products.find(p => p.id === idProducto);
                 
-                // Llenar opciones de colores
-                const colores = producto.colors || ["Negro", "Blanco", "Gris"];
-                colores.forEach(color => {
-                    const option = document.createElement('option');
-                    option.value = color;
-                    option.textContent = color;
-                    selectColor.appendChild(option);
-                });
-                
-                // Actualizar resumen cuando cambia la cantidad
-                inputCantidad.addEventListener('input', actualizarResumen);
-                selectTalle.addEventListener('change', actualizarResumen);
-                selectColor.addEventListener('change', actualizarResumen);
-                
-                // Calcular descuentos
-                function calcularDescuento(cantidad) {
-                    if (cantidad >= 3) return 10;
-                    if (cantidad >= 2) return 3;
-                    return 0;
-                }
-                
-                // Actualizar resumen de pago
-                function actualizarResumen() {
-                    const cantidad = parseInt(inputCantidad.value) || 1;
-                    const talle = selectTalle.value;
-                    const color = selectColor.value;
-                    const descuento = calcularDescuento(cantidad);
-                    const precioUnitario = producto.price;
-                    const subtotal = precioUnitario * cantidad;
-                    const descuentoMonto = subtotal * (descuento / 100);
-                    const total = subtotal - descuentoMonto;
+                if (producto) {
+                    // Llenar datos del producto
+                    document.getElementById('producto-imagen').src = producto.image;
+                    document.getElementById('producto-nombre').textContent = producto.name;
+                    document.getElementById('producto-precio').textContent = `$${producto.price.toLocaleString('es-AR')}`;
+                    document.getElementById('producto-descripcion').textContent = producto.description;
                     
-                    resumenDetalle.innerHTML = `
-                        <div class="resumen-item">
-                            <span>Producto:</span>
-                            <span>${producto.name}</span>
-                        </div>
-                        <div class="resumen-item">
-                            <span>Talle:</span>
-                            <span>${talle}</span>
-                        </div>
-                        <div class="resumen-item">
-                            <span>Color:</span>
-                            <span>${color}</span>
-                        </div>
-                        <div class="resumen-item">
-                            <span>Precio unitario:</span>
-                            <span>$${precioUnitario.toLocaleString('es-AR')}</span>
-                        </div>
-                        <div class="resumen-item">
-                            <span>Cantidad:</span>
-                            <span>${cantidad}</span>
-                        </div>
-                        ${descuento > 0 ? `
-                        <div class="resumen-item descuento">
-                            <span>Descuento (${descuento}%):</span>
-                            <span>-$${descuentoMonto.toLocaleString('es-AR')}</span>
-                        </div>
-                        ` : ''}
-                        <div class="resumen-item total">
-                            <span><strong>Total:</strong></span>
-                            <span><strong>$${total.toLocaleString('es-AR')}</strong></span>
+                    // Llenar talles
+                    const selectTalle = document.getElementById('talle');
+                    if (producto.sizes && producto.sizes.length > 0) {
+                        producto.sizes.forEach(talle => {
+                            const option = document.createElement('option');
+                            option.value = talle;
+                            option.textContent = talle;
+                            selectTalle.appendChild(option);
+                        });
+                    } else {
+                        const option = document.createElement('option');
+                        option.value = "unico";
+                        option.textContent = "Talle único";
+                        selectTalle.appendChild(option);
+                    }
+                    
+                    // Llenar colores
+                    const selectColor = document.getElementById('color');
+                    const colores = producto.colors || ["Negro", "Blanco", "Gris"];
+                    colores.forEach(color => {
+                        const option = document.createElement('option');
+                        option.value = color;
+                        option.textContent = color;
+                        selectColor.appendChild(option);
+                    });
+                    
+                    // Actualizar resumen
+                    function actualizarResumen() {
+                        const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
+                        const talle = selectTalle.value;
+                        const color = selectColor.value;
+                        let descuento = 0;
+                        
+                        if (cantidad >= 3) descuento = 10;
+                        else if (cantidad >= 2) descuento = 3;
+                        
+                        const total = producto.price * cantidad * (1 - descuento/100);
+                        
+                        document.getElementById('resumen-detalle').innerHTML = `
+                            <p>${cantidad} x $${producto.price.toLocaleString('es-AR')}</p>
+                            ${descuento > 0 ? `<p class="descuento">Descuento ${descuento}%</p>` : ''}
+                            <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
+                        `;
+                    }
+                    
+                    // Event listeners
+                    document.getElementById('cantidad').addEventListener('change', actualizarResumen);
+                    selectTalle.addEventListener('change', actualizarResumen);
+                    selectColor.addEventListener('change', actualizarResumen);
+                    
+                    // Form submit
+                    document.getElementById('formulario-compra').addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        
+                        const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
+                        const talle = selectTalle.value;
+                        const color = selectColor.value;
+                        let descuento = 0;
+                        
+                        if (cantidad >= 3) descuento = 10;
+                        else if (cantidad >= 2) descuento = 3;
+                        
+                        const total = producto.price * cantidad * (1 - descuento/100);
+                        
+                        const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${producto.price.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}*Total:* $${total.toLocaleString('es-AR')}\n\n[Ver producto](${producto.image})\n\nMis datos:\n- Nombre: \n- Dirección: \n- Método de pago: (Efectivo/Transferencia)\n\n¡Gracias!`;
+                        
+                        window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
+                    });
+                    
+                    // Inicializar resumen
+                    actualizarResumen();
+                } else {
+                    document.querySelector('.personalizar-container').innerHTML = `
+                        <div class="error">
+                            <p>Producto no encontrado</p>
+                            <a href="catalogo.html" class="cta-button">Volver al catálogo</a>
                         </div>
                     `;
                 }
-                
-                // Inicializar resumen
-                actualizarResumen();
-                
-                // Manejar el envío del formulario
-                formulario.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const talle = selectTalle.value;
-                    const color = selectColor.value;
-                    const cantidad = inputCantidad.value;
-                    const descuento = calcularDescuento(cantidad);
-                    const total = producto.price * cantidad * (1 - (descuento / 100));
-                    
-                    // Crear mensaje para WhatsApp
-                    let mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n`;
-                    mensaje += `*Producto:* ${producto.name}\n`;
-                    mensaje += `*Talle:* ${talle}\n`;
-                    mensaje += `*Color:* ${color}\n`;
-                    mensaje += `*Cantidad:* ${cantidad}\n`;
-                    mensaje += `*Precio unitario:* $${producto.price.toLocaleString('es-AR')}\n`;
-                    
-                    if (descuento > 0) {
-                        mensaje += `*Descuento aplicado:* ${descuento}%\n`;
-                    }
-                    
-                    mensaje += `*Total a pagar:* $${total.toLocaleString('es-AR')}\n\n`;
-                    mensaje += `[Ver producto](${producto.image})\n\n`;
-                    mensaje += `Mis datos:\n- Nombre: \n- Dirección: \n- Método de pago: (Efectivo/Transferencia)\n\n¡Gracias!`;
-                    
-                    // Redirigir a WhatsApp
-                    const phoneNumber = "5492664633010";
-                    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(mensaje)}`, '_blank');
-                });
-                
-            } else {
-                document.querySelector('.personalizar-container').innerHTML = `
-                    <div class="error-container">
-                        <p class="error">Producto no encontrado.</p>
-                        <a href="catalogo.html" class="cta-button">Volver al catálogo</a>
-                    </div>
-                `;
-            }
-        };
-        document.head.appendChild(script);
+            });
     </script>
 </body>
 </html>
