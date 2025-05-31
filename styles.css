@@ -1675,9 +1675,15 @@ footer {
     margin-bottom: 2rem;
 }
 
-.producto-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+.producto-flex-container {
+    display: flex;
+    gap: 2rem;
+}
+
+.producto-detalles {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
 }
 
@@ -1688,7 +1694,7 @@ footer {
     background: white;
     border-radius: 12px;
     padding: 1rem;
-    height: 400px;
+    max-height: 500px;
 }
 
 .producto-imagen {
@@ -1699,6 +1705,9 @@ footer {
 
 .producto-info {
     padding: 1rem;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    border: 1px solid #0af;
 }
 
 .producto-info h2 {
@@ -1751,10 +1760,14 @@ footer {
 }
 
 .resumen-compra {
+    flex: 1;
     padding: 1.5rem;
     background-color: #1a1a1a;
     border-radius: 12px;
     border: 1px solid #0af;
+    align-self: flex-start;
+    position: sticky;
+    top: 20px;
 }
 
 .resumen-compra h3 {
@@ -1808,30 +1821,27 @@ footer {
 }
 
 @media (max-width: 1024px) {
-    .producto-grid {
-        grid-template-columns: 1fr 1fr;
+    .producto-flex-container {
+        flex-direction: column;
     }
     
     .resumen-compra {
-        grid-column: span 2;
+        position: static;
+        width: 100%;
+    }
+    
+    .producto-imagen-container {
+        max-height: 400px;
     }
 }
 
 @media (max-width: 768px) {
-    .producto-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .resumen-compra {
-        grid-column: span 1;
-    }
-    
     .personalizar-container {
         margin: 2rem auto;
         padding: 1.5rem;
     }
     
     .producto-imagen-container {
-        height: 300px;
+        max-height: 300px;
     }
 }
