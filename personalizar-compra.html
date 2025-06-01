@@ -270,7 +270,7 @@ function enviarWhatsApp(e) {
     
     // Calcular precios según calidad (19% más para premium)
     let precioBase = producto.price;
-    let calidadTexto = 'Regular de Guzzo (Alta)';
+    let calidadTexto = 'Regular de Guzzo (Alta Calidad)';
     if (calidad === "premium") {
         precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
         calidadTexto = 'Premium de Guzzo (+19%)';
