@@ -81,9 +81,9 @@
                     </div>
 
                     <div class="selector">
-                        <label for="notas">Notas adicionales:</label>
-                        <textarea id="notas" name="notas" rows="3"></textarea>
-                    </div>
+    <label for="notas">Notas adicionales <span class="opcional">(Opcional)</span>:</label>
+    <textarea id="notas" name="notas" rows="3"></textarea>
+</div>
                 </form>
             </div>
             
@@ -263,8 +263,7 @@
                     if(cuotas === 6) total *= 1.20;
                 }
                 
-                const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${producto.price.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n${direccion ? `*Dirección de envío:* ${direccion}\n` : ''}*Total:* $${total.toLocaleString('es-AR')}\n${notas ? `\n*Notas adicionales:*\n${notas}` : ''}\n\n[Ver producto](${producto.image})`;
-                
+const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${producto.price.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n${direccion ? `*Dirección de envío:* ${direccion}\n` : ''}*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''}\n\n[Ver producto](${producto.image})`;                
                 window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
             }
             
