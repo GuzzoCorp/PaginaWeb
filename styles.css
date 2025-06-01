@@ -2030,3 +2030,37 @@ footer {
     from { opacity: 0; max-height: 0; }
     to { opacity: 1; max-height: 500px; }
 }
+
+/* Estructura principal de 3 columnas */
+.producto-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+/* Contenedor full width para la guía */
+.guia-talles-fullwidth {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+}
+
+/* Ajustes para responsive */
+@media (max-width: 992px) {
+    .producto-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .producto-imagen-container {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    .resumen-section {
+        order: 3;
+    }
+    
+    .guia-talles-fullwidth {
+        order: 4;
+    }
+}
