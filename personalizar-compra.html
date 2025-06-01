@@ -57,6 +57,49 @@
                         <label for="cantidad">Cantidad:</label>
                         <input type="number" id="cantidad" min="1" value="1" required>
                     </div>
+
+                    <!-- Método de pago -->
+                    <div class="selector">
+                        <label for="metodo-pago">Método de pago:</label>
+                        <select id="metodo-pago" name="metodo-pago" required>
+                            <option value="">Seleccionar</option>
+                            <option value="Efectivo">Efectivo (10% descuento)</option>
+                            <option value="Transferencia">Transferencia bancaria</option>
+                            <option value="MercadoPago">Mercado Pago</option>
+                            <option value="Cripto">Criptomonedas</option>
+                        </select>
+                    </div>
+
+                    <!-- Cuotas -->
+                    <div class="selector" id="cuotas-container" style="display:none;">
+                        <label for="cuotas">Cuotas:</label>
+                        <select id="cuotas" name="cuotas">
+                            <option value="1">1 cuota (sin interés)</option>
+                            <option value="3">3 cuotas (+10%)</option>
+                            <option value="6">6 cuotas (+20%)</option>
+                        </select>
+                    </div>
+
+                    <!-- Datos del cliente -->
+                    <div class="selector">
+                        <label for="nombre">Nombre completo:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+
+                    <div class="selector">
+                        <label for="direccion">Dirección de envío:</label>
+                        <input type="text" id="direccion" name="direccion" required>
+                    </div>
+
+                    <div class="selector">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono" required>
+                    </div>
+
+                    <div class="selector">
+                        <label for="notas">Notas adicionales:</label>
+                        <textarea id="notas" name="notas" rows="3"></textarea>
+                    </div>
                     
                     <button type="submit" class="btn-comprar">
                         <i class="fab fa-whatsapp"></i> Finalizar Compra
@@ -105,6 +148,19 @@
                 nav.classList.toggle('active');
             });
             
+            // Mostrar/ocultar cuotas según método de pago
+            const metodoPago = document.getElementById('metodo-pago');
+            const cuotasContainer = document.getElementById('cuotas-container');
+            
+            metodoPago.addEventListener('change', function() {
+                if(this.value === 'MercadoPago') {
+                    cuotasContainer.style.display = 'block';
+                } else {
+                    cuotasContainer.style.display = 'none';
+                }
+                actualizarResumen();
+            });
+            
             // Cargar producto
             const urlParams = new URLSearchParams(window.location.search);
             const productId = parseInt(urlParams.get('producto'));
@@ -121,11 +177,9 @@
         });
         
         function obtenerProducto(id) {
-            // Esta función debe coincidir con los IDs de catalog.js
             const productos = {
                 1: { name: "Remera Térmica", price: 14999, image: "Termica.jpeg", sizes: ["S", "M", "L", "XL", "XXL"], colors: ["Negro"] },
                 2: { name: "Gorra", price: 24999, image: "Gorras.jpeg", sizes: ["Único"], colors: ["Negro", "Azul"] },
-                // Añade todos los productos con sus IDs correspondientes
             };
             return productos[id];
         }
@@ -166,17 +220,31 @@
                 const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
                 const talle = document.getElementById('talle').value;
                 const color = document.getElementById('color').value;
+                const metodoPago = document.getElementById('metodo-pago').value;
+                const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
                 
-                // Calcular descuento
+                // Calcular descuentos
                 let descuento = 0;
                 if (cantidad >= 3) descuento = 10;
                 else if (cantidad >= 2) descuento = 3;
                 
-                const total = producto.price * cantidad * (1 - descuento/100);
+                // Descuento por pago en efectivo
+                if(metodoPago === 'Efectivo') descuento += 10;
+                
+                let total = producto.price * cantidad * (1 - descuento/100);
+                
+                // Aplicar recargo por cuotas
+                if(metodoPago === 'MercadoPago') {
+                    if(cuotas === 3) total *= 1.10;
+                    if(cuotas === 6) total *= 1.20;
+                }
                 
                 document.getElementById('resumen-detalle').innerHTML = `
-                    <p>${cantidad} x $${producto.price.toLocaleString('es-AR')}</p>
+                    <p>${cantidad} x ${producto.name} (${talle}, ${color})</p>
+                    <p>Precio unitario: $${producto.price.toLocaleString('es-AR')}</p>
                     ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
+                    ${metodoPago === 'MercadoPago' ? `<p>${cuotas} cuotas</p>` : ''}
+                    <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
                     <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
                 `;
             }
@@ -187,14 +255,30 @@
                 const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
                 const talle = document.getElementById('talle').value;
                 const color = document.getElementById('color').value;
-                let descuento = 0;
+                const metodoPago = document.getElementById('metodo-pago').value;
+                const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
+                const nombre = document.getElementById('nombre').value;
+                const direccion = document.getElementById('direccion').value;
+                const telefono = document.getElementById('telefono').value;
+                const notas = document.getElementById('notas').value;
                 
+                // Calcular descuentos
+                let descuento = 0;
                 if (cantidad >= 3) descuento = 10;
                 else if (cantidad >= 2) descuento = 3;
                 
-                const total = producto.price * cantidad * (1 - descuento/100);
+                // Descuento por pago en efectivo
+                if(metodoPago === 'Efectivo') descuento += 10;
                 
-                const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${producto.price.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}*Total:* $${total.toLocaleString('es-AR')}\n\n[Ver producto](${producto.image})\n\nMis datos:\n- Nombre: \n- Dirección: \n- Método de pago: (Efectivo/Transferencia)\n\n¡Gracias!`;
+                let total = producto.price * cantidad * (1 - descuento/100);
+                
+                // Aplicar recargo por cuotas
+                if(metodoPago === 'MercadoPago') {
+                    if(cuotas === 3) total *= 1.10;
+                    if(cuotas === 6) total *= 1.20;
+                }
+                
+                const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${producto.price.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}\n\n*Mis datos:*\n- Nombre: ${nombre}\n- Dirección: ${direccion}\n- Teléfono: ${telefono}\n${notas ? `\n*Notas adicionales:*\n${notas}` : ''}\n\n[Ver producto](${producto.image})`;
                 
                 window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
             }
