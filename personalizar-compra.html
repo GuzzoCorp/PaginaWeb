@@ -9,118 +9,66 @@
 </head>
 <body>
     <header>
-    <div class="logo-container">
-        <img src="GuzzoCorp.png" alt="GUZZOCORP" class="logo">
-        <span class="logo-text">GUZZO CORPORATION</span>
-    </div>
-<nav>
-    <a href="inicio.html"><i class="fas fa-home"></i> Inicio</a>
-    <a href="index.html"><i class="fas fa-tshirt"></i> Tienda</a>
-    <a href="catalogo.html"><i class="fas fa-search"></i> Catálogo</a>
-    <a href="encargos.html"><i class="fas fa-star"></i> Encargos</a>
-    <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
-</nav>
-    <div class="mobile-menu-btn">
-        <i class="fas fa-bars"></i>
-    </div>
-</header>
+        <div class="logo-container">
+            <img src="GuzzoCorp.png" alt="GUZZOCORP" class="logo">
+            <span class="logo-text">GUZZO CORPORATION</span>
+        </div>
+        <nav>
+            <a href="inicio.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="index.html"><i class="fas fa-tshirt"></i> Tienda</a>
+            <a href="catalogo.html"><i class="fas fa-search"></i> Catálogo</a>
+            <a href="encargos.html"><i class="fas fa-star"></i> Encargos</a>
+            <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+        </nav>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
     
     <div class="personalizar-container">
         <h1 class="titulo-centrado">Personaliza tu compra</h1>
         
+        <!-- Primera fila: Tres columnas principales -->
         <div class="producto-content">
-            <!-- Imagen del producto (izquierda) -->
+            <!-- Columna 1: Imagen del producto -->
             <div class="producto-imagen-container">
                 <img id="producto-imagen" src="" alt="Producto" class="producto-img">
             </div>
 
-<!-- Guía de talles - NUEVA SECCIÓN -->
-<div class="guia-talles-container">
-    <div class="guia-talles-trigger" onclick="toggleGuiaTalles()">
-        <i class="fas fa-ruler-combined"></i> Guía de talles
-        <i class="fas fa-chevron-down" id="guia-icon"></i>
-    </div>
-    
-    <div class="guia-talles-content" id="guia-talles-content">
-        <p>Si no estás seguro de tu talle, medí tu cuerpo así:</p>
-        <div class="medidas-container">
-            <div class="medida">
-                <i class="fas fa-tshirt"></i>
-                <span>Pecho: Alrededor de la parte más ancha</span>
-            </div>
-            <div class="medida">
-                <i class="fas fa-arrow-down"></i>
-                <span>Cintura: Donde normalmente usás el cinturón</span>
-            </div>
-        </div>
-        
-        <div class="tabla-talles">
-            <div class="fila-titulos">
-                <div>Talle</div>
-                <div>Pecho (cm)</div>
-                <div>Cintura (cm)</div>
-            </div>
-            <div class="fila-talle">
-                <div>S</div>
-                <div>90-95</div>
-                <div>75-80</div>
-            </div>
-            <div class="fila-talle">
-                <div>M</div>
-                <div>95-100</div>
-                <div>80-85</div>
-            </div>
-            <div class="fila-talle">
-                <div>L</div>
-                <div>100-105</div>
-                <div>85-90</div>
-            </div>
-            <div class="fila-talle">
-                <div>XL</div>
-                <div>105-110</div>
-                <div>90-95</div>
-            </div>
-        </div>
-        <p class="nota-talles">¿Todavía tenés dudas? Escribinos por WhatsApp y te ayudamos.</p>
-    </div>
-</div>
-            
-            <!-- Información y selección (centro) -->
+            <!-- Columna 2: Formulario de selección -->
             <div class="producto-seleccion">
                 <h2 id="producto-nombre"></h2>
                 <p id="producto-precio" class="precio"></p>
                 <p id="producto-descripcion" class="descripcion"></p>
                 
+                <!-- Nueva sección de beneficios -->
+                <div class="beneficios-compra">
+                    <div class="beneficio-item">
+                        <i class="fas fa-tags"></i>
+                        <div>
+                            <h4>¡Más compras, más ahorro!</h4>
+                            <p>2 productos: 3% OFF | 3+ productos: 10% OFF</p>
+                        </div>
+                    </div>
+                    <div class="beneficio-item">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <div>
+                            <h4>Efectivo: 10% de Descuento</h4>
+                            <p>Pagando en efectivo</p>
+                        </div>
+                    </div>
+                </div>
+
                 <form id="form-compra">
-
-                    <!-- Nueva sección de beneficios -->
-    <div class="beneficios-compra">
-        <div class="beneficio-item">
-            <i class="fas fa-tags"></i>
-            <div>
-                <h4>¡Más compras, más ahorro!</h4>
-                <p>2 productos: 3% OFF | 3+ productos: 10% OFF</p>
-            </div>
-        </div>
-        <div class="beneficio-item">
-            <i class="fas fa-money-bill-wave"></i>
-            <div>
-                <h4>Efectivo: 10% de Descuento</h4>
-                <p>Pagando en efectivo</p>
-            </div>
-        </div>
-    </div>
-
-    <form id="form-compra">
-        <!-- Selector de calidad -->
-        <div class="selector">
-            <label for="calidad">Calidad:</label>
-            <select id="calidad" name="calidad" required>
-                <option value="">Elige una opción</option>
-                <option value="regular">Regular (Alta calidad)</option>
-                <option value="premium">Premium (+19% mejor calidad)</option>
-            </select>
-        </div>
+                    <!-- Selector de calidad -->
+                    <div class="selector">
+                        <label for="calidad">Calidad:</label>
+                        <select id="calidad" name="calidad" required>
+                            <option value="">Elige una opción</option>
+                            <option value="regular">Regular (Alta calidad)</option>
+                            <option value="premium">Premium (+19% mejor calidad)</option>
+                        </select>
+                    </div>
                     
                     <!-- Selección de talle -->
                     <div class="selector">
@@ -163,13 +111,13 @@
                     </div>
 
                     <div class="selector">
-    <label for="notas">Notas adicionales <span class="opcional">(Opcional)</span>:</label>
-    <textarea id="notas" name="notas" rows="3"></textarea>
-</div>
+                        <label for="notas">Notas adicionales <span class="opcional">(Opcional)</span>:</label>
+                        <textarea id="notas" name="notas" rows="3"></textarea>
+                    </div>
                 </form>
             </div>
             
-            <!-- Resumen de compra (derecha) -->
+            <!-- Columna 3: Resumen de compra -->
             <div class="resumen-section">
                 <div class="resumen-compra">
                     <h3>Resumen de compra</h3>
@@ -178,6 +126,59 @@
                 <button type="submit" form="form-compra" class="btn-comprar">
                     <i class="fab fa-whatsapp"></i> Finalizar Compra
                 </button>
+            </div>
+        </div>
+        
+        <!-- Segunda fila: Guía de talles (ocupando todo el ancho) -->
+        <div class="guia-talles-fullwidth">
+            <div class="guia-talles-container">
+                <div class="guia-talles-trigger" onclick="toggleGuiaTalles()">
+                    <i class="fas fa-ruler-combined"></i> Guía de talles
+                    <i class="fas fa-chevron-down" id="guia-icon"></i>
+                </div>
+                
+                <div class="guia-talles-content" id="guia-talles-content">
+                    <p>Si no estás seguro de tu talle, medí tu cuerpo así:</p>
+                    <div class="medidas-container">
+                        <div class="medida">
+                            <i class="fas fa-tshirt"></i>
+                            <span>Pecho: Alrededor de la parte más ancha</span>
+                        </div>
+                        <div class="medida">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>Cintura: Donde normalmente usás el cinturón</span>
+                        </div>
+                    </div>
+                    
+                    <div class="tabla-talles">
+                        <div class="fila-titulos">
+                            <div>Talle</div>
+                            <div>Pecho (cm)</div>
+                            <div>Cintura (cm)</div>
+                        </div>
+                        <div class="fila-talle">
+                            <div>S</div>
+                            <div>90-95</div>
+                            <div>75-80</div>
+                        </div>
+                        <div class="fila-talle">
+                            <div>M</div>
+                            <div>95-100</div>
+                            <div>80-85</div>
+                        </div>
+                        <div class="fila-talle">
+                            <div>L</div>
+                            <div>100-105</div>
+                            <div>85-90</div>
+                        </div>
+                        <div class="fila-talle">
+                            <div>XL</div>
+                            <div>105-110</div>
+                            <div>90-95</div>
+                        </div>
+                    </div>
+                    <p class="nota-talles">¿Todavía tenés dudas? Escribinos por WhatsApp y te ayudamos.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -283,88 +284,88 @@
             form.addEventListener('change', actualizarResumen);
             form.addEventListener('submit', enviarWhatsApp);
             
-function actualizarResumen() {
-    const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
-    const calidad = document.getElementById('calidad').value;
-    const talle = document.getElementById('talle').value;
-    const color = document.getElementById('color').value;
-    const metodoPago = document.getElementById('metodo-pago').value;
-    const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
-    
-    // Calcular precios según calidad (19% más para premium)
-    let precioBase = producto.price;
-    let calidadTexto = 'Regular de Guzzo Corp (Alta Calidad)';
-    if (calidad === "premium") {
-        precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
-        calidadTexto = 'Premium de Guzzo Corp (+19%)';
-    }
-    
-    // Calcular descuentos
-    let descuento = 0;
-    if (cantidad >= 3) descuento = 10;
-    else if (cantidad >= 2) descuento = 3;
-    
-    // Descuento por pago en efectivo
-    if(metodoPago === 'Efectivo') descuento += 10;
-    
-    let total = precioBase * cantidad * (1 - descuento/100);
-    
-    // Aplicar recargo por cuotas
-    if(metodoPago === 'MercadoPago') {
-        if(cuotas === 3) total *= 1.10;
-        if(cuotas === 6) total *= 1.20;
-    }
-    
-    document.getElementById('resumen-detalle').innerHTML = `
-        <p>${cantidad} x ${producto.name}</p>
-        <p>Calidad: ${calidadTexto}</p>
-        <p>Talle: ${talle}</p>
-        <p>Color: ${color}</p>
-        <p>Precio unitario: $${precioBase.toLocaleString('es-AR')}</p>
-        ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
-        ${metodoPago === 'MercadoPago' ? `<p>${cuotas} cuotas</p>` : ''}
-        <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
-        <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
-    `;
-}
-
-function enviarWhatsApp(e) {
-    e.preventDefault();
-    
-    const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
-    const calidad = document.getElementById('calidad').value;
-    const talle = document.getElementById('talle').value;
-    const color = document.getElementById('color').value;
-    const metodoPago = document.getElementById('metodo-pago').value;
-    const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
-    const notas = document.getElementById('notas').value;
-    
-    // Calcular precios según calidad (19% más para premium)
-    let precioBase = producto.price;
-    let calidadTexto = 'Regular de Guzzo (Alta Calidad)';
-    if (calidad === "premium") {
-        precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
-        calidadTexto = 'Premium de Guzzo (+19%)';
-    }
-    
-    // Calcular descuentos
-    let descuento = 0;
-    if (cantidad >= 3) descuento = 10;
-    else if (cantidad >= 2) descuento = 3;
-    
-    // Descuento por pago en efectivo
-    if(metodoPago === 'Efectivo') descuento += 10;
-    
-    let total = precioBase * cantidad * (1 - descuento/100);
-    
-    // Aplicar recargo por cuotas
-    if(metodoPago === 'MercadoPago') {
-        if(cuotas === 3) total *= 1.10;
-        if(cuotas === 6) total *= 1.20;
-    }
+            function actualizarResumen() {
+                const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
+                const calidad = document.getElementById('calidad').value;
+                const talle = document.getElementById('talle').value;
+                const color = document.getElementById('color').value;
+                const metodoPago = document.getElementById('metodo-pago').value;
+                const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
                 
-    const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${precioBase.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''}\n\n[Ver producto](${producto.image})`;
-    window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
+                // Calcular precios según calidad (19% más para premium)
+                let precioBase = producto.price;
+                let calidadTexto = 'Regular de Guzzo Corp (Alta Calidad)';
+                if (calidad === "premium") {
+                    precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
+                    calidadTexto = 'Premium de Guzzo Corp (+19%)';
+                }
+                
+                // Calcular descuentos
+                let descuento = 0;
+                if (cantidad >= 3) descuento = 10;
+                else if (cantidad >= 2) descuento = 3;
+                
+                // Descuento por pago en efectivo
+                if(metodoPago === 'Efectivo') descuento += 10;
+                
+                let total = precioBase * cantidad * (1 - descuento/100);
+                
+                // Aplicar recargo por cuotas
+                if(metodoPago === 'MercadoPago') {
+                    if(cuotas === 3) total *= 1.10;
+                    if(cuotas === 6) total *= 1.20;
+                }
+                
+                document.getElementById('resumen-detalle').innerHTML = `
+                    <p>${cantidad} x ${producto.name}</p>
+                    <p>Calidad: ${calidadTexto}</p>
+                    <p>Talle: ${talle}</p>
+                    <p>Color: ${color}</p>
+                    <p>Precio unitario: $${precioBase.toLocaleString('es-AR')}</p>
+                    ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
+                    ${metodoPago === 'MercadoPago' ? `<p>${cuotas} cuotas</p>` : ''}
+                    <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
+                    <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
+                `;
+            }
+
+            function enviarWhatsApp(e) {
+                e.preventDefault();
+                
+                const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
+                const calidad = document.getElementById('calidad').value;
+                const talle = document.getElementById('talle').value;
+                const color = document.getElementById('color').value;
+                const metodoPago = document.getElementById('metodo-pago').value;
+                const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
+                const notas = document.getElementById('notas').value;
+                
+                // Calcular precios según calidad (19% más para premium)
+                let precioBase = producto.price;
+                let calidadTexto = 'Regular de Guzzo (Alta Calidad)';
+                if (calidad === "premium") {
+                    precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
+                    calidadTexto = 'Premium de Guzzo (+19%)';
+                }
+                
+                // Calcular descuentos
+                let descuento = 0;
+                if (cantidad >= 3) descuento = 10;
+                else if (cantidad >= 2) descuento = 3;
+                
+                // Descuento por pago en efectivo
+                if(metodoPago === 'Efectivo') descuento += 10;
+                
+                let total = precioBase * cantidad * (1 - descuento/100);
+                
+                // Aplicar recargo por cuotas
+                if(metodoPago === 'MercadoPago') {
+                    if(cuotas === 3) total *= 1.10;
+                    if(cuotas === 6) total *= 1.20;
+                }
+                            
+                const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${precioBase.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''}\n\n[Ver producto](${producto.image})`;
+                window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
             }
             
             // Inicializar resumen
@@ -380,29 +381,20 @@ function enviarWhatsApp(e) {
             `;
         }
 
-        function mostrarGuiaTalles() {
-    const guia = document.getElementById('contenido-guia');
-    if (guia.style.display === 'block') {
-        guia.style.display = 'none';
-    } else {
-        guia.style.display = 'block';
-    }
-}
-
         function toggleGuiaTalles() {
-    const content = document.getElementById('guia-talles-content');
-    const icon = document.getElementById('guia-icon');
-    
-    if (content.style.display === 'block') {
-        content.style.display = 'none';
-        icon.classList.remove('fa-chevron-up');
-        icon.classList.add('fa-chevron-down');
-    } else {
-        content.style.display = 'block';
-        icon.classList.remove('fa-chevron-down');
-        icon.classList.add('fa-chevron-up');
-    }
-}
+            const content = document.getElementById('guia-talles-content');
+            const icon = document.getElementById('guia-icon');
+            
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                content.style.display = 'block';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        }
     </script>
 </body>
 </html>
