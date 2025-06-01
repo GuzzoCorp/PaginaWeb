@@ -2036,18 +2036,42 @@ footer {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     gap: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
-/* Contenedor full width para la guía */
-.guia-talles-fullwidth {
-    grid-column: 1 / -1;
-    margin-top: 20px;
+/* Fila para la guía de talles */
+.guia-talles-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 30px;
+}
+
+.guia-talles-container {
+    grid-column: 1;
+}
+
+.empty-space {
+    /* Espacios vacíos para mantener la alineación */
+    grid-column: span 1;
+}
+
+/* Ajustar tamaño de la imagen */
+.producto-imagen-container {
+    width: 100%;
+    max-width: 350px; /* Ajusta este valor según necesites */
+}
+
+.producto-img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
 }
 
 /* Ajustes para responsive */
 @media (max-width: 992px) {
-    .producto-content {
+    .producto-content,
+    .guia-talles-row {
         grid-template-columns: 1fr;
     }
     
@@ -2060,7 +2084,12 @@ footer {
         order: 3;
     }
     
-    .guia-talles-fullwidth {
+    .guia-talles-container {
         order: 4;
+        grid-column: 1;
+    }
+    
+    .empty-space {
+        display: none;
     }
 }
