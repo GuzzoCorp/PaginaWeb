@@ -46,8 +46,8 @@
             <label for="calidad">Calidad:</label>
             <select id="calidad" name="calidad" required>
                 <option value="">Seleccionar</option>
-                <option value="premium">Calidad Premium de Guzzo</option>
-                <option value="regular">Calidad Regular de Guzzo (Alta)</option>
+                <option value="premium">Calidad Premium de Guzzo +19%</option>
+                <option value="regular">Calidad Regular de Guzzo (Calidad Alta)</option>
             </select>
         </div>
 
@@ -212,70 +212,88 @@
             form.addEventListener('change', actualizarResumen);
             form.addEventListener('submit', enviarWhatsApp);
             
-            function actualizarResumen() {
-                const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
-                const talle = document.getElementById('talle').value;
-                const color = document.getElementById('color').value;
-                const metodoPago = document.getElementById('metodo-pago').value;
-                const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
-                const direccion = document.getElementById('direccion').value;
+function actualizarResumen() {
+    const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
+    const calidad = document.getElementById('calidad').value;
+    const talle = document.getElementById('talle').value;
+    const color = document.getElementById('color').value;
+    const metodoPago = document.getElementById('metodo-pago').value;
+    const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
+    
+    // Calcular precios según calidad (19% más para premium)
+    let precioBase = producto.price;
+    let calidadTexto = 'Regular de Guzzo (Alta)';
+    if (calidad === "premium") {
+        precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
+        calidadTexto = 'Premium de Guzzo (+19%)';
+    }
+    
+    // Calcular descuentos
+    let descuento = 0;
+    if (cantidad >= 3) descuento = 10;
+    else if (cantidad >= 2) descuento = 3;
+    
+    // Descuento por pago en efectivo
+    if(metodoPago === 'Efectivo') descuento += 10;
+    
+    let total = precioBase * cantidad * (1 - descuento/100);
+    
+    // Aplicar recargo por cuotas
+    if(metodoPago === 'MercadoPago') {
+        if(cuotas === 3) total *= 1.10;
+        if(cuotas === 6) total *= 1.20;
+    }
+    
+    document.getElementById('resumen-detalle').innerHTML = `
+        <p>${cantidad} x ${producto.name}</p>
+        <p>Calidad: ${calidadTexto}</p>
+        <p>Talle: ${talle}</p>
+        <p>Color: ${color}</p>
+        <p>Precio unitario: $${precioBase.toLocaleString('es-AR')}</p>
+        ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
+        ${metodoPago === 'MercadoPago' ? `<p>${cuotas} cuotas</p>` : ''}
+        <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
+        <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
+    `;
+}
+
+function enviarWhatsApp(e) {
+    e.preventDefault();
+    
+    const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
+    const calidad = document.getElementById('calidad').value;
+    const talle = document.getElementById('talle').value;
+    const color = document.getElementById('color').value;
+    const metodoPago = document.getElementById('metodo-pago').value;
+    const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
+    const notas = document.getElementById('notas').value;
+    
+    // Calcular precios según calidad (19% más para premium)
+    let precioBase = producto.price;
+    let calidadTexto = 'Regular de Guzzo (Alta)';
+    if (calidad === "premium") {
+        precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
+        calidadTexto = 'Premium de Guzzo (+19%)';
+    }
+    
+    // Calcular descuentos
+    let descuento = 0;
+    if (cantidad >= 3) descuento = 10;
+    else if (cantidad >= 2) descuento = 3;
+    
+    // Descuento por pago en efectivo
+    if(metodoPago === 'Efectivo') descuento += 10;
+    
+    let total = precioBase * cantidad * (1 - descuento/100);
+    
+    // Aplicar recargo por cuotas
+    if(metodoPago === 'MercadoPago') {
+        if(cuotas === 3) total *= 1.10;
+        if(cuotas === 6) total *= 1.20;
+    }
                 
-                // Calcular descuentos
-                let descuento = 0;
-                if (cantidad >= 3) descuento = 10;
-                else if (cantidad >= 2) descuento = 3;
-                
-                // Descuento por pago en efectivo
-                if(metodoPago === 'Efectivo') descuento += 10;
-                
-                let total = producto.price * cantidad * (1 - descuento/100);
-                
-                // Aplicar recargo por cuotas
-                if(metodoPago === 'MercadoPago') {
-                    if(cuotas === 3) total *= 1.10;
-                    if(cuotas === 6) total *= 1.20;
-                }
-                
-                document.getElementById('resumen-detalle').innerHTML = `
-                    <p>${cantidad} x ${producto.name} (${talle}, ${color})</p>
-                    <p>Precio unitario: $${producto.price.toLocaleString('es-AR')}</p>
-                    ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
-                    ${metodoPago === 'MercadoPago' ? `<p>${cuotas} cuotas</p>` : ''}
-                    <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
-                    ${direccion ? `<p>Envío a: ${direccion}</p>` : ''}
-                    <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
-                `;
-            }
-            
-            function enviarWhatsApp(e) {
-                e.preventDefault();
-                
-                const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
-                const talle = document.getElementById('talle').value;
-                const color = document.getElementById('color').value;
-                const metodoPago = document.getElementById('metodo-pago').value;
-                const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
-                const direccion = document.getElementById('direccion').value;
-                const notas = document.getElementById('notas').value;
-                
-                // Calcular descuentos
-                let descuento = 0;
-                if (cantidad >= 3) descuento = 10;
-                else if (cantidad >= 2) descuento = 3;
-                
-                // Descuento por pago en efectivo
-                if(metodoPago === 'Efectivo') descuento += 10;
-                
-                let total = producto.price * cantidad * (1 - descuento/100);
-                
-                // Aplicar recargo por cuotas
-                if(metodoPago === 'MercadoPago') {
-                    if(cuotas === 3) total *= 1.10;
-                    if(cuotas === 6) total *= 1.20;
-                }
-                
-const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${producto.price.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n${direccion ? `*Dirección de envío:* ${direccion}\n` : ''}*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''}\n\n[Ver producto](${producto.image})`;                
-                window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
+    const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${precioBase.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''}\n\n[Ver producto](${producto.image})`;
+    window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
             }
             
             // Inicializar resumen
