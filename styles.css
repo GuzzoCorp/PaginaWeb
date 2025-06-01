@@ -1658,8 +1658,7 @@ footer {
     }
 }
 
-
-/* Estilos específicos para personalizar-compra.html */
+/* ===== ESTILOS PARA PERSONALIZAR COMPRA ===== */
 .personalizar-container {
     max-width: 1200px;
     margin: 30px auto;
@@ -1668,7 +1667,7 @@ footer {
 
 .titulo-centrado {
     text-align: center;
-    color: #2c3e50;
+    color: var(--text-light);
     margin-bottom: 30px;
     font-size: 2.2em;
     position: relative;
@@ -1683,7 +1682,7 @@ footer {
     transform: translateX(-50%);
     width: 100px;
     height: 3px;
-    background-color: #25D366;
+    background: var(--neon-cyan);
 }
 
 .producto-content {
@@ -1695,16 +1694,21 @@ footer {
 .producto-imagen-container {
     flex: 1;
     max-width: 350px;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .producto-img {
-    width: 100%;
+    max-width: 100%;
+    max-height: 400px;
     border-radius: 8px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .producto-seleccion {
@@ -1713,49 +1717,50 @@ footer {
 }
 
 .producto-seleccion h2 {
-    color: #2c3e50;
+    color: var(--neon-cyan);
     margin-top: 0;
     font-size: 1.8em;
 }
 
 .precio {
     font-size: 1.4em;
-    color: #25D366;
+    color: var(--neon-yellow);
     font-weight: bold;
     margin: 10px 0;
 }
 
 .descripcion {
-    color: #555;
+    color: var(--text-gray);
     line-height: 1.6;
     margin-bottom: 25px;
 }
 
 .resumen-compra {
     flex: 1;
-    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+    background: var(--bg-card);
     padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     height: fit-content;
-    border: 1px solid #e0e0e0;
 }
 
 .resumen-compra h3 {
-    color: #2c3e50;
-    border-bottom: 2px solid #25D366;
+    color: var(--neon-cyan);
+    border-bottom: 2px solid var(--neon-purple);
     padding-bottom: 10px;
     margin-top: 0;
     font-size: 1.4em;
 }
 
 #resumen-detalle {
-    color: #555;
+    color: var(--text-light);
     line-height: 1.8;
 }
 
 #resumen-detalle p {
     margin: 12px 0;
+    font-size: 0.95em;
 }
 
 .selector {
@@ -1766,30 +1771,41 @@ footer {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #2c3e50;
+    color: var(--neon-cyan);
 }
 
-.selector select, .selector input {
+.selector select, 
+.selector input,
+.selector textarea {
     width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    background: #fff;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-card-light);
+    color: var(--text-light);
     font-size: 1em;
-    transition: border-color 0.3s;
+    transition: all 0.3s;
 }
 
-.selector select:focus, .selector input:focus {
-    border-color: #25D366;
+.selector select:focus, 
+.selector input:focus,
+.selector textarea:focus {
+    border-color: var(--neon-cyan);
     outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 243, 255, 0.2);
+}
+
+.selector textarea {
+    min-height: 100px;
+    resize: vertical;
 }
 
 .btn-comprar {
-    background-color: #25D366;
+    background: var(--whatsapp-green);
     color: white;
     border: none;
-    padding: 14px 20px;
-    border-radius: 6px;
+    padding: 15px 25px;
+    border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
     width: 100%;
@@ -1803,16 +1819,16 @@ footer {
 }
 
 .btn-comprar:hover {
-    background-color: #128C7E;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background: #128C7E;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
 }
 
 .total {
     font-weight: bold;
     font-size: 1.3em;
     margin-top: 15px;
-    color: #2c3e50;
+    color: var(--neon-yellow);
 }
 
 /* Responsive para personalizar-compra */
@@ -1836,22 +1852,29 @@ footer {
 .error {
     text-align: center;
     padding: 40px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border: 1px solid var(--neon-pink);
+}
+
+.error p {
+    color: var(--text-light);
+    margin-bottom: 20px;
 }
 
 .error .btn {
     display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #25D366;
-    color: white;
+    padding: 12px 25px;
+    background: var(--neon-cyan);
+    color: var(--bg-dark);
     text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s;
 }
 
 .error .btn:hover {
-    background-color: #128C7E;
+    background: var(--neon-purple);
+    color: white;
 }
