@@ -6,6 +6,41 @@
     <title>Personalizar Compra - GUZZOCORP</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ESTILOS PARA LA NUEVA ESTRUCTURA */
+        .product-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            gap: 30px;
+        }
+        
+        .product-image-section {
+            grid-column: 1;
+        }
+        
+        .form-section {
+            grid-column: 2;
+        }
+        
+        .summary-section {
+            grid-column: 3;
+        }
+        
+        .size-guide-container {
+            grid-column: 1;
+            margin-top: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .size-guide-container {
+                grid-column: 1;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -28,156 +63,161 @@
     <div class="personalizar-container">
         <h1 class="titulo-centrado">Personaliza tu compra</h1>
         
-        <!-- Primera fila: Tres columnas principales -->
-        <div class="producto-content">
-            <!-- Columna 1: Imagen del producto -->
-            <div class="producto-imagen-container">
-                <img id="producto-imagen" src="" alt="Producto" class="producto-img">
-            </div>
-
-            <!-- Columna 2: Formulario de selección -->
-            <div class="producto-seleccion">
-                <h2 id="producto-nombre"></h2>
-                <p id="producto-precio" class="precio"></p>
-                <p id="producto-descripcion" class="descripcion"></p>
+        <!-- CONTENEDOR PRINCIPAL CON GRID -->
+        <div class="product-grid">
+            <!-- COLUMNA 1: IMAGEN -->
+            <div class="product-image-section">
+                <div class="producto-imagen-container">
+                    <img id="producto-imagen" src="" alt="Producto" class="producto-img">
+                </div>
                 
-                <!-- Nueva sección de beneficios -->
-                <div class="beneficios-compra">
-                    <div class="beneficio-item">
-                        <i class="fas fa-tags"></i>
-                        <div>
-                            <h4>¡Más compras, más ahorro!</h4>
-                            <p>2 productos: 3% OFF | 3+ productos: 10% OFF</p>
+                <!-- GUÍA DE TALLES (debajo de la imagen) -->
+                <div class="size-guide-container">
+                    <div class="guia-talles-container">
+                        <div class="guia-talles-trigger" onclick="toggleGuiaTalles()">
+                            <i class="fas fa-ruler-combined"></i> Guía de talles
+                            <i class="fas fa-chevron-down" id="guia-icon"></i>
                         </div>
-                    </div>
-                    <div class="beneficio-item">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <div>
-                            <h4>Efectivo: 10% de Descuento</h4>
-                            <p>Pagando en efectivo</p>
+                        
+                        <div class="guia-talles-content" id="guia-talles-content">
+                            <p>Si no estás seguro de tu talle, medí tu cuerpo así:</p>
+                            <div class="medidas-container">
+                                <div class="medida">
+                                    <i class="fas fa-tshirt"></i>
+                                    <span>Pecho: Alrededor de la parte más ancha</span>
+                                </div>
+                                <div class="medida">
+                                    <i class="fas fa-arrow-down"></i>
+                                    <span>Cintura: Donde normalmente usás el cinturón</span>
+                                </div>
+                            </div>
+                            
+                            <div class="tabla-talles">
+                                <div class="fila-titulos">
+                                    <div>Talle</div>
+                                    <div>Pecho (cm)</div>
+                                    <div>Cintura (cm)</div>
+                                </div>
+                                <div class="fila-talle">
+                                    <div>S</div>
+                                    <div>90-95</div>
+                                    <div>75-80</div>
+                                </div>
+                                <div class="fila-talle">
+                                    <div>M</div>
+                                    <div>95-100</div>
+                                    <div>80-85</div>
+                                </div>
+                                <div class="fila-talle">
+                                    <div>L</div>
+                                    <div>100-105</div>
+                                    <div>85-90</div>
+                                </div>
+                                <div class="fila-talle">
+                                    <div>XL</div>
+                                    <div>105-110</div>
+                                    <div>90-95</div>
+                                </div>
+                            </div>
+                            <p class="nota-talles">¿Todavía tenés dudas? Escribinos por WhatsApp y te ayudamos.</p>
                         </div>
                     </div>
                 </div>
-
-                <form id="form-compra">
-                    <!-- Selector de calidad -->
-                    <div class="selector">
-                        <label for="calidad">Calidad:</label>
-                        <select id="calidad" name="calidad" required>
-                            <option value="">Elige una opción</option>
-                            <option value="regular">Regular (Alta calidad)</option>
-                            <option value="premium">Premium (+19% mejor calidad)</option>
-                        </select>
-                    </div>
-                    
-                    <!-- Selección de talle -->
-                    <div class="selector">
-                        <label for="talle">Talle:</label>
-                        <select id="talle" name="talle" required></select>
-                    </div>
-                    
-                    <!-- Selección de color -->
-                    <div class="selector">
-                        <label for="color">Color:</label>
-                        <select id="color" name="color" required></select>
-                    </div>
-                    
-                    <!-- Cantidad -->
-                    <div class="selector">
-                        <label for="cantidad">Cantidad:</label>
-                        <input type="number" id="cantidad" min="1" value="1" required>
-                    </div>
-
-                    <!-- Método de pago -->
-                    <div class="selector">
-                        <label for="metodo-pago">Método de pago:</label>
-                        <select id="metodo-pago" name="metodo-pago" required>
-                            <option value="">Seleccionar</option>
-                            <option value="Efectivo">Efectivo (10% descuento)</option>
-                            <option value="Transferencia">Transferencia bancaria</option>
-                            <option value="MercadoPago">Mercado Pago</option>
-                            <option value="Cripto">Criptomonedas</option>
-                        </select>
-                    </div>
-
-                    <!-- Cuotas -->
-                    <div class="selector" id="cuotas-container" style="display:none;">
-                        <label for="cuotas">Cuotas:</label>
-                        <select id="cuotas" name="cuotas">
-                            <option value="1">1 cuota (sin interés)</option>
-                            <option value="3">3 cuotas (+10%)</option>
-                            <option value="6">6 cuotas (+20%)</option>
-                        </select>
-                    </div>
-
-                    <div class="selector">
-                        <label for="notas">Notas adicionales <span class="opcional">(Opcional)</span>:</label>
-                        <textarea id="notas" name="notas" rows="3"></textarea>
-                    </div>
-                </form>
             </div>
             
-            <!-- Columna 3: Resumen de compra -->
-            <div class="resumen-section">
-                <div class="resumen-compra">
-                    <h3>Resumen de compra</h3>
-                    <div id="resumen-detalle"></div>
-                </div>
-                <button type="submit" form="form-compra" class="btn-comprar">
-                    <i class="fab fa-whatsapp"></i> Finalizar Compra
-                </button>
-            </div>
-        </div>
-        
-        <!-- Segunda fila: Guía de talles (ocupando todo el ancho) -->
-        <div class="guia-talles-fullwidth">
-            <div class="guia-talles-container">
-                <div class="guia-talles-trigger" onclick="toggleGuiaTalles()">
-                    <i class="fas fa-ruler-combined"></i> Guía de talles
-                    <i class="fas fa-chevron-down" id="guia-icon"></i>
-                </div>
-                
-                <div class="guia-talles-content" id="guia-talles-content">
-                    <p>Si no estás seguro de tu talle, medí tu cuerpo así:</p>
-                    <div class="medidas-container">
-                        <div class="medida">
-                            <i class="fas fa-tshirt"></i>
-                            <span>Pecho: Alrededor de la parte más ancha</span>
-                        </div>
-                        <div class="medida">
-                            <i class="fas fa-arrow-down"></i>
-                            <span>Cintura: Donde normalmente usás el cinturón</span>
-                        </div>
-                    </div>
+            <!-- COLUMNA 2: FORMULARIO -->
+            <div class="form-section">
+                <div class="producto-seleccion">
+                    <h2 id="producto-nombre"></h2>
+                    <p id="producto-precio" class="precio"></p>
+                    <p id="producto-descripcion" class="descripcion"></p>
                     
-                    <div class="tabla-talles">
-                        <div class="fila-titulos">
-                            <div>Talle</div>
-                            <div>Pecho (cm)</div>
-                            <div>Cintura (cm)</div>
+                    <div class="beneficios-compra">
+                        <div class="beneficio-item">
+                            <i class="fas fa-tags"></i>
+                            <div>
+                                <h4>¡Más compras, más ahorro!</h4>
+                                <p>2 productos: 3% OFF | 3+ productos: 10% OFF</p>
+                            </div>
                         </div>
-                        <div class="fila-talle">
-                            <div>S</div>
-                            <div>90-95</div>
-                            <div>75-80</div>
-                        </div>
-                        <div class="fila-talle">
-                            <div>M</div>
-                            <div>95-100</div>
-                            <div>80-85</div>
-                        </div>
-                        <div class="fila-talle">
-                            <div>L</div>
-                            <div>100-105</div>
-                            <div>85-90</div>
-                        </div>
-                        <div class="fila-talle">
-                            <div>XL</div>
-                            <div>105-110</div>
-                            <div>90-95</div>
+                        <div class="beneficio-item">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <div>
+                                <h4>Efectivo: 10% de Descuento</h4>
+                                <p>Pagando en efectivo</p>
+                            </div>
                         </div>
                     </div>
-                    <p class="nota-talles">¿Todavía tenés dudas? Escribinos por WhatsApp y te ayudamos.</p>
+
+                    <form id="form-compra">
+                        <!-- Selector de calidad -->
+                        <div class="selector">
+                            <label for="calidad">Calidad:</label>
+                            <select id="calidad" name="calidad" required>
+                                <option value="">Elige una opción</option>
+                                <option value="regular">Regular (Alta calidad)</option>
+                                <option value="premium">Premium (+19% mejor calidad)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Selección de talle -->
+                        <div class="selector">
+                            <label for="talle">Talle:</label>
+                            <select id="talle" name="talle" required></select>
+                        </div>
+                        
+                        <!-- Selección de color -->
+                        <div class="selector">
+                            <label for="color">Color:</label>
+                            <select id="color" name="color" required></select>
+                        </div>
+                        
+                        <!-- Cantidad -->
+                        <div class="selector">
+                            <label for="cantidad">Cantidad:</label>
+                            <input type="number" id="cantidad" min="1" value="1" required>
+                        </div>
+
+                        <!-- Método de pago -->
+                        <div class="selector">
+                            <label for="metodo-pago">Método de pago:</label>
+                            <select id="metodo-pago" name="metodo-pago" required>
+                                <option value="">Seleccionar</option>
+                                <option value="Efectivo">Efectivo (10% descuento)</option>
+                                <option value="Transferencia">Transferencia bancaria</option>
+                                <option value="MercadoPago">Mercado Pago</option>
+                                <option value="Cripto">Criptomonedas</option>
+                            </select>
+                        </div>
+
+                        <!-- Cuotas -->
+                        <div class="selector" id="cuotas-container" style="display:none;">
+                            <label for="cuotas">Cuotas:</label>
+                            <select id="cuotas" name="cuotas">
+                                <option value="1">1 cuota (sin interés)</option>
+                                <option value="3">3 cuotas (+10%)</option>
+                                <option value="6">6 cuotas (+20%)</option>
+                            </select>
+                        </div>
+
+                        <div class="selector">
+                            <label for="notas">Notas adicionales <span class="opcional">(Opcional)</span>:</label>
+                            <textarea id="notas" name="notas" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- COLUMNA 3: RESUMEN -->
+            <div class="summary-section">
+                <div class="resumen-section">
+                    <div class="resumen-compra">
+                        <h3>Resumen de compra</h3>
+                        <div id="resumen-detalle"></div>
+                    </div>
+                    <button type="submit" form="form-compra" class="btn-comprar">
+                        <i class="fab fa-whatsapp"></i> Finalizar Compra
+                    </button>
                 </div>
             </div>
         </div>
