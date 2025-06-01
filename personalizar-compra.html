@@ -33,6 +33,50 @@
             <div class="producto-imagen-container">
                 <img id="producto-imagen" src="" alt="Producto" class="producto-img">
             </div>
+
+    <!-- Guía de talles -->
+    <div class="guia-talles">
+        <button class="btn-guia-talles" onclick="mostrarGuiaTalles()">
+            <i class="fas fa-ruler-combined"></i> ¿No sabés tu talle?
+        </button>
+        <div class="contenido-guia" id="contenido-guia">
+            <h4>Guía de Talles GUZZOCORP</h4>
+            <div class="tabla-talles">
+                <div class="fila-titulos">
+                    <div>Talle</div>
+                    <div>Pecho (cm)</div>
+                    <div>Cintura (cm)</div>
+                    <div>Altura</div>
+                </div>
+                <div class="fila-talle">
+                    <div>S</div>
+                    <div>90-95</div>
+                    <div>75-80</div>
+                    <div>1.65-1.75m</div>
+                </div>
+                <div class="fila-talle">
+                    <div>M</div>
+                    <div>95-100</div>
+                    <div>80-85</div>
+                    <div>1.70-1.80m</div>
+                </div>
+                <div class="fila-talle">
+                    <div>L</div>
+                    <div>100-105</div>
+                    <div>85-90</div>
+                    <div>1.75-1.85m</div>
+                </div>
+                <div class="fila-talle">
+                    <div>XL</div>
+                    <div>105-110</div>
+                    <div>90-95</div>
+                    <div>1.80-1.90m</div>
+                </div>
+            </div>
+            <p class="nota-talles">* Medidas aproximadas. Para talles especiales contactanos.</p>
+        </div>
+    </div>
+</div>
             
             <!-- Información y selección (centro) -->
             <div class="producto-seleccion">
@@ -328,6 +372,15 @@ function enviarWhatsApp(e) {
                 </div>
             `;
         }
+
+        function mostrarGuiaTalles() {
+    const guia = document.getElementById('contenido-guia');
+    if (guia.style.display === 'block') {
+        guia.style.display = 'none';
+    } else {
+        guia.style.display = 'block';
+    }
+}
     </script>
 </body>
 </html>
