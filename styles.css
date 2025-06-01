@@ -1935,77 +1935,98 @@ footer {
     color: var(--neon-purple);
 }
 
-/* Guía de Talles */
-.guia-talles {
+/* Guía de Talles - Versión Mejorada */
+.guia-talles-container {
     margin-top: 20px;
-    text-align: center;
-}
-
-.btn-guia-talles {
-    background: transparent;
-    color: var(--neon-cyan);
-    border: 1px solid var(--neon-cyan);
-    padding: 8px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.3s;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.btn-guia-talles:hover {
-    background: rgba(0, 243, 255, 0.1);
-    transform: translateY(-2px);
-}
-
-.contenido-guia {
-    display: none;
-    margin-top: 15px;
-    padding: 15px;
     background: var(--bg-card-light);
     border-radius: 10px;
-    animation: fadeIn 0.5s ease;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
 }
 
-.contenido-guia h4 {
+.guia-talles-trigger {
+    padding: 12px 15px;
+    background: var(--bg-card);
     color: var(--neon-cyan);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.guia-talles-trigger:hover {
+    background: rgba(0, 243, 255, 0.05);
+}
+
+.guia-talles-content {
+    padding: 15px;
+    display: none;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.guia-talles-content p {
+    color: var(--text-light);
     margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.medidas-container {
+    margin-bottom: 20px;
+}
+
+.medida {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.medida i {
+    color: var(--neon-purple);
+    width: 20px;
     text-align: center;
 }
 
 .tabla-talles {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 8px;
-    margin-bottom: 10px;
+    margin: 15px 0;
 }
 
 .fila-titulos {
     font-weight: bold;
-    color: var(--neon-purple);
-    border-bottom: 1px solid var(--border-color);
+    color: var(--neon-cyan);
     padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    grid-column: 1 / span 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .fila-talle {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     padding: 8px 0;
+    align-items: center;
 }
 
 .fila-talle div:first-child {
     font-weight: bold;
-    color: var(--neon-cyan);
+    color: var(--neon-purple);
 }
 
 .nota-talles {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--text-gray);
     text-align: center;
     margin-top: 10px;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; max-height: 0; }
+    to { opacity: 1; max-height: 500px; }
 }
