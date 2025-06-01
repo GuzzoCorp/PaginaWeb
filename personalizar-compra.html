@@ -80,37 +80,28 @@
                         </select>
                     </div>
 
-                    <!-- Datos del cliente -->
-                    <div class="selector">
-                        <label for="nombre">Nombre completo:</label>
-                        <input type="text" id="nombre" name="nombre" required>
-                    </div>
-
+                    <!-- Dirección de envío -->
                     <div class="selector">
                         <label for="direccion">Dirección de envío:</label>
-                        <input type="text" id="direccion" name="direccion" required>
-                    </div>
-
-                    <div class="selector">
-                        <label for="telefono">Teléfono:</label>
-                        <input type="tel" id="telefono" name="telefono" required>
+                        <input type="text" id="direccion" name="direccion">
                     </div>
 
                     <div class="selector">
                         <label for="notas">Notas adicionales:</label>
                         <textarea id="notas" name="notas" rows="3"></textarea>
                     </div>
-                    
-                    <button type="submit" class="btn-comprar">
-                        <i class="fab fa-whatsapp"></i> Finalizar Compra
-                    </button>
                 </form>
             </div>
             
             <!-- Resumen de compra (derecha) -->
-            <div class="resumen-compra">
-                <h3>Resumen de compra</h3>
-                <div id="resumen-detalle"></div>
+            <div class="resumen-section">
+                <div class="resumen-compra">
+                    <h3>Resumen de compra</h3>
+                    <div id="resumen-detalle"></div>
+                </div>
+                <button type="submit" form="form-compra" class="btn-comprar">
+                    <i class="fab fa-whatsapp"></i> Finalizar Compra
+                </button>
             </div>
         </div>
     </div>
@@ -222,6 +213,7 @@
                 const color = document.getElementById('color').value;
                 const metodoPago = document.getElementById('metodo-pago').value;
                 const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
+                const direccion = document.getElementById('direccion').value;
                 
                 // Calcular descuentos
                 let descuento = 0;
@@ -245,6 +237,7 @@
                     ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
                     ${metodoPago === 'MercadoPago' ? `<p>${cuotas} cuotas</p>` : ''}
                     <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
+                    ${direccion ? `<p>Envío a: ${direccion}</p>` : ''}
                     <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
                 `;
             }
@@ -257,9 +250,7 @@
                 const color = document.getElementById('color').value;
                 const metodoPago = document.getElementById('metodo-pago').value;
                 const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
-                const nombre = document.getElementById('nombre').value;
                 const direccion = document.getElementById('direccion').value;
-                const telefono = document.getElementById('telefono').value;
                 const notas = document.getElementById('notas').value;
                 
                 // Calcular descuentos
@@ -278,7 +269,7 @@
                     if(cuotas === 6) total *= 1.20;
                 }
                 
-                const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${producto.price.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}\n\n*Mis datos:*\n- Nombre: ${nombre}\n- Dirección: ${direccion}\n- Teléfono: ${telefono}\n${notas ? `\n*Notas adicionales:*\n${notas}` : ''}\n\n[Ver producto](${producto.image})`;
+                const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${producto.price.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n${direccion ? `*Dirección de envío:* ${direccion}\n` : ''}*Total:* $${total.toLocaleString('es-AR')}\n${notas ? `\n*Notas adicionales:*\n${notas}` : ''}\n\n[Ver producto](${producto.image})`;
                 
                 window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
             }
