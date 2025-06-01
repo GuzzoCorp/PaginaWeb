@@ -41,16 +41,36 @@
                 <p id="producto-descripcion" class="descripcion"></p>
                 
                 <form id="form-compra">
-                            <!-- Nuevo selector de calidad -->
+
+                    <!-- Nueva sección de beneficios -->
+    <div class="beneficios-compra">
+        <div class="beneficio-item">
+            <i class="fas fa-tags"></i>
+            <div>
+                <h4>¡Más compras, más ahorro!</h4>
+                <p>2 productos: 3% OFF • 3+ productos: 10% OFF</p>
+            </div>
+        </div>
+        <div class="beneficio-item">
+            <i class="fas fa-money-bill-wave"></i>
+            <div>
+                <h4>Efectivo: 10% extra</h4>
+                <p>Pagando en efectivo o transferencia</p>
+            </div>
+        </div>
+    </div>
+
+    <form id="form-compra">
+        <!-- Selector de calidad -->
         <div class="selector">
             <label for="calidad">Calidad:</label>
             <select id="calidad" name="calidad" required>
-                <option value="">Seleccionar</option>
-                <option value="premium">Calidad Premium de Guzzo (+19%)</option>
-                <option value="regular">Calidad Regular de Guzzo (Alta Calidad)</option>
+                <option value="">Elige una opción</option>
+                <option value="regular">Regular (Alta calidad)</option>
+                <option value="premium">Premium (+19% mejor calidad)</option>
             </select>
         </div>
-
+                    
                     <!-- Selección de talle -->
                     <div class="selector">
                         <label for="talle">Talle:</label>
