@@ -222,10 +222,10 @@ function actualizarResumen() {
     
     // Calcular precios según calidad (19% más para premium)
     let precioBase = producto.price;
-    let calidadTexto = 'Regular de Guzzo (Alta)';
+    let calidadTexto = 'Regular de Guzzo Corp (Alta Calidad)';
     if (calidad === "premium") {
         precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
-        calidadTexto = 'Premium de Guzzo (+19%)';
+        calidadTexto = 'Premium de Guzzo Corp (+19%)';
     }
     
     // Calcular descuentos
