@@ -1893,3 +1893,44 @@ footer {
     font-style: italic;
     font-weight: normal;
 }
+
+/* Estilos para la sección de beneficios */
+.beneficios-compra {
+    background: rgba(0, 243, 255, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+    border: 1px solid var(--neon-cyan);
+}
+
+.beneficio-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.beneficio-item i {
+    font-size: 1.5rem;
+    color: var(--neon-cyan);
+    min-width: 30px;
+}
+
+.beneficio-item h4 {
+    color: var(--neon-cyan);
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+}
+
+.beneficio-item p {
+    color: var(--text-light);
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+/* Estilo para el selector de calidad */
+.selector #calidad option[value="premium"] {
+    font-weight: bold;
+    color: var(--neon-purple);
+}
