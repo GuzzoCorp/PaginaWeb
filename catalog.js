@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 7,
-            name: "Remera Oversize Negra",
+            name: "Remera Oversize",
             price: 18999,
             category: "ropa",
             subcategory: "remeras",
@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 8,
-            name: "Remera Oversize Blanca",
-            price: 18999,
+            name: "Cargo Baggy",
+            price: 29999,
             category: "ropa",
             subcategory: "remeras",
             image: "assets/products/remera-oversize-blanca.jpg",
