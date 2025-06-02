@@ -2084,36 +2084,7 @@ footer {
     }
 }
 
-/* ===== BOTONES DE COMPRA Y ENCARGO ===== */
-.btn-comprar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    padding: 0.8rem;
-    background: var(--neon-cyan);
-    color: var(--bg-dark);
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.btn-comprar:hover {
-    background: #00c4cc;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 243, 255, 0.3);
-}
-
-.btn-comprar:active {
-    transform: translateY(1px);
-}
+/* ===== BOTONES DE ENCARGO ===== */
 
 .btn-encargar {
     display: flex;
@@ -2146,7 +2117,6 @@ footer {
 }
 
 /* Iconos dentro de los botones */
-.btn-comprar i,
 .btn-encargar i {
     font-size: 1.1rem;
 }
@@ -2156,30 +2126,6 @@ footer {
     0% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0.7); }
     70% { box-shadow: 0 0 0 10px rgba(0, 243, 255, 0); }
     100% { box-shadow: 0 0 0 0 rgba(0, 243, 255, 0); }
-}
-
-/* Opcional: Efecto especial para botones destacados */
-.btn-comprar.highlight {
-    animation: pulse-glow 2s infinite;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-comprar.highlight::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-        to bottom right,
-        rgba(255, 255, 255, 0) 45%,
-        rgba(255, 255, 255, 0.8) 50%,
-        rgba(255, 255, 255, 0) 55%
-    );
-    transform: rotate(30deg);
-    animation: shine 3s infinite;
 }
 
 @keyframes shine {
