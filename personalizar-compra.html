@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ESTILOS PARA LA NUEVA ESTRUCTURA */
+        /* ESTILOS PARA LA ESTRUCTURA GRID */
         .product-grid {
             display: grid;
             grid-template-columns: 300px 1fr 300px;
             gap: 30px;
+            align-items: start;
         }
         
         .product-image-section {
             grid-column: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
         
         .form-section {
@@ -24,11 +28,29 @@
         
         .summary-section {
             grid-column: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .producto-imagen-container {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .producto-img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
         }
         
         .size-guide-container {
-            grid-column: 1;
-            margin-top: 20px;
+            width: 100%;
         }
         
         /* Responsive */
@@ -36,8 +58,15 @@
             .product-grid {
                 grid-template-columns: 1fr;
             }
-            .size-guide-container {
+            
+            .product-image-section,
+            .form-section,
+            .summary-section {
                 grid-column: 1;
+            }
+            
+            .summary-section {
+                order: 3;
             }
         }
     </style>
@@ -65,13 +94,13 @@
         
         <!-- CONTENEDOR PRINCIPAL CON GRID -->
         <div class="product-grid">
-            <!-- COLUMNA 1: IMAGEN -->
+            <!-- COLUMNA 1: IMAGEN Y GUÍA DE TALLES -->
             <div class="product-image-section">
                 <div class="producto-imagen-container">
                     <img id="producto-imagen" src="" alt="Producto" class="producto-img">
                 </div>
                 
-                <!-- GUÍA DE TALLES (debajo de la imagen) -->
+                <!-- GUÍA DE TALLES -->
                 <div class="size-guide-container">
                     <div class="guia-talles-container">
                         <div class="guia-talles-trigger" onclick="toggleGuiaTalles()">
@@ -79,73 +108,76 @@
                             <i class="fas fa-chevron-down" id="guia-icon"></i>
                         </div>
                         
-                       <div class="guia-talles-content" id="guia-talles-content">
-    <div class="guia-header">
-        <h4><i class="fas fa-ruler-combined"></i> Cómo medir tu cuerpo</h4>
-        <p>Seguí estos pasos para elegir tu talle correcto:</p>
-    </div>
-    
-    <div class="pasos-medida">
-        <div class="paso">
-            <div class="paso-icono"><i class="fas fa-tshirt"></i></div>
-            <div class="paso-texto">
-                <strong>Pecho:</strong> Medí alrededor de la parte más ancha de tu torso, manteniendo la cinta métrica horizontal.
+                        <div class="guia-talles-content" id="guia-talles-content">
+                            <div class="guia-header">
+                                <h4><i class="fas fa-ruler-combined"></i> Cómo medir tu cuerpo</h4>
+                                <p>Seguí estos pasos para elegir tu talle correcto:</p>
+                            </div>
+                            
+                            <div class="pasos-medida">
+                                <div class="paso">
+                                    <div class="paso-icono"><i class="fas fa-tshirt"></i></div>
+                                    <div class="paso-texto">
+                                        <strong>Pecho:</strong> Medí alrededor de la parte más ancha de tu torso, manteniendo la cinta métrica horizontal.
+                                    </div>
+                                </div>
+                                <div class="paso">
+                                    <div class="paso-icono"><i class="fas fa-arrow-down"></i></div>
+                                    <div class="paso-texto">
+                                        <strong>Cintura:</strong> Medí donde normalmente usás el cinturón, sin ajustar demasiado.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tabla-container">
+                                <h5>Tabla de Talles (en centímetros)</h5>
+                                <table class="tabla-talles">
+                                    <thead>
+                                        <tr>
+                                            <th>Talle</th>
+                                            <th>Pecho</th>
+                                            <th>Cintura</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>S</td>
+                                            <td>90-95</td>
+                                            <td>75-80</td>
+                                        </tr>
+                                        <tr>
+                                            <td>M</td>
+                                            <td>95-100</td>
+                                            <td>80-85</td>
+                                        </tr>
+                                        <tr>
+                                            <td>L</td>
+                                            <td>100-105</td>
+                                            <td>85-90</td>
+                                        </tr>
+                                        <tr>
+                                            <td>XL</td>
+                                            <td>105-110</td>
+                                            <td>90-95</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="guia-nota">
+                                <i class="fas fa-info-circle"></i>
+                                <p>Si tus medidas están entre dos talles, te recomendamos elegir el talle más grande.</p>
+                            </div>
+                            
+                            <div class="guia-ayuda">
+                                <a href="https://wa.me/5492664633010" target="_blank" class="btn-ayuda">
+                                    <i class="fab fa-whatsapp"></i> ¿Necesitás ayuda?
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="paso">
-            <div class="paso-icono"><i class="fas fa-arrow-down"></i></div>
-            <div class="paso-texto">
-                <strong>Cintura:</strong> Medí donde normalmente usás el cinturón, sin ajustar demasiado.
-            </div>
-        </div>
-    </div>
-    
-    <div class="tabla-container">
-        <h5>Tabla de Talles (en centímetros)</h5>
-        <table class="tabla-talles">
-            <thead>
-                <tr>
-                    <th>Talle</th>
-                    <th>Pecho</th>
-                    <th>Cintura</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>S</td>
-                    <td>90-95</td>
-                    <td>75-80</td>
-                </tr>
-                <tr>
-                    <td>M</td>
-                    <td>95-100</td>
-                    <td>80-85</td>
-                </tr>
-                <tr>
-                    <td>L</td>
-                    <td>100-105</td>
-                    <td>85-90</td>
-                </tr>
-                <tr>
-                    <td>XL</td>
-                    <td>105-110</td>
-                    <td>90-95</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    
-    <div class="guia-nota">
-        <i class="fas fa-info-circle"></i>
-        <p>Si tus medidas están entre dos talles, te recomendamos elegir el talle más grande.</p>
-    </div>
-    
-    <div class="guia-ayuda">
-        <a href="https://wa.me/5492664633010" target="_blank" class="btn-ayuda">
-            <i class="fab fa-whatsapp"></i> ¿Necesitás ayuda?
-        </a>
-    </div>
-</div>
             
             <!-- COLUMNA 2: FORMULARIO -->
             <div class="form-section">
@@ -232,15 +264,13 @@
             
             <!-- COLUMNA 3: RESUMEN -->
             <div class="summary-section">
-                <div class="resumen-section">
-                    <div class="resumen-compra">
-                        <h3>Resumen de compra</h3>
-                        <div id="resumen-detalle"></div>
-                    </div>
-                    <button type="submit" form="form-compra" class="btn-comprar">
-                        <i class="fab fa-whatsapp"></i> Finalizar Compra
-                    </button>
+                <div class="resumen-compra">
+                    <h3>Resumen de compra</h3>
+                    <div id="resumen-detalle"></div>
                 </div>
+                <button type="submit" form="form-compra" class="btn-comprar">
+                    <i class="fab fa-whatsapp"></i> Finalizar Compra
+                </button>
             </div>
         </div>
     </div>
