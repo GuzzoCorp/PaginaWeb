@@ -314,9 +314,41 @@ nav a:hover::after {
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 3rem;
-    margin-top: 2rem;
+    grid-template-columns: 300px 1fr 300px;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+/* Estilos para cada sección */
+.product-image-section {
+    grid-column: 1;
+}
+
+.form-section {
+    grid-column: 2;
+}
+
+.summary-section {
+    grid-column: 3;
+}
+
+.size-guide-container {
+    grid-column: 1;
+    margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-image-section,
+    .form-section,
+    .summary-section,
+    .size-guide-container {
+        grid-column: 1;
+    }
 }
 
 .product-card {
