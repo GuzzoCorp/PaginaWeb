@@ -1685,12 +1685,6 @@ footer {
     background: var(--neon-cyan);
 }
 
-.producto-content {
-    display: flex;
-    gap: 30px;
-    margin-top: 30px;
-}
-
 .producto-imagen-container {
     flex: 1;
     max-width: 350px;
@@ -1838,12 +1832,6 @@ footer {
     margin-top: 15px;
     color: var(--neon-yellow);
 }
-
-/* Responsive para personalizar-compra */
-@media (max-width: 992px) {
-    .producto-content {
-        flex-direction: column;
-    }
     
     .producto-imagen-container {
         max-width: 100%;
