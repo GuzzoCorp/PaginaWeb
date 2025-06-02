@@ -20,10 +20,11 @@
             <span class="logo-text">GUZZO CORPORATION</span>
         </div>
         <nav>
-            <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="inicio.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="index.html"><i class="fas fa-tshirt"></i> Tienda</a>
             <a href="catalogo.html"><i class="fas fa-search"></i> Catálogo</a>
-            <a href="index.html#encargos"><i class="fas fa-star"></i> Encargos</a>
-            <a href="index.html#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+            <a href="encargos.html"><i class="fas fa-star"></i> Encargos</a>
+            <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
         </nav>
         <div class="mobile-menu-btn">
             <i class="fas fa-bars"></i>
@@ -97,7 +98,6 @@
             <a href="https://www.instagram.com/guzzo.corp" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://wa.me/5492664633010" target="_blank"><i class="fab fa-whatsapp"></i></a>
             <a href="mailto:guzzoinbusiness@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
-
         </div>
         <div class="copyright">
             &copy; 2025 GUZZOCORP - Todos los derechos reservados - By: Nahuel Guzzo
@@ -113,6 +113,29 @@
         mobileMenuBtn.addEventListener('click', () => {
             nav.classList.toggle('show');
         });
+
+        // Función para determinar si un producto es de ropa (debe coincidir con tu lógica en catalog.js)
+        function isClothingProduct(product) {
+            return product.category === 'ropa' || 
+                   product.subcategory === 'remeras' || 
+                   product.subcategory === 'buzos' || 
+                   product.subcategory === 'pantalones' || 
+                   product.subcategory === 'calzas' || 
+                   product.subcategory === 'sweaters' || 
+                   product.subcategory === 'tops';
+        }
+
+        // Función para comprar (modificada para usar personalizar-compra.html)
+        function buyProduct(productId) {
+            window.location.href = `personalizar-compra.html?producto=${productId}`;
+        }
+
+        // Función para encargar
+        function orderProduct(productName, productImage) {
+            const phoneNumber = "5492664633010";
+            const message = `¡Hola GUZZOCORP! 👋\n\nQuiero encargar:\n\n*Producto:* ${productName}\n\n[Ver imagen](${productImage})\n\nMi información:\n- Nombre: \n- Talle: \n- Color preferido: \n\n¡Gracias!`;
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        }
     </script>
 </body>
 </html>
