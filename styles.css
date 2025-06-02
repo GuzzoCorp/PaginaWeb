@@ -287,35 +287,11 @@ nav a:hover::after {
 .full-width-btn {
     width: 100%;
 }
-/* ===== PRODUCTOS ===== */
-.products {
-    padding: 5rem 5%;
-    position: relative;
-    background: var(--bg-gradient-dark); /* Fondo degradado para resaltar */
-}
-
-.section-title {
-    text-align: center;
-    margin-bottom: 3rem;
-    font-size: 2.5rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-.section-title::after {
-    content: '';
-    display: block;
-    width: 120px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-    margin: 1rem auto 0;
-    border-radius: 2px;
-}
-
+/* ===== PRODUCTOS - ESTILOS MEJORADOS ===== */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 3rem;
+    gap: 2rem;
     margin-top: 2rem;
 }
 
@@ -327,128 +303,77 @@ nav a:hover::after {
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     position: relative;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Asegura que todas las cards tengan la misma altura */
 }
 
-.product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-    border-color: var(--neon-purple);
-}
-
+/* Contenedor de imagen con altura fija */
 .product-image-container {
     position: relative;
     overflow: hidden;
-    height: 320px;
-    background: #f5f5f5; /* Color de fondo para imágenes con transparencia */
+    height: 280px; /* Altura fija para todas las imágenes */
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
 .product-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Cambiado de cover a contain para mostrar producto completo */
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
     transition: transform 0.6s ease;
-    padding: 20px; /* Espacio alrededor de la imagen */
-    background: white; /* Fondo blanco para productos */
-    box-sizing: border-box;
 }
 
-.product-card:hover .product-image {
-    transform: scale(1.08);
-}
-
+/* Contenedor de información con altura consistente */
 .product-info {
-    padding: 1.8rem;
-    text-align: center;
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-card h3 {
     margin-bottom: 0.8rem;
     color: var(--text-light);
-    font-size: 1.3rem;
-    min-height: 3.5rem; /* Altura fija para títulos */
+    font-size: 1.2rem;
+    min-height: 3.2rem; /* Altura fija para títulos de 2 líneas */
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
-.price-container {
-    margin: 1rem 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+/* Contenedor de precio y botones fijos */
+.product-actions {
+    margin-top: auto; /* Empuja los botones hacia abajo */
+    padding-top: 1rem;
 }
 
-.price {
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: var(--neon-cyan);
+/* Ajustes para tamaños de pantalla pequeños */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .product-image-container {
+        height: 240px;
+    }
 }
 
-.old-price {
-    font-size: 1rem;
-    color: var(--text-gray);
-    text-decoration: line-through;
-}
-
-.size {
-    color: var(--text-gray);
-    margin-bottom: 1.2rem;
-    font-size: 0.95rem;
-}
-
-/* PRODUCT CARD STYLES */
-.product-card {
-    background: var(--bg-card);
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-    border-color: var(--neon-purple);
-}
-
-/* IMAGE CONTAINERS (unified styles) */
-.product-image-container,
-.producto-imagen-container {
-    position: relative;
-    overflow: hidden;
-    height: 320px;
-    background: white;
-    border-radius: 16px;
-    border: 1px solid var(--border-color);
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.product-image,
-.producto-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: transform 0.6s ease;
-}
-
-.product-card:hover .product-image,
-.producto-imagen-container:hover .producto-img {
-    transform: scale(1.08);
-}
-
-.producto-imagen-container:hover {
-    border-color: var(--neon-purple);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-}
-/* ===== ETIQUETAS DE PRODUCTO ===== */
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-image-container {
+        height: 280px;
+    }
+}/* ===== ETIQUETAS DE PRODUCTO ===== */
 
 .tag-new, .tag-bestseller, .tag-soldout, .tag-discount {
     position: absolute;
