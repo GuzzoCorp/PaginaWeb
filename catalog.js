@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 3,
-            name: "Cuellos Lycra Frizada",
+            name: "Cuellos Termicos",
             price: 3999,
             oldPrice: 5000,
             category: "accesorios",
