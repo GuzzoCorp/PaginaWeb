@@ -501,91 +501,104 @@ document.addEventListener('DOMContentLoaded', function() {
     const productGrid = document.getElementById('product-grid');
     const resultsCount = document.getElementById('results-count');
 
-    // Función para renderizar productos
-    function renderProducts(filteredProducts) {
-        productGrid.innerHTML = '';
+function renderProducts(filteredProducts) {
+    productGrid.innerHTML = '';
+    
+    filteredProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = `product-card ${product.category}`;
         
-        filteredProducts.forEach(product => {
-            const productCard = document.createElement('div');
-            productCard.className = `product-card ${product.category}`;
-            
-            // Construir etiquetas
-            let tagsHTML = '';
-            if (product.tags) {
-                if (product.tags.includes('oferta')) {
-                    tagsHTML += `<span class="tag-discount">${product.discount}% OFF</span>`;
-                }
-                if (product.tags.includes('nuevo')) {
-                    tagsHTML += `<span class="tag-new">NUEVO</span>`;
-                }
-                if (product.tags.includes('mas-vendido')) {
-                    tagsHTML += `<span class="tag-bestseller">MÁS VENDIDO</span>`;
-                }
-                if (product.tags.includes('ultima-unidad')) {
-                    tagsHTML += `<span class="tag-stock">ÚLTIMA UNIDAD</span>`;
-                }
-                if (product.tags.includes('exclusivo')) {
-                    tagsHTML += `<span class="tag-exclusive">EXCLUSIVO</span>`;
-                }
-                if (product.tags.includes('coleccionista')) {
-                    tagsHTML += `<span class="tag-collector">COLECCIONISTA</span>`;
-                }
+        // Construir etiquetas
+        let tagsHTML = '';
+        if (product.tags) {
+            if (product.tags.includes('oferta')) {
+                tagsHTML += `<span class="tag-discount">${product.discount}% OFF</span>`;
             }
-
-            // Construir precios
-            let priceHTML = '';
-            if (product.oldPrice) {
-                priceHTML = `
-                    <div class="price-container">
-                        <p class="old-price">$${product.oldPrice.toLocaleString('es-AR')}</p>
-                        <p class="price">$${product.price.toLocaleString('es-AR')}</p>
-                    </div>
-                `;
-            } else {
-                priceHTML = `<p class="price">$${product.price.toLocaleString('es-AR')}</p>`;
+            if (product.tags.includes('nuevo')) {
+                tagsHTML += `<span class="tag-new">NUEVO</span>`;
             }
-
-            // Construir talles
-            let sizesHTML = '';
-            if (product.sizes) {
-                sizesHTML = `<p class="size">Talles: ${product.sizes.join(', ')}</p>`;
+            if (product.tags.includes('mas-vendido')) {
+                tagsHTML += `<span class="tag-bestseller">MÁS VENDIDO</span>`;
             }
-
-            // Nota de personalización
-            let customHTML = '';
-            if (product.customizable) {
-                customHTML = `<p class="custom-notice">¡Personaliza tu diseño!</p>`;
+            if (product.tags.includes('ultima-unidad')) {
+                tagsHTML += `<span class="tag-stock">ÚLTIMA UNIDAD</span>`;
             }
-
-            // Advertencia de stock
-            let stockHTML = '';
-            if (product.stock && product.stock <= 3) {
-                stockHTML = `<p class="stock-warning">¡Solo quedan ${product.stock} en stock!</p>`;
+            if (product.tags.includes('exclusivo')) {
+                tagsHTML += `<span class="tag-exclusive">EXCLUSIVO</span>`;
             }
+            if (product.tags.includes('coleccionista')) {
+                tagsHTML += `<span class="tag-collector">COLECCIONISTA</span>`;
+            }
+        }
 
-            productCard.innerHTML = `
-                ${tagsHTML}
-                <div class="product-image-container">
-                    <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='assets/products/default-product.jpg'">
-                </div>
-                <div class="product-info">
-                    <h3>${product.name}</h3>
-                    ${priceHTML}
-                    ${sizesHTML}
-                    <p class="description">${product.description}</p>
-                    ${customHTML}
-                    ${stockHTML}
-                    <button class="whatsapp-btn" onclick="buyViaWhatsapp('${product.name}', ${product.price}, '${product.image}')">
-                        <i class="fab fa-whatsapp"></i> COMPRAR
-                    </button>
+        // Construir precios
+        let priceHTML = '';
+        if (product.oldPrice) {
+            priceHTML = `
+                <div class="price-container">
+                    <p class="old-price">$${product.oldPrice.toLocaleString('es-AR')}</p>
+                    <p class="price">$${product.price.toLocaleString('es-AR')}</p>
                 </div>
             `;
-            productGrid.appendChild(productCard);
-        });
+        } else {
+            priceHTML = `<p class="price">$${product.price.toLocaleString('es-AR')}</p>`;
+        }
 
-        // Actualizar contador de resultados
-        resultsCount.textContent = `${filteredProducts.length} productos encontrados`;
-    }
+        // Construir talles
+        let sizesHTML = '';
+        if (product.sizes) {
+            sizesHTML = `<p class="size">Talles: ${product.sizes.join(', ')}</p>`;
+        }
+
+        // Nota de personalización
+        let customHTML = '';
+        if (product.customizable) {
+            customHTML = `<p class="custom-notice">¡Personaliza tu diseño!</p>`;
+        }
+
+        // Advertencia de stock
+        let stockHTML = '';
+        if (product.stock && product.stock <= 3) {
+            stockHTML = `<p class="stock-warning">¡Solo quedan ${product.stock} en stock!</p>`;
+        }
+
+        // Determinar qué botón mostrar
+        let buttonHTML = '';
+        if (isClothingProduct(product)) {
+            buttonHTML = `
+                <button class="btn-comprar" onclick="buyProduct(${product.id})">
+                    <i class="fas fa-shopping-cart"></i> COMPRAR
+                </button>
+            `;
+        } else {
+            buttonHTML = `
+                <button class="btn-encargar" onclick="orderProduct('${product.name}', '${product.image}')">
+                    <i class="fas fa-star"></i> ENCARGAR
+                </button>
+            `;
+        }
+
+        productCard.innerHTML = `
+            ${tagsHTML}
+            <div class="product-image-container">
+                <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='assets/products/default-product.jpg'">
+            </div>
+            <div class="product-info">
+                <h3>${product.name}</h3>
+                ${priceHTML}
+                ${sizesHTML}
+                <p class="description">${product.description}</p>
+                ${customHTML}
+                ${stockHTML}
+                ${buttonHTML}
+            </div>
+        `;
+        productGrid.appendChild(productCard);
+    });
+
+    // Actualizar contador de resultados
+    resultsCount.textContent = `${filteredProducts.length} productos encontrados`;
+}
 
     // Función para filtrar y ordenar productos
     function filterProducts() {
