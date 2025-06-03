@@ -90,19 +90,20 @@ document.addEventListener('DOMContentLoaded', function() {
             customizable: true
         },
         {
-            id: 8,
-            name: "Remera Oversize Blanca",
-            price: 17999,
+            id: 6,
+            name: "Buzo canguro tela peluche",
+            price: 17000,
             category: "ropa",
-            subcategory: "remeras",
-            image: "assets/products/remera-oversize-blanca.jpg",
-            description: "Estampado a elección",
-            sizes: ["S", "M", "L", "XL"],
-            customizable: true
+            subcategory: "buzos",
+            image: "assets/products/buzo-peluche.jpg",
+            description: "Buzo gris forro de peluche bifaz con capucha canguro",
+            sizes: ["S-M", "L-XL", "2XL-3XL"],
+            tags: ["mas-vendido"],
+            colors: ["Gris"]
         },
         {
             id: 9,
-            name: "Buzo Canguro Negro",
+            name: "Buzo Canguro",
             price: 25000,
             category: "ropa",
             subcategory: "buzos",
@@ -112,8 +113,6 @@ document.addEventListener('DOMContentLoaded', function() {
             tags: ["mas-vendido"],
             customizable: true
         },
-        
-        // Productos adicionales de ejemplo
         {
             id: 10,
             name: "Zapatillas Nike Air Max",
@@ -476,18 +475,6 @@ document.addEventListener('DOMContentLoaded', function() {
             sizes: ["S", "M"],
             tags: ["nuevo"],
             colors: ["Rosa"]
-        },
-        {
-            id: 41,
-            name: "Buzo canguro tela peluche",
-            price: 17000,
-            category: "ropa",
-            subcategory: "buzos",
-            image: "assets/products/buzo-peluche.jpg",
-            description: "Buzo gris forro de peluche bifaz con capucha canguro",
-            sizes: ["S-M", "L-XL", "2XL-3XL"],
-            tags: ["mas-vendido"],
-            colors: ["Gris"]
         }
     ];
 
