@@ -297,140 +297,101 @@
         </div>
     </footer>
 
+        <script src="catalog.js"></script>
     <script>
-        // Cargar datos del producto
         document.addEventListener('DOMContentLoaded', function() {
-            // Menú móvil
             const menuBtn = document.querySelector('.mobile-menu-btn');
             const nav = document.querySelector('nav');
-            
-            menuBtn.addEventListener('click', function() {
-                nav.classList.toggle('active');
-            });
-            
-            // Mostrar/ocultar cuotas según método de pago
+            menuBtn.addEventListener('click', () => nav.classList.toggle('active'));
+
             const metodoPago = document.getElementById('metodo-pago');
             const cuotasContainer = document.getElementById('cuotas-container');
-            
-            metodoPago.addEventListener('change', function() {
-                if(this.value === 'MercadoPago') {
-                    cuotasContainer.style.display = 'block';
-                } else {
-                    cuotasContainer.style.display = 'none';
-                }
+            metodoPago.addEventListener('change', () => {
+                cuotasContainer.style.display = metodoPago.value === 'MercadoPago' ? 'block' : 'none';
                 actualizarResumen();
             });
-            
-            // Cargar producto
+
             const urlParams = new URLSearchParams(window.location.search);
             const productId = parseInt(urlParams.get('producto'));
-            
-            // Obtener producto del catálogo
-            const producto = obtenerProducto(productId);
-            
-            if (producto) {
-                mostrarProducto(producto);
-                configurarFormulario(producto);
+
+            if (!isNaN(productId)) {
+                const producto = obtenerProducto(productId);
+                if (producto) {
+                    mostrarProducto(producto);
+                    configurarFormulario(producto);
+                } else {
+                    mostrarError();
+                }
             } else {
                 mostrarError();
             }
         });
-        
-function obtenerProducto(id) {
-    const productos = {
-        1: { name: "Remera Térmica", price: 14999, image: "Termica.jpeg", sizes: ["S", "M", "L", "XL"], colors: ["Negro"] },
-        2: { name: "Gorra", price: 21999, image: "Gorras.jpeg", sizes: ["Ajustable"], colors: ["Negro", "Azul"] },
-        3: { name: "Cuellos Termicos", price: 3999, image: "Cuellito.jpeg", sizes: ["Único"], colors: ["Negro"] },
-        4: { name: "Pantalon Cargo Baggy", price: 29999, image: "cargobaggy.jpeg", sizes: ["38", "39", "40", "41", "42", "43", "44"], colors: ["Negro"] },
-        5: { name: "Remera Oversize", price: 18999, image: "remeraoversize.jpeg", sizes: ["S", "M", "L", "XL"], colors: ["Negro", "Blanco"] },
-        6: { name: "Buzo Canguro Tela Peluche", price: 17000, image: "buzopeluche.jpg", sizes: ["S-M", "L-XL", "2XL-3XL"], colors: ["Gris"] },
-        7: { name: "Buzo Canguro Negro", price: 29999, image: "assets/products/buzo-canguro-negro.jpg", sizes: ["S", "M", "L", "XL"], colors: ["Negro"] },
-        8: { name: "Jeans Rotos Oversize", price: 28999, image: "https://example.com/jeans-rotos.jpg", sizes: ["28", "30", "32", "34"], colors: ["Azul"] },
-        9: { name: "Campera Denim", price: 45999, image: "camperadenim.jpeg", sizes: ["S", "M", "L", "XL"], colors: ["Azul"] },
-        10: { name: "Calza One Leg", price: 19999, image: "assets/products/calza-one-leg.jpg", sizes: ["S", "M", "L", "XL"], colors: ["Negro"] },
-        11: { name: "Calza Larga", price: 24999, image: "assets/products/calza-larga.jpg", sizes: ["S", "M", "L", "XL"], colors: ["Negro"] },
-        12: { name: "Calza Corta Deportiva Mujer", price: 7999, image: "assets/products/calza-corta-mujer.jpg", sizes: ["XS", "S", "M", "L"], colors: ["Negro"] },
-        13: { name: "Botas Bucaneras", price: 39000, image: "botasbucaneras.jpeg", sizes: ["36", "37", "38", "39", "40"], colors: ["Negro"] },
-        14: { name: "Borcegos Veganos Plataforma", price: 43000, image: "assets/products/borcegos-veganos.jpg", sizes: ["35", "36", "37", "38", "39", "40"], colors: ["Negro"] },
-        15: { name: "Remera oversize 2Pac (All Eyez On Me)", price: 29000, image: "assets/products/remera-2pac.jpg", sizes: ["M", "L", "XL"], colors: ["Negro"] },
-        16: { name: "Pantalón cargo alto con strass", price: 71000, image: "assets/products/pantalon-cargo-strass.jpg", sizes: ["S", "M", "L", "XL"], colors: ["Fucsia", "Verde"] },
-        17: { name: "Remera con malla transparente", price: 20000, image: "assets/products/remera-malla.jpg", sizes: ["S", "M"], colors: ["Blanco"] },
-        18: { name: "Conjunto - Nike Tech Fleece", price: 150000, image: "conjuntonikee.jpg", sizes: ["L", "XL", "XXL"], colors: ["Negro"] },
-        19: { name: "Campera Puffer Acolchonada", price: 48000, image: "camperapuff.jpeg", sizes: ["S", "M", "L"], colors: ["Negro"] },
-        20: { name: "Top oversize algodón (manga larga)", price: 12000, image: "topoversize.jpeg", sizes: ["S", "M"], colors: ["Negro"] },
-        21: { name: "Top satén liso con Tirantes Finos", price: 21000, image: "assets/products/top-saten.jpg", sizes: ["S", "M"], colors: ["Negro", "Rojo"] },
-        22: { name: "Jogging Oversize Lycra Deportivo", price: 71000, image: "assets/products/jogging-lycra.jpg", sizes: ["S", "M", "L"], colors: ["Negro"] },
-        23: { name: "Remera estampado Animal sobre blanco", price: 25000, image: "assets/products/remera-animal.jpg", sizes: ["S", "M", "L"], colors: ["Blanco"] },
-        24: { name: "Jean wide leg Animal Print", price: 47000, image: "assets/products/jean-animal.jpg", sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"], colors: ["Blanco", "Negro"] },
-        26: { name: "Sweater Oversize Estampado Cebra", price: 45000, image: "assets/products/sweater-cebra.jpg", sizes: ["3XL"], colors: ["Verde"] },
-        27: { name: "Top Bandeau Plisado sin Tirantes", price: 18000, image: "assets/products/top-bandeau.jpg", sizes: ["S", "M"], colors: ["Rosa"] },
-    };
-    return productos[id];
-}        
+
+        function obtenerProducto(id) {
+            if (typeof products !== 'undefined') {
+                return products.find(p => p.id === id);
+            } else {
+                console.error("catalog.js no está cargado correctamente.");
+                return null;
+            }
+        }
+
         function mostrarProducto(producto) {
             document.getElementById('producto-imagen').src = producto.image;
             document.getElementById('producto-nombre').textContent = producto.name;
             document.getElementById('producto-precio').textContent = `$${producto.price.toLocaleString('es-AR')}`;
             document.getElementById('producto-descripcion').textContent = producto.description || "Producto exclusivo GUZZOCORP";
-            
-            // Llenar talles
+
             const selectTalle = document.getElementById('talle');
-            producto.sizes.forEach(talle => {
+            selectTalle.innerHTML = '';
+            producto.sizes?.forEach(talle => {
                 const option = document.createElement('option');
                 option.value = talle;
                 option.textContent = talle;
                 selectTalle.appendChild(option);
             });
-            
-            // Llenar colores
+
             const selectColor = document.getElementById('color');
-            producto.colors.forEach(color => {
+            selectColor.innerHTML = '';
+            producto.colors?.forEach(color => {
                 const option = document.createElement('option');
                 option.value = color;
                 option.textContent = color;
                 selectColor.appendChild(option);
             });
         }
-        
+
         function configurarFormulario(producto) {
             const form = document.getElementById('form-compra');
-            
-            // Actualizar resumen al cambiar opciones
             form.addEventListener('change', actualizarResumen);
             form.addEventListener('submit', enviarWhatsApp);
-            
+
             function actualizarResumen() {
                 const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
                 const calidad = document.getElementById('calidad').value;
                 const talle = document.getElementById('talle').value;
                 const color = document.getElementById('color').value;
                 const metodoPago = document.getElementById('metodo-pago').value;
-                const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
-                
-                // Calcular precios según calidad (19% más para premium)
+                const cuotas = parseInt(document.getElementById('cuotas')?.value || "1");
+
                 let precioBase = producto.price;
                 let calidadTexto = 'Regular de Guzzo Corp (Alta Calidad)';
                 if (calidad === "premium") {
-                    precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
+                    precioBase = Math.round(producto.price * 1.19);
                     calidadTexto = 'Premium de Guzzo Corp (+19%)';
                 }
-                
-                // Calcular descuentos
+
                 let descuento = 0;
                 if (cantidad >= 3) descuento = 10;
                 else if (cantidad >= 2) descuento = 3;
+                if (metodoPago === 'Efectivo') descuento += 10;
 
-                // Descuento por pago en efectivo
-                if(metodoPago === 'Efectivo') descuento += 10;
-                
-                let total = precioBase * cantidad * (1 - descuento/100);
-                
-                // Aplicar recargo por cuotas
-                if(metodoPago === 'MercadoPago') {
-                    if(cuotas === 3) total *= 1.10;
-                    if(cuotas === 6) total *= 1.20;
+                let total = precioBase * cantidad * (1 - descuento / 100);
+                if (metodoPago === 'MercadoPago') {
+                    if (cuotas === 3) total *= 1.10;
+                    if (cuotas === 6) total *= 1.20;
                 }
-                
+
                 document.getElementById('resumen-detalle').innerHTML = `
                     <p>${cantidad} x ${producto.name}</p>
                     <p>Calidad: ${calidadTexto}</p>
@@ -446,47 +407,39 @@ function obtenerProducto(id) {
 
             function enviarWhatsApp(e) {
                 e.preventDefault();
-                
                 const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
                 const calidad = document.getElementById('calidad').value;
                 const talle = document.getElementById('talle').value;
                 const color = document.getElementById('color').value;
                 const metodoPago = document.getElementById('metodo-pago').value;
-                const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
+                const cuotas = parseInt(document.getElementById('cuotas')?.value || "1");
                 const notas = document.getElementById('notas').value;
-                
-                // Calcular precios según calidad (19% más para premium)
+
                 let precioBase = producto.price;
                 let calidadTexto = 'Regular de Guzzo (Alta Calidad)';
                 if (calidad === "premium") {
-                    precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
+                    precioBase = Math.round(producto.price * 1.19);
                     calidadTexto = 'Premium de Guzzo (+19%)';
                 }
-                
-                // Calcular descuentos
+
                 let descuento = 0;
                 if (cantidad >= 3) descuento = 10;
                 else if (cantidad >= 2) descuento = 3;
-                
-                // Descuento por pago en efectivo
-                if(metodoPago === 'Efectivo') descuento += 10;
-                
-                let total = precioBase * cantidad * (1 - descuento/100);
-                
-                // Aplicar recargo por cuotas
-                if(metodoPago === 'MercadoPago') {
-                    if(cuotas === 3) total *= 1.10;
-                    if(cuotas === 6) total *= 1.20;
+                if (metodoPago === 'Efectivo') descuento += 10;
+
+                let total = precioBase * cantidad * (1 - descuento / 100);
+                if (metodoPago === 'MercadoPago') {
+                    if (cuotas === 3) total *= 1.10;
+                    if (cuotas === 6) total *= 1.20;
                 }
-                            
-                const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${precioBase.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''}\n\n[Ver producto](${producto.image})`;
+
+                const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${precioBase.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales:*\n${notas}` : ''}\n\n[Ver producto](${producto.image})`;
                 window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
             }
-            
-            // Inicializar resumen
+
             actualizarResumen();
         }
-        
+
         function mostrarError() {
             document.querySelector('.personalizar-container').innerHTML = `
                 <div class="error">
@@ -499,16 +452,10 @@ function obtenerProducto(id) {
         function toggleGuiaTalles() {
             const content = document.getElementById('guia-talles-content');
             const icon = document.getElementById('guia-icon');
-            
-            if (content.style.display === 'block') {
-                content.style.display = 'none';
-                icon.classList.remove('fa-chevron-up');
-                icon.classList.add('fa-chevron-down');
-            } else {
-                content.style.display = 'block';
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
-            }
+            const visible = content.style.display === 'block';
+            content.style.display = visible ? 'none' : 'block';
+            icon.classList.toggle('fa-chevron-down', visible);
+            icon.classList.toggle('fa-chevron-up', !visible);
         }
     </script>
 </body>
