@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalizar Compra - GUZZOCORP</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ESTILOS PARA LA ESTRUCTURA GRID */
+        .product-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            gap: 30px;
+            align-items: start;
+        }
+        
+        .product-image-section {
+            grid-column: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-section {
+            grid-column: 2;
+        }
+        
+        .summary-section {
+            grid-column: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .producto-imagen-container {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .producto-img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+        
+        .size-guide-container {
+            width: 100%;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-image-section,
+            .form-section,
+            .summary-section {
+                grid-column: 1;
+            }
+            
+            .summary-section {
+                order: 3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="GuzzoCorp.png" alt="GUZZOCORP" class="logo">
+            <span class="logo-text">GUZZO CORPORATION</span>
+        </div>
+        <nav>
+            <a href="inicio.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="index.html"><i class="fas fa-tshirt"></i> Tienda</a>
+            <a href="catalogo.html"><i class="fas fa-search"></i> Catálogo</a>
+            <a href="encargos.html"><i class="fas fa-star"></i> Encargos</a>
+            <a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a>
+        </nav>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+    
+    <div class="personalizar-container">
+        <h1 class="titulo-centrado">Personaliza tu compra</h1>
+        
+        <!-- CONTENEDOR PRINCIPAL CON GRID -->
+        <div class="product-grid">
+            <!-- COLUMNA 1: IMAGEN Y GUÍA DE TALLES -->
+            <div class="product-image-section">
+                <div class="producto-imagen-container">
+                    <img id="producto-imagen" src="" alt="Producto" class="producto-img">
+                </div>
+                
+                <!-- GUÍA DE TALLES -->
+                <div class="size-guide-container">
+                    <div class="guia-talles-container">
+                        <div class="guia-talles-trigger" onclick="toggleGuiaTalles()">
+                            <i class="fas fa-ruler-combined"></i> Guía de talles
+                            <i class="fas fa-chevron-down" id="guia-icon"></i>
+                        </div>
+                        
+                        <div class="guia-talles-content" id="guia-talles-content">
+                            <div class="guia-header">
+                                <h4><i class="fas fa-ruler-combined"></i> Cómo medir tu cuerpo</h4>
+                                <p>Seguí estos pasos para elegir tu talle correcto:</p>
+                            </div>
+                            
+                            <div class="pasos-medida">
+                                <div class="paso">
+                                    <div class="paso-icono"><i class="fas fa-tshirt"></i></div>
+                                    <div class="paso-texto">
+                                        <strong>Pecho:</strong> Medí alrededor de la parte más ancha de tu torso, manteniendo la cinta métrica horizontal.
+                                    </div>
+                                </div>
+                                <div class="paso">
+                                    <div class="paso-icono"><i class="fas fa-arrow-down"></i></div>
+                                    <div class="paso-texto">
+                                        <strong>Cintura:</strong> Medí donde normalmente usás el cinturón, sin ajustar demasiado.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tabla-container">
+                                <h5>Tabla de Talles (en centímetros)</h5>
+                                <table class="tabla-talles">
+                                    <thead>
+                                        <tr>
+                                            <th>Talle</th>
+                                            <th>Pecho</th>
+                                            <th>Cintura</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>S</td>
+                                            <td>90-95</td>
+                                            <td>75-80</td>
+                                        </tr>
+                                        <tr>
+                                            <td>M</td>
+                                            <td>95-100</td>
+                                            <td>80-85</td>
+                                        </tr>
+                                        <tr>
+                                            <td>L</td>
+                                            <td>100-105</td>
+                                            <td>85-90</td>
+                                        </tr>
+                                        <tr>
+                                            <td>XL</td>
+                                            <td>105-110</td>
+                                            <td>90-95</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="guia-nota">
+                                <i class="fas fa-info-circle"></i>
+                                <p>Si tus medidas están entre dos talles, te recomendamos elegir el talle más grande.</p>
+                            </div>
+                            
+                            <div class="guia-ayuda">
+                                <a href="https://wa.me/5492664633010" target="_blank" class="btn-ayuda">
+                                    <i class="fab fa-whatsapp"></i> ¿Necesitás ayuda?
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- COLUMNA 2: FORMULARIO -->
+            <div class="form-section">
+                <div class="producto-seleccion">
+                    <h2 id="producto-nombre"></h2>
+                    <p id="producto-precio" class="precio"></p>
+                    <p id="producto-descripcion" class="descripcion"></p>
+                    
+                    <div class="beneficios-compra">
+                        <div class="beneficio-item">
+                            <i class="fas fa-tags"></i>
+                            <div>
+                                <h4>¡Más compras, más ahorro!</h4>
+                                <p>2 productos: 3% OFF | 3+ productos: 10% OFF</p>
+                            </div>
+                        </div>
+                        <div class="beneficio-item">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <div>
+                                <h4>Efectivo: 10% de Descuento</h4>
+                                <p>Pagando en efectivo</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="form-compra">
+                        <!-- Selector de calidad -->
+                        <div class="selector">
+                            <label for="calidad">Calidad:</label>
+                            <select id="calidad" name="calidad" required>
+                                <option value="">Elige una opción</option>
+                                <option value="regular">Regular (Alta calidad)</option>
+                                <option value="premium">Premium (+19% mejor calidad)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Selección de talle -->
+                        <div class="selector">
+                            <label for="talle">Talle:</label>
+                            <select id="talle" name="talle" required></select>
+                        </div>
+                        
+                        <!-- Selección de color -->
+                        <div class="selector">
+                            <label for="color">Color:</label>
+                            <select id="color" name="color" required></select>
+                        </div>
+                        
+                        <!-- Cantidad -->
+                        <div class="selector">
+                            <label for="cantidad">Cantidad:</label>
+                            <input type="number" id="cantidad" min="1" value="1" required>
+                        </div>
+
+                        <!-- Método de pago -->
+                        <div class="selector">
+                            <label for="metodo-pago">Método de pago:</label>
+                            <select id="metodo-pago" name="metodo-pago" required>
+                                <option value="">Seleccionar</option>
+                                <option value="Efectivo">Efectivo (10% descuento)</option>
+                                <option value="Transferencia">Transferencia bancaria</option>
+                                <option value="MercadoPago">Mercado Pago</option>
+                                <option value="Cripto">Criptomonedas</option>
+                            </select>
+                        </div>
+
+                        <!-- Cuotas -->
+                        <div class="selector" id="cuotas-container" style="display:none;">
+                            <label for="cuotas">Cuotas:</label>
+                            <select id="cuotas" name="cuotas">
+                                <option value="1">1 cuota (sin interés)</option>
+                                <option value="3">3 cuotas (+10%)</option>
+                                <option value="6">6 cuotas (+20%)</option>
+                            </select>
+                        </div>
+
+                        <div class="selector">
+                            <label for="notas">Notas adicionales <span class="opcional">(Opcional)</span>:</label>
+                            <textarea id="notas" name="notas" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- COLUMNA 3: RESUMEN -->
+            <div class="summary-section">
+                <div class="resumen-compra">
+                    <h3>Resumen de compra</h3>
+                    <div id="resumen-detalle"></div>
+                </div>
+                <button type="submit" form="form-compra" class="btn-comprar">
+                    <i class="fab fa-whatsapp"></i> Finalizar Compra
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo-container">
+            <img src="GuzzoCorp.png" alt="GUZZOCORP" class="footer-logo">
+            <span class="footer-logo-text">THE BEST STYLE</span>
+        </div>
+        <div class="footer-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#sneakers">Sneakers</a>
+            <a href="#ropa">Ropa</a>
+            <a href="#encargos">Encargos</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+        <div class="social-links">
+            <a href="https://www.instagram.com/guzzo.corp" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5492664633010" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:guzzoinbusiness@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 GUZZOCORP - Todos los derechos reservados - By: Nahuel Guzzo
+        </div>
+    </footer>
+
+    <script>
+        // Cargar datos del producto
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menú móvil
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+            
+            menuBtn.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+            
+            // Mostrar/ocultar cuotas según método de pago
+            const metodoPago = document.getElementById('metodo-pago');
+            const cuotasContainer = document.getElementById('cuotas-container');
+            
+            metodoPago.addEventListener('change', function() {
+                if(this.value === 'MercadoPago') {
+                    cuotasContainer.style.display = 'block';
+                } else {
+                    cuotasContainer.style.display = 'none';
+                }
+                actualizarResumen();
+            });
+            
+            // Cargar producto
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('producto'));
+            
+            // Obtener producto del catálogo
+            const producto = obtenerProducto(productId);
+            
+            if (producto) {
+                mostrarProducto(producto);
+                configurarFormulario(producto);
+            } else {
+                mostrarError();
+            }
+        });
+        
+function obtenerProducto(id) {
+    const productos = {
+        1: { name: "Remera Térmica", price: 14999, image: "Termica.jpeg", sizes: ["S", "M", "L", "XL"], colors: ["Negro"] },
+        2: { name: "Gorra", price: 21999, image: "Gorras.jpeg", sizes: ["Ajustable"], colors: ["Negro", "Azul"] },
+        3: { name: "Cuellos Termicos", price: 3999, image: "Cuellito.jpeg", sizes: ["Único"], colors: ["Negro"] },
+        4: { name: "Pantalon Cargo Baggy", price: 29999, image: "cargobaggy.jpeg", sizes: ["38", "39", "40", "41", "42", "43", "44"], colors: ["Negro"] },
+        5: { name: "Remera Oversize", price: 18999, image: "remeraoversize.jpeg", sizes: ["S", "M", "L", "XL"], colors: ["Negro", "Blanco"] },
+        6: { name: "Buzo Canguro Tela Peluche", price: 17000, image: "buzopeluche.jpg", sizes: ["S-M", "L-XL", "2XL-3XL"], colors: ["Gris"] },
+        7: { name: "Buzo Canguro Negro", price: 29999, image: "assets/products/buzo-canguro-negro.jpg", sizes: ["S", "M", "L", "XL"], colors: ["Negro"] },
+        8: { name: "Jeans Rotos Oversize", price: 28999, image: "https://example.com/jeans-rotos.jpg", sizes: ["28", "30", "32", "34"], colors: ["Azul"] },
+        9: { name: "Campera Denim", price: 45999, image: "camperadenim.jpeg", sizes: ["S", "M", "L", "XL"], colors: ["Azul"] },
+        10: { name: "Calza One Leg", price: 19999, image: "assets/products/calza-one-leg.jpg", sizes: ["S", "M", "L", "XL"], colors: ["Negro"] },
+        11: { name: "Calza Larga", price: 24999, image: "assets/products/calza-larga.jpg", sizes: ["S", "M", "L", "XL"], colors: ["Negro"] },
+        12: { name: "Calza Corta Deportiva Mujer", price: 7999, image: "assets/products/calza-corta-mujer.jpg", sizes: ["XS", "S", "M", "L"], colors: ["Negro"] },
+        13: { name: "Botas Bucaneras", price: 39000, image: "botasbucaneras.jpeg", sizes: ["36", "37", "38", "39", "40"], colors: ["Negro"] },
+        14: { name: "Borcegos Veganos Plataforma", price: 43000, image: "assets/products/borcegos-veganos.jpg", sizes: ["35", "36", "37", "38", "39", "40"], colors: ["Negro"] },
+        15: { name: "Remera oversize 2Pac (All Eyez On Me)", price: 29000, image: "assets/products/remera-2pac.jpg", sizes: ["M", "L", "XL"], colors: ["Negro"] },
+        16: { name: "Pantalón cargo alto con strass", price: 71000, image: "assets/products/pantalon-cargo-strass.jpg", sizes: ["S", "M", "L", "XL"], colors: ["Fucsia", "Verde"] },
+        17: { name: "Remera con malla transparente", price: 20000, image: "assets/products/remera-malla.jpg", sizes: ["S", "M"], colors: ["Blanco"] },
+        18: { name: "Conjunto - Nike Tech Fleece", price: 150000, image: "conjuntonikee.jpg", sizes: ["L", "XL", "XXL"], colors: ["Negro"] },
+        19: { name: "Campera Puffer Acolchonada", price: 48000, image: "camperapuff.jpeg", sizes: ["S", "M", "L"], colors: ["Negro"] },
+        20: { name: "Top oversize algodón (manga larga)", price: 12000, image: "topoversize.jpeg", sizes: ["S", "M"], colors: ["Negro"] },
+        21: { name: "Top satén liso con Tirantes Finos", price: 21000, image: "assets/products/top-saten.jpg", sizes: ["S", "M"], colors: ["Negro", "Rojo"] },
+        22: { name: "Jogging Oversize Lycra Deportivo", price: 71000, image: "assets/products/jogging-lycra.jpg", sizes: ["S", "M", "L"], colors: ["Negro"] },
+        23: { name: "Remera estampado Animal sobre blanco", price: 25000, image: "assets/products/remera-animal.jpg", sizes: ["S", "M", "L"], colors: ["Blanco"] },
+        24: { name: "Jean wide leg Animal Print", price: 47000, image: "assets/products/jean-animal.jpg", sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"], colors: ["Blanco", "Negro"] },
+        26: { name: "Sweater Oversize Estampado Cebra", price: 45000, image: "assets/products/sweater-cebra.jpg", sizes: ["3XL"], colors: ["Verde"] },
+        27: { name: "Top Bandeau Plisado sin Tirantes", price: 18000, image: "assets/products/top-bandeau.jpg", sizes: ["S", "M"], colors: ["Rosa"] },
+    };
+    return productos[id];
+}        
+        function mostrarProducto(producto) {
+            document.getElementById('producto-imagen').src = producto.image;
+            document.getElementById('producto-nombre').textContent = producto.name;
+            document.getElementById('producto-precio').textContent = `$${producto.price.toLocaleString('es-AR')}`;
+            document.getElementById('producto-descripcion').textContent = producto.description || "Producto exclusivo GUZZOCORP";
+            
+            // Llenar talles
+            const selectTalle = document.getElementById('talle');
+            producto.sizes.forEach(talle => {
+                const option = document.createElement('option');
+                option.value = talle;
+                option.textContent = talle;
+                selectTalle.appendChild(option);
+            });
+            
+            // Llenar colores
+            const selectColor = document.getElementById('color');
+            producto.colors.forEach(color => {
+                const option = document.createElement('option');
+                option.value = color;
+                option.textContent = color;
+                selectColor.appendChild(option);
+            });
+        }
+        
+        function configurarFormulario(producto) {
+            const form = document.getElementById('form-compra');
+            
+            // Actualizar resumen al cambiar opciones
+            form.addEventListener('change', actualizarResumen);
+            form.addEventListener('submit', enviarWhatsApp);
+            
+            function actualizarResumen() {
+                const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
+                const calidad = document.getElementById('calidad').value;
+                const talle = document.getElementById('talle').value;
+                const color = document.getElementById('color').value;
+                const metodoPago = document.getElementById('metodo-pago').value;
+                const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
+                
+                // Calcular precios según calidad (19% más para premium)
+                let precioBase = producto.price;
+                let calidadTexto = 'Regular de Guzzo Corp (Alta Calidad)';
+                if (calidad === "premium") {
+                    precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
+                    calidadTexto = 'Premium de Guzzo Corp (+19%)';
+                }
+                
+                // Calcular descuentos
+                let descuento = 0;
+                if (cantidad >= 3) descuento = 10;
+                else if (cantidad >= 2) descuento = 3;
+
+                // Descuento por pago en efectivo
+                if(metodoPago === 'Efectivo') descuento += 10;
+                
+                let total = precioBase * cantidad * (1 - descuento/100);
+                
+                // Aplicar recargo por cuotas
+                if(metodoPago === 'MercadoPago') {
+                    if(cuotas === 3) total *= 1.10;
+                    if(cuotas === 6) total *= 1.20;
+                }
+                
+                document.getElementById('resumen-detalle').innerHTML = `
+                    <p>${cantidad} x ${producto.name}</p>
+                    <p>Calidad: ${calidadTexto}</p>
+                    <p>Talle: ${talle}</p>
+                    <p>Color: ${color}</p>
+                    <p>Precio unitario: $${precioBase.toLocaleString('es-AR')}</p>
+                    ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
+                    ${metodoPago === 'MercadoPago' ? `<p>${cuotas} cuotas</p>` : ''}
+                    <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
+                    <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
+                `;
+            }
+
+            function enviarWhatsApp(e) {
+                e.preventDefault();
+                
+                const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
+                const calidad = document.getElementById('calidad').value;
+                const talle = document.getElementById('talle').value;
+                const color = document.getElementById('color').value;
+                const metodoPago = document.getElementById('metodo-pago').value;
+                const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
+                const notas = document.getElementById('notas').value;
+                
+                // Calcular precios según calidad (19% más para premium)
+                let precioBase = producto.price;
+                let calidadTexto = 'Regular de Guzzo (Alta Calidad)';
+                if (calidad === "premium") {
+                    precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
+                    calidadTexto = 'Premium de Guzzo (+19%)';
+                }
+                
+                // Calcular descuentos
+                let descuento = 0;
+                if (cantidad >= 3) descuento = 10;
+                else if (cantidad >= 2) descuento = 3;
+                
+                // Descuento por pago en efectivo
+                if(metodoPago === 'Efectivo') descuento += 10;
+                
+                let total = precioBase * cantidad * (1 - descuento/100);
+                
+                // Aplicar recargo por cuotas
+                if(metodoPago === 'MercadoPago') {
+                    if(cuotas === 3) total *= 1.10;
+                    if(cuotas === 6) total *= 1.20;
+                }
+                            
+                const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${precioBase.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''}\n\n[Ver producto](${producto.image})`;
+                window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
+            }
+            
+            // Inicializar resumen
+            actualizarResumen();
+        }
+        
+        function mostrarError() {
+            document.querySelector('.personalizar-container').innerHTML = `
+                <div class="error">
+                    <p>No se encontró el producto</p>
+                    <a href="catalogo.html" class="btn">Volver al catálogo</a>
+                </div>
+            `;
+        }
+
+        function toggleGuiaTalles() {
+            const content = document.getElementById('guia-talles-content');
+            const icon = document.getElementById('guia-icon');
+            
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                content.style.display = 'block';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        }
+    </script>
+</body>
+</html>
