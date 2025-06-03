@@ -322,18 +322,6 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 28,
-            name: "Remera oversize 2Pac (All Eyez On Me)",
-            price: 29000,
-            category: "ropa",
-            subcategory: "remeras",
-            image: "assets/products/remera-2pac.jpg",
-            description: "Remera algodón oversize con estampado de Tupac Shakur",
-            sizes: ["M", "L", "XL"],
-            tags: ["mas-vendido"],
-            colors: ["Negro"]
-        },
-        {
-            id: 29,
             name: "Pantalón cargo alto con strass",
             price: 71000,
             category: "ropa",
@@ -345,7 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Fucsia", "Verde"]
         },
         {
-            id: 30,
+            id: 29,
             name: "Remera con malla transparente",
             price: 20000,
             category: "ropa",
@@ -357,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Blanco"]
         },
         {
-            id: 31,
+            id: 30,
             name: "Campera Nike Tech Fleece",
             price: 150000,
             category: "ropa",
@@ -369,7 +357,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 32,
+            id: 31,
             name: "Campera puffer acolchonada",
             price: 48000,
             category: "ropa",
@@ -381,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 33,
+            id: 32,
             name: "Top oversize algodón (manga larga)",
             price: 12000,
             category: "ropa",
@@ -393,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 34,
+            id: 33,
             name: "Top satén liso con tirantes finos",
             price: 21000,
             category: "ropa",
@@ -405,7 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro", "Rojo"]
         },
         {
-            id: 35,
+            id: 34,
             name: "Cinturón ancho metalizado (Tresher)",
             price: 10000,
             category: "accesorios",
@@ -417,7 +405,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Plateado", "Dorado"]
         },
         {
-            id: 36,
+            id: 35,
             name: "Jogging oversize lycra deportivo",
             price: 71000,
             category: "ropa",
@@ -429,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 37,
+            id: 36,
             name: "Remera estampado animal sobre blanco",
             price: 25000,
             category: "ropa",
@@ -441,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Blanco"]
         },
         {
-            id: 38,
+            id: 37,
             name: "Jean wide leg animal print",
             price: 47000,
             category: "ropa",
@@ -453,7 +441,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Blanco", "Negro"]
         },
         {
-            id: 39,
+            id: 38,
             name: "Sweater oversize estampado cebra",
             price: 45000,
             category: "ropa",
@@ -465,7 +453,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Verde"]
         },
         {
-            id: 40,
+            id: 39,
             name: "Top bandeau plisado sin tirantes",
             price: 18000,
             category: "ropa",
