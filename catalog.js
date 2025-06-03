@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 7,
-            name: "Remera Oversize Negra",
+            name: "Remera Oversize",
             price: 17999,
             category: "ropa",
             subcategory: "remeras",
