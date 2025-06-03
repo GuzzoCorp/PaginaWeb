@@ -419,7 +419,7 @@ function obtenerProducto(id) {
                 let descuento = 0;
                 if (cantidad >= 3) descuento = 10;
                 else if (cantidad >= 2) descuento = 3;
-                
+
                 // Descuento por pago en efectivo
                 if(metodoPago === 'Efectivo') descuento += 10;
                 
