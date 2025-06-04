@@ -644,6 +644,7 @@ if (metodoPago === 'Tarjeta') {
         case 12: recargoPorcentaje = 86; break;
     }
     total *= (1 + recargoPorcentaje / 100);
+    detalleCuotas = `<p>${cuotas} cuotas (+${recargoPorcentaje}%)</p>`;
 }
 
         
