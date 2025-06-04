@@ -543,20 +543,25 @@
                 selectColor.appendChild(option);
             });
             
-            // Llenar estampas si el producto las tiene
-            const selectEstampa = document.getElementById('estampa');
-            selectEstampa.innerHTML = '';
-            if (producto.estampa && producto.estampa.length > 0) {
-                producto.estampa.forEach(estampa => {
-                    const option = document.createElement('option');
-                    option.value = estampa;
-                    option.textContent = estampa;
-                    selectEstampa.appendChild(option);
-                });
-            } else {
-                // Ocultar el selector si el producto no tiene estampas
-                document.querySelector('label[for="estampa"]').parentElement.style.display = 'none';
-            }
+// Manejar estampas
+const estampaContainer = document.querySelector('label[for="estampa"]').parentElement;
+const selectEstampa = document.getElementById('estampa');
+
+if (producto.estampa && producto.estampa.length > 0) {
+    estampaContainer.style.display = 'block';
+    selectEstampa.innerHTML = '';
+    selectEstampa.required = true;
+    
+    producto.estampa.forEach(estampa => {
+        const option = document.createElement('option');
+        option.value = estampa;
+        option.textContent = estampa;
+        selectEstampa.appendChild(option);
+    });
+} else {
+    estampaContainer.style.display = 'none';
+    selectEstampa.required = false;
+}
         }
 
         function configurarFormulario(producto) {
@@ -587,78 +592,100 @@
                 }, 300);
             });
             
-            // Actualizar estampa cuando cambia la selección
-            selectEstampa.addEventListener('change', function() {
-                const estampaSeleccionada = this.value;
-                
-                if (estampaSeleccionada === "Sin estampado" || !producto.images || !producto.images[estampaSeleccionada]) {
-                    imagenEstampa.style.display = 'none';
-                } else {
-                    imagenEstampa.style.display = 'block';
-                    imagenEstampa.src = producto.images[estampaSeleccionada];
-                }
-                
-                actualizarResumen();
-            });
-            
-            // Actualizar resumen al cambiar opciones
-            form.addEventListener('change', actualizarResumen);
-            form.addEventListener('submit', enviarWhatsApp);
-            
-            function actualizarResumen() {
-                const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
-                const calidad = document.getElementById('calidad').value;
-                const talle = document.getElementById('talle').value;
-                const color = document.getElementById('color').value;
-                const estampa = document.getElementById('estampa').value;
-                const metodoPago = document.getElementById('metodo-pago').value;
-                const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
-                
-                // Calcular precios según calidad (19% más para premium)
-                let precioBase = producto.price;
-                let calidadTexto = 'Regular de Guzzo Corp (Alta Calidad)';
-                if (calidad === "premium") {
-                    precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
-                    calidadTexto = 'Premium de Guzzo Corp (+19%)';
-                }
-                
-                // Calcular descuentos
-                let descuento = 0;
-                if (cantidad >= 3) descuento = 10;
-                else if (cantidad >= 2) descuento = 3;
+// Actualizar estampa cuando cambia la selección (solo si existe)
+if (selectEstampa && producto.estampa && producto.estampa.length > 0) {
+    selectEstampa.addEventListener('change', function() {
+        const estampaSeleccionada = this.value;
+        
+        if (estampaSeleccionada === "Sin estampado" || !producto.images || !producto.images[estampaSeleccionada]) {
+            imagenEstampa.style.display = 'none';
+        } else {
+            imagenEstampa.style.display = 'block';
+            imagenEstampa.src = producto.images[estampaSeleccionada];
+        }
+        
+        actualizarResumen();
+    });
+}
 
-                // Descuento por pago en efectivo
-                if(metodoPago === 'Efectivo') descuento += 6;
-                
-                let total = precioBase * cantidad * (1 - descuento/100);
-                
-                // Aplicar recargo por cuotas
-                if (metodoPago === 'Tarjeta') {
-                    let recargoPorcentaje = 0;
-                    switch (cuotas) {
-                        case 1: recargoPorcentaje = 4; break;
-                        case 2: recargoPorcentaje = 18; break;
-                        case 3: recargoPorcentaje = 23; break;
-                        case 6: recargoPorcentaje = 40; break;
-                        case 9: recargoPorcentaje = 63; break;
-                        case 12: recargoPorcentaje = 86; break;
-                    }
-                    total *= (1 + recargoPorcentaje / 100);
-                }
-                
-                document.getElementById('resumen-detalle').innerHTML = `
-                    <p>${cantidad} x ${producto.name}</p>
-                    <p>Calidad: ${calidadTexto}</p>
-                    <p>Talle: ${talle}</p>
-                    <p>Color: ${color}</p>
-                    ${producto.estampa ? `<p>Estampa: ${estampa}</p>` : ''}
-                    <p>Precio unitario: $${precioBase.toLocaleString('es-AR')}</p>
-                    ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
-                    ${metodoPago === 'Tarjeta' ? `<p>Cuotas: ${cuotas}</p>` : ''}
-                    <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
-                    <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
-                `;
-            }
+// Actualizar resumen al cambiar opciones
+form.addEventListener('change', actualizarResumen);
+form.addEventListener('submit', enviarWhatsApp);
+            
+function actualizarResumen() {
+    const producto = obtenerProducto(parseInt(new URLSearchParams(window.location.search).get('producto')));
+    if (!producto) return;
+    
+    const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
+    const calidad = document.getElementById('calidad').value;
+    const talle = document.getElementById('talle').value;
+    const color = document.getElementById('color').value;
+    const metodoPago = document.getElementById('metodo-pago').value;
+    const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
+    
+// Obtener estampa solo si existe
+let estampa = '';
+if (selectEstampa && selectEstampa.style.display !== 'none') {
+    estampa = selectEstampa.value;
+}
+    
+    // Calcular precios según calidad (19% más para premium)
+    let precioBase = producto.price;
+    let calidadTexto = 'Regular de Guzzo Corp (Alta Calidad)';
+    if (calidad === "premium") {
+        precioBase = Math.round(producto.price * 1.19);
+        calidadTexto = 'Premium de Guzzo Corp (+19%)';
+    }
+    
+    // Calcular descuentos
+    let descuento = 0;
+    if (cantidad >= 3) descuento = 10;
+    else if (cantidad >= 2) descuento = 3;
+
+    // Descuento por pago en efectivo
+    if(metodoPago === 'Efectivo') descuento += 6;
+    
+    let total = precioBase * cantidad * (1 - descuento/100);
+    
+    // Aplicar recargo por cuotas
+    let detalleCuotas = '';
+    if (metodoPago === 'Tarjeta') {
+        let recargoPorcentaje = 0;
+        switch (cuotas) {
+            case 1: recargoPorcentaje = 4; break;
+            case 2: recargoPorcentaje = 18; break;
+            case 3: recargoPorcentaje = 23; break;
+            case 6: recargoPorcentaje = 40; break;
+            case 9: recargoPorcentaje = 63; break;
+            case 12: recargoPorcentaje = 86; break;
+        }
+        total *= (1 + recargoPorcentaje / 100);
+        detalleCuotas = `<p>${cuotas} cuotas (+${recargoPorcentaje}%)</p>`;
+    }
+    
+    // Construir el resumen
+    let resumenHTML = `
+        <p>${cantidad} x ${producto.name}</p>
+        <p>Calidad: ${calidadTexto}</p>
+        <p>Talle: ${talle}</p>
+        <p>Color: ${color}</p>
+    `;
+    
+    // Agregar estampa solo si existe
+    if (producto.estampa && producto.estampa.length > 0) {
+        resumenHTML += `<p>Estampa: ${estampa}</p>`;
+    }
+    
+    resumenHTML += `
+        <p>Precio unitario: $${precioBase.toLocaleString('es-AR')}</p>
+        ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
+        ${metodoPago === 'Tarjeta' ? detalleCuotas : ''}
+        <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
+        <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
+    `;
+    
+    document.getElementById('resumen-detalle').innerHTML = resumenHTML;
+}
 
             function enviarWhatsApp(e) {
                 e.preventDefault();
