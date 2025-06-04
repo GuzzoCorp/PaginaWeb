@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
             price: 17999,
             category: "ropa",
             subcategory: "remeras",
-            image: "assets/products/remera-oversize-negra.jpg",
+            image: "remera-violeta.jpeg",
             description: "Estampado a elección",
             sizes: ["S", "M", "L", "XL"],
             tags: ["mas-vendido"],
