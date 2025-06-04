@@ -655,7 +655,7 @@ if (metodoPago === 'Tarjeta') {
             ${producto.estampa ? `<p>Estampa: ${estampa}</p>` : ''}
             <p>Precio unitario: $${precioBase.toLocaleString('es-AR')}</p>
             ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
-            ${metodoPago === 'MercadoPago' ? `<p>${cuotas} cuotas</p>` : ''}
+            ${metodoPago === 'Tarjeta' ? `<p>${cuotas} cuotas</p>` : ''}
             <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
             <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
         `;
