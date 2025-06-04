@@ -35,6 +35,7 @@
         }
         
         .producto-imagen-container {
+            position: relative;
             background: var(--bg-card);
             padding: 20px;
             border-radius: 12px;
@@ -42,12 +43,25 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
         
         .producto-img {
             max-width: 100%;
             max-height: 400px;
             object-fit: contain;
+            z-index: 1;
+        }
+        
+        .estampa-img {
+            position: absolute;
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         
         .size-guide-container {
@@ -96,10 +110,11 @@
         <!-- CONTENEDOR PRINCIPAL CON GRID -->
         <div class="product-grid">
             <!-- COLUMNA 1: IMAGEN Y GUÍA DE TALLES -->
-            <div class="product-image-section">
-                <div class="producto-imagen-container">
-                    <img id="producto-imagen" src="" alt="Producto" class="producto-img">
-                </div>
+    <div class="product-image-section">
+        <div class="producto-imagen-container">
+            <img id="producto-imagen" src="" alt="Producto" class="producto-img">
+            <img id="producto-estampa" src="" alt="Estampa" class="estampa-img" style="display: none;">
+        </div>
                 
                 <!-- GUÍA DE TALLES -->
                 <div class="size-guide-container">
@@ -486,181 +501,214 @@
             return productos[id];
         }
 
-        function mostrarProducto(producto) {
-            // Determinar la imagen a mostrar (compatibilidad con versiones anteriores)
-            let imagenMostrar = producto.image;
-            if (producto.images) {
-                const primerColor = producto.colors[0];
-                imagenMostrar = producto.images[primerColor] || producto.image;
+function mostrarProducto(producto) {
+    // Determinar la imagen a mostrar (compatibilidad con versiones anteriores)
+    let imagenMostrar = producto.image;
+    if (producto.images) {
+        const primerColor = producto.colors[0];
+        imagenMostrar = producto.images[primerColor] || producto.image;
+    }
+    
+    document.getElementById('producto-imagen').src = imagenMostrar;
+    document.getElementById('producto-nombre').textContent = producto.name;
+    document.getElementById('producto-precio').textContent = `$${producto.price.toLocaleString('es-AR')}`;
+    document.getElementById('producto-descripcion').textContent = producto.description || "Producto exclusivo GUZZOCORP";
+    
+    // Llenar talles
+    const selectTalle = document.getElementById('talle');
+    selectTalle.innerHTML = '';
+    producto.sizes.forEach(talle => {
+        const option = document.createElement('option');
+        option.value = talle;
+        option.textContent = talle;
+        selectTalle.appendChild(option);
+    });
+    
+    // Llenar colores
+    const selectColor = document.getElementById('color');
+    selectColor.innerHTML = '';
+    producto.colors.forEach(color => {
+        const option = document.createElement('option');
+        option.value = color;
+        option.textContent = color;
+        selectColor.appendChild(option);
+    });
+    
+    // Llenar estampas si el producto las tiene
+    const selectEstampa = document.getElementById('estampa');
+    selectEstampa.innerHTML = '';
+    if (producto.estampa && producto.estampa.length > 0) {
+        producto.estampa.forEach(estampa => {
+            const option = document.createElement('option');
+            option.value = estampa;
+            option.textContent = estampa;
+            selectEstampa.appendChild(option);
+        });
+    } else {
+        // Ocultar el selector si el producto no tiene estampas
+        document.querySelector('label[for="estampa"]').parentElement.style.display = 'none';
+    }
+}
+
+function configurarFormulario(producto) {
+    const form = document.getElementById('form-compra');
+    const selectColor = document.getElementById('color');
+    const selectEstampa = document.getElementById('estampa');
+    const imagenProducto = document.getElementById('producto-imagen');
+    const imagenEstampa = document.getElementById('producto-estampa');
+    
+    // Actualizar imagen cuando cambia el color
+    selectColor.addEventListener('change', function() {
+        const colorSeleccionado = this.value;
+        
+        // Efecto de transición
+        imagenProducto.style.opacity = 0;
+        
+        setTimeout(() => {
+            // Opción 1: Productos con imágenes por color
+            if (producto.images && producto.images[colorSeleccionado]) {
+                imagenProducto.src = producto.images[colorSeleccionado];
+            } 
+            // Opción 2: Productos con imagen única (compatibilidad)
+            else if (producto.image) {
+                imagenProducto.src = producto.image;
             }
             
-            document.getElementById('producto-imagen').src = imagenMostrar;
-            document.getElementById('producto-nombre').textContent = producto.name;
-            document.getElementById('producto-precio').textContent = `$${producto.price.toLocaleString('es-AR')}`;
-            document.getElementById('producto-descripcion').textContent = producto.description || "Producto exclusivo GUZZOCORP";
-            
-            // Llenar talles
-            const selectTalle = document.getElementById('talle');
-            selectTalle.innerHTML = '';
-            producto.sizes.forEach(talle => {
-                const option = document.createElement('option');
-                option.value = talle;
-                option.textContent = talle;
-                selectTalle.appendChild(option);
-            });
-            
-            // Llenar colores
-            const selectColor = document.getElementById('color');
-            selectColor.innerHTML = '';
-            producto.colors.forEach(color => {
-                const option = document.createElement('option');
-                option.value = color;
-                option.textContent = color;
-                selectColor.appendChild(option);
-            });
+            imagenProducto.style.opacity = 1;
+        }, 300);
+    });
+    
+    // Actualizar estampa cuando cambia la selección
+    selectEstampa.addEventListener('change', function() {
+        const estampaSeleccionada = this.value;
+        
+        if (estampaSeleccionada === "Sin estampado" || !producto.images || !producto.images[estampaSeleccionada]) {
+            imagenEstampa.style.display = 'none';
+        } else {
+            imagenEstampa.style.display = 'block';
+            imagenEstampa.src = producto.images[estampaSeleccionada];
         }
         
-        function configurarFormulario(producto) {
-            const form = document.getElementById('form-compra');
-            const selectColor = document.getElementById('color');
-            const imagenProducto = document.getElementById('producto-imagen');
-            
-            // Actualizar imagen cuando cambia el color
-            selectColor.addEventListener('change', function() {
-                const colorSeleccionado = this.value;
-                
-                // Efecto de transición
-                imagenProducto.style.opacity = 0;
-                
-                setTimeout(() => {
-                    // Opción 1: Productos con imágenes por color
-                    if (producto.images && producto.images[colorSeleccionado]) {
-                        imagenProducto.src = producto.images[colorSeleccionado];
-                    } 
-                    // Opción 2: Productos con imagen única (compatibilidad)
-                    else if (producto.image) {
-                        imagenProducto.src = producto.image;
-                    }
+        actualizarResumen();
+    });
+    
+    // Actualizar resumen al cambiar opciones
+    form.addEventListener('change', actualizarResumen);
+    form.addEventListener('submit', enviarWhatsApp);
+    
+    function actualizarResumen() {
+        const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
+        const calidad = document.getElementById('calidad').value;
+        const talle = document.getElementById('talle').value;
+        const color = document.getElementById('color').value;
+        const estampa = document.getElementById('estampa').value;
+        const metodoPago = document.getElementById('metodo-pago').value;
+        const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
+        
+        // Calcular precios según calidad (19% más para premium)
+        let precioBase = producto.price;
+        let calidadTexto = 'Regular de Guzzo Corp (Alta Calidad)';
+        if (calidad === "premium") {
+            precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
+            calidadTexto = 'Premium de Guzzo Corp (+19%)';
+        }
+        
+        // Calcular descuentos
+        let descuento = 0;
+        if (cantidad >= 3) descuento = 10;
+        else if (cantidad >= 2) descuento = 3;
+
+        // Descuento por pago en efectivo
+        if(metodoPago === 'Efectivo') descuento += 10;
+        
+        let total = precioBase * cantidad * (1 - descuento/100);
+        
+        // Aplicar recargo por cuotas
+        if(metodoPago === 'MercadoPago') {
+            if(cuotas === 3) total *= 1.10;
+            if(cuotas === 6) total *= 1.20;
+        }
+        
+        document.getElementById('resumen-detalle').innerHTML = `
+            <p>${cantidad} x ${producto.name}</p>
+            <p>Calidad: ${calidadTexto}</p>
+            <p>Talle: ${talle}</p>
+            <p>Color: ${color}</p>
+            ${producto.estampa ? `<p>Estampa: ${estampa}</p>` : ''}
+            <p>Precio unitario: $${precioBase.toLocaleString('es-AR')}</p>
+            ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
+            ${metodoPago === 'MercadoPago' ? `<p>${cuotas} cuotas</p>` : ''}
+            <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
+            <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
+        `;
+    }
+
+    function enviarWhatsApp(e) {
+        e.preventDefault();
+        
+        const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
+        const calidad = document.getElementById('calidad').value;
+        const talle = document.getElementById('talle').value;
+        const color = document.getElementById('color').value;
+        const estampa = document.getElementById('estampa').value;
+        const metodoPago = document.getElementById('metodo-pago').value;
+        const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
+        const notas = document.getElementById('notas').value;
+        
+        // Calcular precios según calidad (19% más para premium)
+        let precioBase = producto.price;
+        let calidadTexto = 'Regular de Guzzo (Alta Calidad)';
+        if (calidad === "premium") {
+            precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
+            calidadTexto = 'Premium de Guzzo (+19%)';
+        }
+        
+        // Calcular descuentos
+        let descuento = 0;
+        if (cantidad >= 3) descuento = 10;
+        else if (cantidad >= 2) descuento = 3;
+        
+        // Descuento por pago en efectivo
+        if(metodoPago === 'Efectivo') descuento += 10;
+        
+        let total = precioBase * cantidad * (1 - descuento/100);
+        
+        // Aplicar recargo por cuotas
+        if(metodoPago === 'MercadoPago') {
+            if(cuotas === 3) total *= 1.10;
+            if(cuotas === 6) total *= 1.20;
+        }
                     
-                    imagenProducto.style.opacity = 1;
-                }, 300);
-            });
-            
-            // Actualizar resumen al cambiar opciones
-            form.addEventListener('change', actualizarResumen);
-            form.addEventListener('submit', enviarWhatsApp);
-            
-            function actualizarResumen() {
-                const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
-                const calidad = document.getElementById('calidad').value;
-                const talle = document.getElementById('talle').value;
-                const color = document.getElementById('color').value;
-                const metodoPago = document.getElementById('metodo-pago').value;
-                const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
-                
-                // Calcular precios según calidad (19% más para premium)
-                let precioBase = producto.price;
-                let calidadTexto = 'Regular de Guzzo Corp (Alta Calidad)';
-                if (calidad === "premium") {
-                    precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
-                    calidadTexto = 'Premium de Guzzo Corp (+19%)';
-                }
-                
-                // Calcular descuentos
-                let descuento = 0;
-                if (cantidad >= 3) descuento = 10;
-                else if (cantidad >= 2) descuento = 3;
+        const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n${producto.estampa ? `*Estampa:* ${estampa}\n` : ''}*Cantidad:* ${cantidad}\n*Precio unitario:* $${precioBase.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''}\n\n[Ver producto](${producto.images ? producto.images[color] || producto.image : producto.image})`;
+        window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
+    }
+    
+    // Inicializar resumen
+    actualizarResumen();
+}
 
-                // Descuento por pago en efectivo
-                if(metodoPago === 'Efectivo') descuento += 10;
-                
-                let total = precioBase * cantidad * (1 - descuento/100);
-                
-                // Aplicar recargo por cuotas
-                if(metodoPago === 'MercadoPago') {
-                    if(cuotas === 3) total *= 1.10;
-                    if(cuotas === 6) total *= 1.20;
-                }
-                
-                document.getElementById('resumen-detalle').innerHTML = `
-                    <p>${cantidad} x ${producto.name}</p>
-                    <p>Calidad: ${calidadTexto}</p>
-                    <p>Talle: ${talle}</p>
-                    <p>Color: ${color}</p>
-                    <p>Precio unitario: $${precioBase.toLocaleString('es-AR')}</p>
-                    ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
-                    ${metodoPago === 'MercadoPago' ? `<p>${cuotas} cuotas</p>` : ''}
-                    <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
-                    <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
-                `;
-            }
+function mostrarError() {
+    document.querySelector('.personalizar-container').innerHTML = `
+        <div class="error">
+            <p>No se encontró el producto</p>
+            <a href="catalogo.html" class="btn">Volver al catálogo</a>
+        </div>
+    `;
+}
 
-            function enviarWhatsApp(e) {
-                e.preventDefault();
-                
-                const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
-                const calidad = document.getElementById('calidad').value;
-                const talle = document.getElementById('talle').value;
-                const color = document.getElementById('color').value;
-                const metodoPago = document.getElementById('metodo-pago').value;
-                const cuotas = document.getElementById('cuotas') ? parseInt(document.getElementById('cuotas').value) : 1;
-                const notas = document.getElementById('notas').value;
-                
-                // Calcular precios según calidad (19% más para premium)
-                let precioBase = producto.price;
-                let calidadTexto = 'Regular de Guzzo (Alta Calidad)';
-                if (calidad === "premium") {
-                    precioBase = Math.round(producto.price * 1.19); // 19% más para calidad premium
-                    calidadTexto = 'Premium de Guzzo (+19%)';
-                }
-                
-                // Calcular descuentos
-                let descuento = 0;
-                if (cantidad >= 3) descuento = 10;
-                else if (cantidad >= 2) descuento = 3;
-                
-                // Descuento por pago en efectivo
-                if(metodoPago === 'Efectivo') descuento += 10;
-                
-                let total = precioBase * cantidad * (1 - descuento/100);
-                
-                // Aplicar recargo por cuotas
-                if(metodoPago === 'MercadoPago') {
-                    if(cuotas === 3) total *= 1.10;
-                    if(cuotas === 6) total *= 1.20;
-                }
-                            
-                const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${precioBase.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''}\n\n[Ver producto](${producto.images ? producto.images[color] || producto.image : producto.image})`;
-                window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
-            }
-            
-            // Inicializar resumen
-            actualizarResumen();
-        }
-        
-        function mostrarError() {
-            document.querySelector('.personalizar-container').innerHTML = `
-                <div class="error">
-                    <p>No se encontró el producto</p>
-                    <a href="catalogo.html" class="btn">Volver al catálogo</a>
-                </div>
-            `;
-        }
-
-        function toggleGuiaTalles() {
-            const content = document.getElementById('guia-talles-content');
-            const icon = document.getElementById('guia-icon');
-            
-            if (content.style.display === 'block') {
-                content.style.display = 'none';
-                icon.classList.remove('fa-chevron-up');
-                icon.classList.add('fa-chevron-down');
-            } else {
-                content.style.display = 'block';
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
-            }
-        }
-    </script>
+function toggleGuiaTalles() {
+    const content = document.getElementById('guia-talles-content');
+    const icon = document.getElementById('guia-icon');
+    
+    if (content.style.display === 'block') {
+        content.style.display = 'none';
+        icon.classList.remove('fa-chevron-up');
+        icon.classList.add('fa-chevron-down');
+    } else {
+        content.style.display = 'block';
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-up');
+    }
+}    </script>
 </body>
 </html>
