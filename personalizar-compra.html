@@ -699,8 +699,8 @@ document.getElementById('resumen-detalle').innerHTML = `
         }
                     
 const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n${producto.estampa ? `*Estampa:* ${estampa}\n` : ''}*Cantidad:* ${cantidad}\n*Precio unitario:* $${precioBase.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'Tarjeta' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''}\n\n[Ver producto](${producto.images ? producto.images[color] || producto.image : producto.image})`;
-         window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
-    }
+window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
+}
     
     // Inicializar resumen
     actualizarResumen();
