@@ -18,14 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 2,
             name: "Gorra",
-            price: 24999,
+            price: 21999,
             oldPrice: 40000,
             category: "ropa",
             subcategory: "gorras",
             image: "Gorras.jpeg",
             description: "Gorra ajustable NBA edición limitada",
             sizes: ["Ajustable"],
-            discount: 33,
+            discount: 45,
             tags: ["oferta", "nuevo"]
         },
         {
