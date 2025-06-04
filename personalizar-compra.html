@@ -259,6 +259,7 @@
                             <select id="metodo-pago" name="metodo-pago" required>
                                 <option value="">Seleccionar</option>
                                 <option value="Efectivo">Efectivo (5% descuento)</option>
+                                <option value="Tarjeta">Tarjeta de crédito</option>
                                 <option value="Transferencia">Transferencia bancaria</option>
                                 <option value="MercadoPago">Mercado Pago</option>
                                 <option value="Cripto">Criptomonedas</option>
@@ -266,14 +267,17 @@
                         </div>
 
                         <!-- Cuotas -->
-                        <div class="selector" id="cuotas-container" style="display:none;">
-                            <label for="cuotas">Cuotas:</label>
-                            <select id="cuotas" name="cuotas">
-                                <option value="1">1 cuota (4%)</option>
-                                <option value="3">3 cuotas (+10%)</option>
-                                <option value="6">6 cuotas (+20%)</option>
-                            </select>
-                        </div>
+<div class="selector" id="cuotas-container" style="display:none;">
+    <label for="cuotas">Cuotas:</label>
+    <select id="cuotas" name="cuotas">
+        <option value="1">1 cuota (+4%)</option>
+        <option value="2">2 cuotas (+18%)</option>
+        <option value="3">3 cuotas (+23%)</option>
+        <option value="6">6 cuotas (+40%)</option>
+        <option value="9">9 cuotas (+63%)</option>
+        <option value="12">12 cuotas (+86%)</option>
+    </select>
+</div>
 
                         <div class="selector">
                             <label for="notas">Notas adicionales <span class="opcional">(Opcional)</span>:</label>
@@ -334,7 +338,7 @@
             const cuotasContainer = document.getElementById('cuotas-container');
             
             metodoPago.addEventListener('change', function() {
-                if(this.value === 'MercadoPago') {
+                if(this.value === 'Tarjeta') {
                     cuotasContainer.style.display = 'block';
                 } else {
                     cuotasContainer.style.display = 'none';
@@ -629,10 +633,19 @@ function configurarFormulario(producto) {
         let total = precioBase * cantidad * (1 - descuento/100);
         
         // Aplicar recargo por cuotas
-        if(metodoPago === 'MercadoPago') {
-            if(cuotas === 3) total *= 1.10;
-            if(cuotas === 6) total *= 1.20;
-        }
+if (metodoPago === 'Tarjeta') {
+    let recargoPorcentaje = 0;
+    switch (cuotas) {
+        case 1: recargoPorcentaje = 4; break;
+        case 2: recargoPorcentaje = 18; break;
+        case 3: recargoPorcentaje = 23; break;
+        case 6: recargoPorcentaje = 40; break;
+        case 9: recargoPorcentaje = 63; break;
+        case 12: recargoPorcentaje = 86; break;
+    }
+    total *= (1 + recargoPorcentaje / 100);
+}
+
         
         document.getElementById('resumen-detalle').innerHTML = `
             <p>${cantidad} x ${producto.name}</p>
