@@ -45,11 +45,11 @@
             align-items: center;
         }
         
-        .producto-img {
-            max-width: 100%;
-            max-height: 400px;
-            object-fit: contain;
-        }
+ .producto-img {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+}
         
         .size-guide-container {
             width: 100%;
@@ -77,34 +77,41 @@
         }
         
         /* Contenedor de imágenes */
-        .imagenes-remera {
-            position: relative;
-            width: 100%;
-        }
+.imagenes-remera {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Añade una altura fija para consistencia */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vista-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.vista-container.active {
+    display: flex;
+}
         
-        .vista-container {
-            position: relative;
-            display: none;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .vista-container.active {
-            display: flex;
-        }
-        
-        .estampado-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            mix-blend-mode: multiply;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-        }
+.estampado-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
         
         .estampado-img.active {
             opacity: 1;
@@ -710,20 +717,25 @@
             });
             
             // Actualizar estampado cuando cambia la selección
-            if (producto.prints) {
-                selectEstampado.addEventListener('change', function() {
-                    const estampadoSeleccionado = this.value;
-                    
-                    if (estampadoSeleccionado === "Sin estampado") {
-                        estampadoFrente.classList.remove('active');
-                        estampadoEspalda.classList.remove('active');
-                    } else {
-                        estampadoFrente.src = producto.estampados[estampadoSeleccionado].frente;
-                        estampadoEspalda.src = producto.estampados[estampadoSeleccionado].espalda;
-                        
-                        estampadoFrente.classList.add('active');
-                        estampadoEspalda.classList.add('active');
-                    }
+if (producto.prints) {
+    selectEstampado.addEventListener('change', function() {
+        const estampadoSeleccionado = this.value;
+        
+        if (estampadoSeleccionado === "Sin estampado") {
+            estampadoFrente.style.opacity = 0;
+            estampadoEspalda.style.opacity = 0;
+        } else {
+            // Asegurarse de que las imágenes se carguen antes de mostrarlas
+            estampadoFrente.onload = function() {
+                estampadoFrente.style.opacity = 1;
+            };
+            estampadoEspalda.onload = function() {
+                estampadoEspalda.style.opacity = 1;
+            };
+            
+            estampadoFrente.src = producto.estampados[estampadoSeleccionado].frente;
+            estampadoEspalda.src = producto.estampados[estampadoSeleccionado].espalda;
+        }
                     
                     actualizarResumen();
                 });
