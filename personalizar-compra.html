@@ -41,12 +41,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 400px;
         }
         
         .producto-img {
             max-width: 100%;
             max-height: 400px;
             object-fit: contain;
+            transition: opacity 0.3s ease;
         }
         
         .size-guide-container {
@@ -335,56 +337,218 @@
             }
         });
         
-function obtenerProducto(id) {
-    const productos = {
-        1: { name: "Remera Térmica", price: 14999, image: "Termica.jpeg", sizes: ["S", "M", "L", "XL"], colors: ["Negro"] },
-        2: { name: "Gorra", price: 24999, image: "Gorras.jpeg", sizes: ["Ajustable"], colors: ["Negro", "Azul"] },
-        3: { name: "Cuellos Lycra Frizada", price: 3999, image: "Cuellito.jpeg", sizes: ["Único"], colors: ["Negro"] },
-        4: { name: "DC Court Graffick Rosas", price: 199999, image: "dc-rosas.jpeg", sizes: ["36", "37", "38", "39", "40"], colors: ["Negro"] },
-        5: { name: "Puma 180", price: 169999, image: "puma-180.jpeg", sizes: ["38", "39", "40", "41", "42"], colors: ["Negro"] },
-        6: { name: "Osiris D3 2001", price: 299999, image: "osiris-d3.jpeg", sizes: ["39", "40", "41", "42"], colors: ["Negro"] },
-        7: { name: "Remera Oversize", price: 17999, image: "remera-violeta.jpeg", sizes: ["S", "M", "L", "XL", "XL"], colors: ["Negro", "Blanco", "Gris", "Marron", "Violeta", "Verde", "Bordo"] },
-        8: { name: "Buzo canguro tela peluche", price: 17000, image: "assets/products/buzo-peluche.jpg", sizes: ["S-M", "L-XL", "2XL-3XL"], colors: ["Gris"] },
-        9: { name: "Buzo Canguro", price: 25000, image: "assets/products/buzo-canguro-negro.jpg", sizes: ["S", "M", "L", "XL"], colors: ["Negro"] },
-        11: { name: "Jeans Rotos Oversize", price: 28999, image: "https://example.com/jeans-rotos.jpg", sizes: ["28", "30", "32", "34"], colors: ["Azul"] },
-        12: { name: "Campera Denim", price: 45999, image: "https://example.com/campera-denim.jpg", sizes: ["S", "M", "L", "XL"], colors: ["Azul"] },
-        13: { name: "Mochila The North Face", price: 54999, image: "https://example.com/mochila-tnf.jpg", sizes: [], colors: [] },
-        14: { name: "Calza One Leg", price: 19999, image: "assets/products/calza-one-leg.jpg", sizes: ["S", "M", "L", "XL"], colors: ["Negro"] },
-        15: { name: "Calza Larga", price: 24999, image: "assets/products/calza-larga.jpg", sizes: ["S", "M", "L", "XL"], colors: ["Negro"] },
-        17: { name: "Nike Lebron XXI", price: 259999, image: "assets/products/lebron-xxi.jpg", sizes: ["39", "40", "41", "42", "43", "44"], colors: ["Negro"] },
-        18: { name: "Nike Lebron Witness 7", price: 259999, image: "assets/products/lebron-witness7.jpg", sizes: ["39", "40", "41", "42", "43", "44"], colors: ["Negro"] },
-        19: { name: "Calza Corta Deportiva Mujer", price: 7999, image: "assets/products/calza-corta-mujer.jpg", sizes: ["XS", "S", "M", "L"], colors: ["Negro"] },
-        20: { name: "Giannis Immortality 4", price: 149999, image: "assets/products/giannis-immortality4.jpg", sizes: ["39", "40", "41", "42", "43", "44"], colors: ["Negro"] },
-        21: { name: "Nike G.T. Cut Academy", price: 119999, image: "assets/products/nike-gt-cut.jpg", sizes: ["39", "40", "41", "42", "43", "44"], colors: ["Negro"] },
-        22: { name: "Jordan Tatum 2", price: 219999, image: "assets/products/jordan-tatum2.jpg", sizes: ["39", "40", "41", "42", "43", "44", "45"], colors: ["Negro"] },
-        23: { name: "Air Jordan XXXVIII", price: 319999, image: "assets/products/air-jordan-38.jpg", sizes: ["40", "41", "42", "43", "44"], colors: ["Negro"] },
-        24: { name: "Kobe VIII Protro", price: 289999, image: "assets/products/kobe-viii-protro.jpg", sizes: ["39", "40", "41", "42", "43"], colors: ["Negro"] },
-        26: { name: "Botas Bucaneras (gamuza sintética)", price: 39000, image: "assets/products/botas-bucaneras.jpg", sizes: ["36", "37", "38", "39", "40"], colors: ["Negro"] },
-        27: { name: "Borcegos veganos plataforma", price: 43000, image: "assets/products/borcegos-veganos.jpg", sizes: ["35", "36", "37", "38", "39", "40"], colors: ["Negro"] },
-        28: { name: "Remera oversize 2Pac (All Eyez On Me)", price: 29000, image: "assets/products/remera-2pac.jpg", sizes: ["M", "L", "XL"], colors: ["Negro"] },
-        29: { name: "Pantalón cargo alto con strass", price: 71000, image: "assets/products/pantalon-cargo-strass.jpg", sizes: ["S", "M", "L", "XL"], colors: ["Fucsia", "Verde"] },
-        30: { name: "Remera con malla transparente", price: 20000, image: "assets/products/remera-malla.jpg", sizes: ["S", "M"], colors: ["Blanco"] },
-        31: { name: "Campera Nike Tech Fleece", price: 150000, image: "assets/products/campera-nike.jpg", sizes: ["L", "XL", "XXL"], colors: ["Negro"] },
-        32: { name: "Campera puffer acolchonada", price: 48000, image: "assets/products/campera-puffer.jpg", sizes: ["S", "M", "L"], colors: ["Negro"] },
-        33: { name: "Top oversize algodón (manga larga)", price: 12000, image: "assets/products/top-oversize.jpg", sizes: ["S", "M"], colors: ["Negro"] },
-        34: { name: "Top satén liso con tirantes finos", price: 21000, image: "assets/products/top-saten.jpg", sizes: ["S", "M"], colors: ["Negro", "Rojo"] },
-        36: { name: "Jogging oversize lycra deportivo", price: 71000, image: "assets/products/jogging-lycra.jpg", sizes: ["S", "M", "L"], colors: ["Negro"] },
-        37: { name: "Remera estampado animal sobre blanco", price: 25000, image: "assets/products/remera-animal.jpg", sizes: ["S", "M", "L"], colors: ["Blanco"] },
-        38: { name: "Jean wide leg animal print", price: 47000, image: "assets/products/jean-animal.jpg", sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"], colors: ["Blanco", "Negro"] },
-        39: { name: "Sweater oversize estampado cebra", price: 45000, image: "assets/products/sweater-cebra.jpg", sizes: ["3XL"], colors: ["Verde"] },
-        40: { name: "Top bandeau plisado sin tirantes", price: 18000, image: "assets/products/top-bandeau.jpg", sizes: ["S", "M"], colors: ["Rosa"] },
-    };
-    return productos[id];
-}
+        function obtenerProducto(id) {
+            const productos = {
+                1: { 
+                    name: "Remera Térmica", 
+                    price: 14999, 
+                    images: {
+                        "Negro": "Termica-negro.jpeg"
+                    }, 
+                    sizes: ["S", "M", "L", "XL"], 
+                    colors: ["Negro"] 
+                },
+                2: { 
+                    name: "Gorra", 
+                    price: 24999, 
+                    images: {
+                        "Negro": "Gorras-negro.jpeg",
+                        "Azul": "Gorras-azul.jpeg"
+                    }, 
+                    sizes: ["Ajustable"], 
+                    colors: ["Negro", "Azul"] 
+                },
+                3: { 
+                    name: "Cuellos Lycra Frizada", 
+                    price: 3999, 
+                    images: {
+                        "Negro": "Cuellito-negro.jpeg"
+                    }, 
+                    sizes: ["Único"], 
+                    colors: ["Negro"] 
+                },
+                4: { 
+                    name: "DC Court Graffick Rosas", 
+                    price: 199999, 
+                    images: {
+                        "Negro": "dc-rosas.jpeg"
+                    }, 
+                    sizes: ["36", "37", "38", "39", "40"], 
+                    colors: ["Negro"] 
+                },
+                5: { 
+                    name: "Puma 180", 
+                    price: 169999, 
+                    images: {
+                        "Negro": "puma-180.jpeg"
+                    }, 
+                    sizes: ["38", "39", "40", "41", "42"], 
+                    colors: ["Negro"] 
+                },
+                6: { 
+                    name: "Osiris D3 2001", 
+                    price: 299999, 
+                    images: {
+                        "Negro": "osiris-d3.jpeg"
+                    }, 
+                    sizes: ["39", "40", "41", "42"], 
+                    colors: ["Negro"] 
+                },
+                7: { 
+                    name: "Remera Oversize", 
+                    price: 17999, 
+                    images: {
+                        "Negro": "remera-oversize-negro.jpeg",
+                        "Blanco": "remera-oversize-blanco.jpeg",
+                        "Gris": "remera-oversize-gris.jpeg",
+                        "Marron": "remera-oversize-marron.jpeg",
+                        "Violeta": "remera-violeta.jpeg",
+                        "Verde": "remera-oversize-verde.jpeg",
+                        "Bordo": "remera-oversize-bordo.jpeg"
+                    }, 
+                    sizes: ["S", "M", "L", "XL"], 
+                    colors: ["Negro", "Blanco", "Gris", "Marron", "Violeta", "Verde", "Bordo"] 
+                },
+                8: { 
+                    name: "Buzo canguro tela peluche", 
+                    price: 17000, 
+                    images: {
+                        "Gris": "assets/products/buzo-peluche.jpg"
+                    }, 
+                    sizes: ["S-M", "L-XL", "2XL-3XL"], 
+                    colors: ["Gris"] 
+                },
+                9: { 
+                    name: "Buzo Canguro", 
+                    price: 25000, 
+                    images: {
+                        "Negro": "assets/products/buzo-canguro-negro.jpg"
+                    }, 
+                    sizes: ["S", "M", "L", "XL"], 
+                    colors: ["Negro"] 
+                },
+                14: { 
+                    name: "Calza One Leg", 
+                    price: 19999, 
+                    images: {
+                        "Negro": "assets/products/calza-one-leg.jpg"
+                    }, 
+                    sizes: ["S", "M", "L", "XL"], 
+                    colors: ["Negro"] 
+                },
+                15: { 
+                    name: "Calza Larga", 
+                    price: 24999, 
+                    images: {
+                        "Negro": "assets/products/calza-larga.jpg"
+                    }, 
+                    sizes: ["S", "M", "L", "XL"], 
+                    colors: ["Negro"] 
+                },
+                17: { 
+                    name: "Nike Lebron XXI", 
+                    price: 259999, 
+                    images: {
+                        "Negro": "assets/products/lebron-xxi.jpg"
+                    }, 
+                    sizes: ["39", "40", "41", "42", "43", "44"], 
+                    colors: ["Negro"] 
+                },
+                19: { 
+                    name: "Calza Corta Deportiva Mujer", 
+                    price: 7999, 
+                    images: {
+                        "Negro": "assets/products/calza-corta-mujer.jpg"
+                    }, 
+                    sizes: ["XS", "S", "M", "L"], 
+                    colors: ["Negro"] 
+                },
+                28: { 
+                    name: "Remera oversize 2Pac (All Eyez On Me)", 
+                    price: 29000, 
+                    images: {
+                        "Negro": "assets/products/remera-2pac.jpg"
+                    }, 
+                    sizes: ["M", "L", "XL"], 
+                    colors: ["Negro"] 
+                },
+                29: { 
+                    name: "Pantalón cargo alto con strass", 
+                    price: 71000, 
+                    images: {
+                        "Fucsia": "assets/products/pantalon-cargo-strass-fucsia.jpg",
+                        "Verde": "assets/products/pantalon-cargo-strass-verde.jpg"
+                    }, 
+                    sizes: ["S", "M", "L", "XL"], 
+                    colors: ["Fucsia", "Verde"] 
+                },
+                30: { 
+                    name: "Remera con malla transparente", 
+                    price: 20000, 
+                    images: {
+                        "Blanco": "assets/products/remera-malla.jpg"
+                    }, 
+                    sizes: ["S", "M"], 
+                    colors: ["Blanco"] 
+                },
+                34: { 
+                    name: "Top satén liso con tirantes finos", 
+                    price: 21000, 
+                    images: {
+                        "Negro": "assets/products/top-saten-negro.jpg",
+                        "Rojo": "assets/products/top-saten-rojo.jpg"
+                    }, 
+                    sizes: ["S", "M"], 
+                    colors: ["Negro", "Rojo"] 
+                },
+                37: { 
+                    name: "Remera estampado animal sobre blanco", 
+                    price: 25000, 
+                    images: {
+                        "Blanco": "assets/products/remera-animal.jpg"
+                    }, 
+                    sizes: ["S", "M", "L"], 
+                    colors: ["Blanco"] 
+                },
+                38: { 
+                    name: "Jean wide leg animal print", 
+                    price: 47000, 
+                    images: {
+                        "Blanco": "assets/products/jean-animal-blanco.jpg",
+                        "Negro": "assets/products/jean-animal-negro.jpg"
+                    }, 
+                    sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"], 
+                    colors: ["Blanco", "Negro"] 
+                },
+                40: { 
+                    name: "Top bandeau plisado sin tirantes", 
+                    price: 18000, 
+                    images: {
+                        "Rosa": "assets/products/top-bandeau.jpg"
+                    }, 
+                    sizes: ["S", "M"], 
+                    colors: ["Rosa"] 
+                }
+            };
+            return productos[id];
+        }
 
         function mostrarProducto(producto) {
-            document.getElementById('producto-imagen').src = producto.image;
+            // Determinar la imagen a mostrar (compatibilidad con versiones anteriores)
+            let imagenMostrar = producto.image;
+            if (producto.images) {
+                const primerColor = producto.colors[0];
+                imagenMostrar = producto.images[primerColor] || producto.image;
+            }
+            
+            document.getElementById('producto-imagen').src = imagenMostrar;
             document.getElementById('producto-nombre').textContent = producto.name;
             document.getElementById('producto-precio').textContent = `$${producto.price.toLocaleString('es-AR')}`;
             document.getElementById('producto-descripcion').textContent = producto.description || "Producto exclusivo GUZZOCORP";
             
             // Llenar talles
             const selectTalle = document.getElementById('talle');
+            selectTalle.innerHTML = '';
             producto.sizes.forEach(talle => {
                 const option = document.createElement('option');
                 option.value = talle;
@@ -394,6 +558,7 @@ function obtenerProducto(id) {
             
             // Llenar colores
             const selectColor = document.getElementById('color');
+            selectColor.innerHTML = '';
             producto.colors.forEach(color => {
                 const option = document.createElement('option');
                 option.value = color;
@@ -404,6 +569,29 @@ function obtenerProducto(id) {
         
         function configurarFormulario(producto) {
             const form = document.getElementById('form-compra');
+            const selectColor = document.getElementById('color');
+            const imagenProducto = document.getElementById('producto-imagen');
+            
+            // Actualizar imagen cuando cambia el color
+            selectColor.addEventListener('change', function() {
+                const colorSeleccionado = this.value;
+                
+                // Efecto de transición
+                imagenProducto.style.opacity = 0;
+                
+                setTimeout(() => {
+                    // Opción 1: Productos con imágenes por color
+                    if (producto.images && producto.images[colorSeleccionado]) {
+                        imagenProducto.src = producto.images[colorSeleccionado];
+                    } 
+                    // Opción 2: Productos con imagen única (compatibilidad)
+                    else if (producto.image) {
+                        imagenProducto.src = producto.image;
+                    }
+                    
+                    imagenProducto.style.opacity = 1;
+                }, 300);
+            });
             
             // Actualizar resumen al cambiar opciones
             form.addEventListener('change', actualizarResumen);
@@ -489,7 +677,7 @@ function obtenerProducto(id) {
                     if(cuotas === 6) total *= 1.20;
                 }
                             
-                const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${precioBase.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''}\n\n[Ver producto](${producto.image})`;
+                const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n*Cantidad:* ${cantidad}\n*Precio unitario:* $${precioBase.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''}\n\n[Ver producto](${producto.images ? producto.images[color] || producto.image : producto.image})`;
                 window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
             }
             
