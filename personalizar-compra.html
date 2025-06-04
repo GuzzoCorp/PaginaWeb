@@ -464,7 +464,10 @@
                         "frente": {
                             "Negro": "remera-frente-negro.jpeg",
                             "Blanco": "remera-frente-blanco.jpeg",
-                            "Gris": "remera-frente-gris.jpeg"
+                            "Gris": "remera-frente-gris.jpeg",
+                            "Violeta": "remera-violeta.jpeg",
+                            "Marron": "remera-marron.jpeg",
+                            "Verde": "remera-verde.jpeg"
                         },
                         "espalda": {
                             "Negro": "remera-espalda-negro.jpeg",
@@ -473,24 +476,117 @@
                         }
                     }, 
                     sizes: ["S", "M", "L", "XL"], 
-                    colors: ["Negro", "Blanco", "Gris"],
-                    prints: ["Sin estampado", "Logo pequeño", "Logo grande", "Diseño completo"],
+                    colors: ["Negro", "Blanco", "Gris", "Violeta", "Marron", "Verde"],
+                    prints: ["Sin estampado", "The North Face", "Logo grande", "Diseño completo"],
                     estampados: {
-                        "Logo pequeño": {
+                        "The North Face": {
                             "frente": "estampados/logo-pequeno-frente.png",
                             "espalda": "estampados/logo-pequeno-espalda.png"
-                        },
-                        "Logo grande": {
-                            "frente": "estampados/logo-grande-frente.png",
-                            "espalda": "estampados/logo-grande-espalda.png"
-                        },
-                        "Diseño completo": {
-                            "frente": "estampados/diseno-completo-frente.png",
-                            "espalda": "estampados/diseno-completo-espalda.png"
                         }
                     }
                 },
-                // ... otros productos (mantener igual que antes)
+             6:{ 
+                    name: "Buzo canguro tela peluche", 
+                    price: 17000, 
+                    images: {
+                        "Gris": "assets/products/buzo-peluche.jpg"
+                    }, 
+                    sizes: ["S-M", "L-XL", "2XL-3XL"], 
+                    colors: ["Gris"] 
+                },
+                9: { 
+                    name: "Buzo Canguro", 
+                    price: 25000, 
+                    images: {
+                        "Negro": "assets/products/buzo-canguro-negro.jpg"
+                    }, 
+                    sizes: ["S", "M", "L", "XL"], 
+                    colors: ["Negro"] 
+                },
+                12: { 
+                    name: "Campera de Jean", 
+                    price: 39999, 
+                    images: {
+                        "Clasico": "camperajean.jpeg"
+                    }, 
+                    sizes: ["S", "M", "L", "XL"], 
+                    colors: ["Clasico"] 
+                },
+                14: { 
+                    name: "Calza One Leg", 
+                    price: 19999, 
+                    images: {
+                        "Negro": "assets/products/calza-one-leg.jpg"
+                    }, 
+                    sizes: ["S", "M", "L", "XL"], 
+                    colors: ["Negro"] 
+                },
+                15: { 
+                    name: "Calza Larga", 
+                    price: 24999, 
+                    images: {
+                        "Negro": "assets/products/calza-larga.jpg"
+                    }, 
+                    sizes: ["S", "M", "L", "XL"], 
+                    colors: ["Negro"] 
+                },
+                19: { 
+                    name: "Calza Corta Deportiva Mujer", 
+                    price: 7999, 
+                    images: {
+                        "Negro": "assets/products/calza-corta-mujer.jpg"
+                    }, 
+                    sizes: ["XS", "S", "M", "L"], 
+                    colors: ["Negro"] 
+                },
+                28: { 
+                    name: "Pantalón cargo alto con strass", 
+                    price: 71000, 
+                    images: {
+                        "Fucsia": "assets/products/pantalon-cargo-strass-fucsia.jpg",
+                        "Verde": "assets/products/pantalon-cargo-strass-verde.jpg"
+                    }, 
+                    sizes: ["S", "M", "L", "XL"], 
+                    colors: ["Fucsia", "Verde"] 
+                },
+                29: { 
+                    name: "Remera con malla transparente", 
+                    price: 20000, 
+                    images: {
+                        "Blanco": "assets/products/remera-malla.jpg"
+                    }, 
+                    sizes: ["S", "M"], 
+                    colors: ["Blanco"] 
+                },
+                33: { 
+                    name: "Top satén liso con tirantes finos", 
+                    price: 21000, 
+                    images: {
+                        "Negro": "assets/products/top-saten-negro.jpg",
+                        "Rojo": "assets/products/top-saten-rojo.jpg"
+                    }, 
+                    sizes: ["S", "M"], 
+                    colors: ["Negro", "Rojo"] 
+                },
+                37: { 
+                    name: "Jean wide leg animal print", 
+                    price: 47000, 
+                    images: {
+                        "Blanco": "assets/products/jean-animal-blanco.jpg",
+                        "Negro": "assets/products/jean-animal-negro.jpg"
+                    }, 
+                    sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"], 
+                    colors: ["Blanco", "Negro"] 
+                },
+                39: { 
+                    name: "Top bandeau plisado sin tirantes", 
+                    price: 18000, 
+                    images: {
+                        "Rosa": "assets/products/top-bandeau.jpg"
+                    }, 
+                    sizes: ["S", "M"], 
+                    colors: ["Rosa"] 
+                }
             };
             return productos[id];
         }
