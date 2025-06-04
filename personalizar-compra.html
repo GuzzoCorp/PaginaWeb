@@ -212,7 +212,7 @@
                         <div class="beneficio-item">
                             <i class="fas fa-money-bill-wave"></i>
                             <div>
-                                <h4>Efectivo: 10% de Descuento</h4>
+                                <h4>Efectivo: 5% de Descuento</h4>
                                 <p>Pagando en efectivo</p>
                             </div>
                         </div>
@@ -258,7 +258,7 @@
                             <label for="metodo-pago">Método de pago:</label>
                             <select id="metodo-pago" name="metodo-pago" required>
                                 <option value="">Seleccionar</option>
-                                <option value="Efectivo">Efectivo (10% descuento)</option>
+                                <option value="Efectivo">Efectivo (5% descuento)</option>
                                 <option value="Transferencia">Transferencia bancaria</option>
                                 <option value="MercadoPago">Mercado Pago / Cuotas</option>
                                 <option value="Cripto">Criptomonedas</option>
@@ -624,7 +624,7 @@ function configurarFormulario(producto) {
         else if (cantidad >= 2) descuento = 3;
 
         // Descuento por pago en efectivo
-        if(metodoPago === 'Efectivo') descuento += 10;
+        if(metodoPago === 'Efectivo') descuento += 6;
         
         let total = precioBase * cantidad * (1 - descuento/100);
         
