@@ -295,7 +295,6 @@ document.addEventListener('DOMContentLoaded', function() {
             tags: ["nuevo", "exclusivo"],
             stock: 5
         },
-        // Nuevos productos del PDF
         {
             id: 26,
             name: "Botas Bucaneras (gamuza sintética)",
@@ -353,7 +352,7 @@ document.addEventListener('DOMContentLoaded', function() {
             image: "conjuntonikee.jpg",
             description: "Campera polar Tech Fleece, interior forro suave",
             sizes: ["L", "XL", "XXL"],
-            tags: ["nuevo", "exclusivo"],
+            tags: ["nuevo"],
             colors: ["Negro"]
         },
         {
