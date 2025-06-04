@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', function() {
             subcategory: "celulares",
             image: "iphone16.jpeg",
             description: "Nuevo iPhone 16 128GB sellado de fábrica",
-            tags: ["nuevo", "exclusivo"],
+            tags: ["nuevo"],
             stock: 5
         },
         {
@@ -496,9 +496,6 @@ function renderProducts(filteredProducts) {
             }
             if (product.tags.includes('ultima-unidad')) {
                 tagsHTML += `<span class="tag-stock">ÚLTIMA UNIDAD</span>`;
-            }
-            if (product.tags.includes('exclusivo')) {
-                tagsHTML += `<span class="tag-exclusive">EXCLUSIVO</span>`;
             }
             if (product.tags.includes('coleccionista')) {
                 tagsHTML += `<span class="tag-collector">COLECCIONISTA</span>`;
