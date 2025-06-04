@@ -648,18 +648,18 @@ if (metodoPago === 'Tarjeta') {
 }
 
         
-        document.getElementById('resumen-detalle').innerHTML = `
-            <p>${cantidad} x ${producto.name}</p>
-            <p>Calidad: ${calidadTexto}</p>
-            <p>Talle: ${talle}</p>
-            <p>Color: ${color}</p>
-            ${producto.estampa ? `<p>Estampa: ${estampa}</p>` : ''}
-            <p>Precio unitario: $${precioBase.toLocaleString('es-AR')}</p>
-            ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
-            ${metodoPago === 'Tarjeta' ? `<p>${cuotas} cuotas</p>` : ''}
-            <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
-            <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
-        `;
+document.getElementById('resumen-detalle').innerHTML = `
+    <p>${cantidad} x ${producto.name}</p>
+    <p>Calidad: ${calidadTexto}</p>
+    <p>Talle: ${talle}</p>
+    <p>Color: ${color}</p>
+    ${producto.estampa ? `<p>Estampa: ${estampa}</p>` : ''}
+    <p>Precio unitario: $${precioBase.toLocaleString('es-AR')}</p>
+    ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
+    ${metodoPago === 'Tarjeta' ? `<p>Cuotas: ${cuotas}</p>` : ''}
+    <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
+    <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
+`;
     }
 
     function enviarWhatsApp(e) {
@@ -698,8 +698,8 @@ if (metodoPago === 'Tarjeta') {
             if(cuotas === 6) total *= 1.20;
         }
                     
-        const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n${producto.estampa ? `*Estampa:* ${estampa}\n` : ''}*Cantidad:* ${cantidad}\n*Precio unitario:* $${precioBase.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'MercadoPago' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''}\n\n[Ver producto](${producto.images ? producto.images[color] || producto.image : producto.image})`;
-        window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
+const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n${producto.estampa ? `*Estampa:* ${estampa}\n` : ''}*Cantidad:* ${cantidad}\n*Precio unitario:* $${precioBase.toLocaleString('es-AR')}\n${descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''}${metodoPago === 'Tarjeta' ? `*Cuotas:* ${cuotas}\n` : ''}*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''}\n\n[Ver producto](${producto.images ? producto.images[color] || producto.image : producto.image})`;
+         window.open(`https://wa.me/5492664633010?text=${encodeURIComponent(mensaje)}`, '_blank');
     }
     
     // Inicializar resumen
