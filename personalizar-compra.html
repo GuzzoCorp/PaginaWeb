@@ -225,6 +225,17 @@
                             <label for="color">Color:</label>
                             <select id="color" name="color" required></select>
                         </div>
+
+<!-- Selección de estampado -->
+<div class="selector">
+    <label for="estampado">Estampado:</label>
+    <select id="estampado" name="estampado">
+        <option value="Sin estampado">Sin estampado</option>
+        <option value="Logo pequeño">Logo pequeño</option>
+        <option value="Logo grande">Logo grande</option>
+        <option value="Diseño completo">Diseño completo</option>
+    </select>
+</div>
                         
                         <!-- Cantidad -->
                         <div class="selector">
@@ -371,21 +382,22 @@
                     sizes: ["Único"], 
                     colors: ["Negro"] 
                 },
-                7: { 
-                    name: "Remera Oversize", 
-                    price: 17999, 
-                    images: {
-                        "Negro": "remera-negro.jpeg",
-                        "Blanco": "remera-blanco.jpeg",
-                        "Gris": "remera-gris.jpeg",
-                        "Marron": "remera-marron.jpeg",
-                        "Violeta": "remera-violeta.jpeg",
-                        "Verde": "remera-verde.jpeg",
-                        "Bordo": "remera-bordo.jpeg"
-                    }, 
-                    sizes: ["S", "M", "L", "XL"], 
-                    colors: ["Negro", "Blanco", "Gris", "Marron", "Violeta", "Verde", "Bordo"] 
-                },
+7: { 
+    name: "Remera Oversize", 
+    price: 17999, 
+    images: {
+        "Negro": "remera-negro.jpeg",
+        "Blanco": "remera-blanco.jpeg",
+        "Gris": "remera-gris.jpeg",
+        "Marron": "remera-marron.jpeg",
+        "Violeta": "remera-violeta.jpeg",
+        "Verde": "remera-verde.jpeg",
+        "Bordo": "remera-bordo.jpeg"
+    }, 
+    sizes: ["S", "M", "L", "XL"], 
+    colors: ["Negro", "Blanco", "Gris", "Marron", "Violeta", "Verde", "Bordo"],
+    prints: ["Sin estampado", "Logo pequeño", "Logo grande", "Diseño completo"] // Nuevo campo para estampados
+},
                 6: { 
                     name: "Buzo canguro tela peluche", 
                     price: 17000, 
@@ -526,31 +538,50 @@
             });
         }
         
-        function configurarFormulario(producto) {
-            const form = document.getElementById('form-compra');
-            const selectColor = document.getElementById('color');
-            const imagenProducto = document.getElementById('producto-imagen');
+function configurarFormulario(producto) {
+    const form = document.getElementById('form-compra');
+    const selectColor = document.getElementById('color');
+    const selectEstampado = document.getElementById('estampado');
+    const imagenProducto = document.getElementById('producto-imagen');
+    
+    // Ocultar selector de estampado si el producto no tiene estampados
+    if (!producto.prints) {
+        document.querySelector('label[for="estampado"]').parentElement.style.display = 'none';
+    } else {
+        // Llenar opciones de estampado
+        selectEstampado.innerHTML = '';
+        producto.prints.forEach(print => {
+            const option = document.createElement('option');
+            option.value = print;
+            option.textContent = print;
+            selectEstampado.appendChild(option);
+        });
+    }
+    
+    // Actualizar imagen cuando cambia el color o estampado
+    function actualizarImagen() {
+        const colorSeleccionado = selectColor.value;
+        const estampadoSeleccionado = selectEstampado ? selectEstampado.value : '';
+        
+        imagenProducto.style.opacity = 0;
+        
+        setTimeout(() => {
+            if (producto.images && producto.images[colorSeleccionado]) {
+                // Aquí podrías tener lógica para mostrar diferentes imágenes según el estampado
+                // Por ahora solo mostramos la imagen base del color
+                imagenProducto.src = producto.images[colorSeleccionado];
+            } else if (producto.image) {
+                imagenProducto.src = producto.image;
+            }
             
-            // Actualizar imagen cuando cambia el color
-            selectColor.addEventListener('change', function() {
-                const colorSeleccionado = this.value;
-                
-                // Efecto de transición
-                imagenProducto.style.opacity = 0;
-                
-                setTimeout(() => {
-                    // Opción 1: Productos con imágenes por color
-                    if (producto.images && producto.images[colorSeleccionado]) {
-                        imagenProducto.src = producto.images[colorSeleccionado];
-                    } 
-                    // Opción 2: Productos con imagen única (compatibilidad)
-                    else if (producto.image) {
-                        imagenProducto.src = producto.image;
-                    }
-                    
-                    imagenProducto.style.opacity = 1;
-                }, 300);
-            });
+            imagenProducto.style.opacity = 1;
+        }, 300);
+    }
+    
+    selectColor.addEventListener('change', actualizarImagen);
+    if (selectEstampado) {
+        selectEstampado.addEventListener('change', actualizarImagen);
+    }
             
             // Actualizar resumen al cambiar opciones
             form.addEventListener('change', actualizarResumen);
