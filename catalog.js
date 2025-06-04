@@ -138,11 +138,11 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 12,
-            name: "Campera Denim",
-            price: 45999,
+            name: "Campera De Jean",
+            price: 39999,
             category: "ropa",
             subcategory: "abrigos",
-            image: "camperadenim.jpeg",
+            image: "camperajean.jpeg",
             description: "Campera de jean clásica",
             sizes: ["S", "M", "L", "XL"],
             tags: ["nuevo"]
