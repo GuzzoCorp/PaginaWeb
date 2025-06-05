@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
             price: 26999,
             category: "ropa",
             subcategory: "buzos",
-            image: "assets/products/buzo-canguro-negro.jpg",
+            image: "buzocanguro-negro.jpeg",
             description: "Con bolsillo canguro",
             sizes: ["S", "M", "L", "XL"],
             tags: ["mas-vendido"],
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
             price: 54999,
             category: "accesorios",
             subcategory: "mochilas",
-            image: "https://example.com/mochila-tnf.jpg",
+            image: "mochilathenorth.jpeg",
             description: "Resistente al agua y duradera",
             tags: ["nuevo"]
         },
@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
             price: 129999,
             category: "accesorios",
             subcategory: "pelotas",
-            image: "assets/products/molten-bg4500.jpg",
+            image: "molten.jpeg",
             description: "Pelota oficial de básquet Molten",
             tags: ["nuevo"]
         },
