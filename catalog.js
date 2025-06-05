@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             tags: ["oferta"]
         },
         {
-            id: 4,
+            id: 11,
             name: "DC Court Graffick Rosas",
             price: 199999,
             category: "sneakers",
@@ -126,14 +126,14 @@ document.addEventListener('DOMContentLoaded', function() {
             stock: 5
         },
         {
-            id: 11,
-            name: "Jeans Rotos Oversize",
-            price: 24999,
+            id: 4,
+            name: "Pantalon Cargo Baggy",
+            price: 29999,
             category: "ropa",
             subcategory: "pantalones",
-            image: "https://example.com/jeans-rotos.jpg",
-            description: "Jeans estilo streetwear con roturas",
-            sizes: ["28", "30", "32", "34"],
+            image: "pantaloncargo.jpeg",
+            description: "",
+            sizes: ["28", "30", "32", "34", "36", "38", "39"],
             tags: ["nuevo"]
         },
         {
