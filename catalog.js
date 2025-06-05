@@ -309,18 +309,6 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 27,
-            name: "Borcegos veganos plataforma",
-            price: 43000,
-            category: "calzado",
-            subcategory: "borcegos",
-            image: "assets/products/borcegos-veganos.jpg",
-            description: "Botines altos negros con cordones y plataforma",
-            sizes: ["35", "36", "37", "38", "39", "40"],
-            tags: ["nuevo"],
-            colors: ["Negro"]
-        },
-        {
-            id: 28,
             name: "Pantalón cargo alto con strass",
             price: 71000,
             category: "ropa",
@@ -332,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Fucsia", "Verde"]
         },
         {
-            id: 29,
+            id: 28,
             name: "Remera con malla transparente",
             price: 20000,
             category: "ropa",
@@ -344,7 +332,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Blanco"]
         },
         {
-            id: 30,
+            id: 29,
             name: "Campera Nike Tech Fleece",
             price: 150000,
             category: "ropa",
@@ -356,7 +344,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 31,
+            id: 30,
             name: "Campera puffer acolchonada",
             price: 48000,
             category: "ropa",
@@ -368,8 +356,8 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 32,
-            name: "Top oversize algodón (manga larga)",
+            id: 31,
+            name: "Top algodón manga larga",
             price: 12000,
             category: "ropa",
             subcategory: "tops",
@@ -380,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro"]
         },
         {
-            id: 33,
+            id: 32,
             name: "Top satén liso con tirantes finos",
             price: 21000,
             category: "ropa",
@@ -392,67 +380,19 @@ document.addEventListener('DOMContentLoaded', function() {
             colors: ["Negro", "Rojo"]
         },
         {
-            id: 34,
-            name: "Cinturón ancho metalizado (Tresher)",
-            price: 10000,
-            category: "accesorios",
-            subcategory: "cinturones",
-            image: "assets/products/cinturon-metalizado.jpg",
-            description: "Cinturón tipo fajín ancho rígido con detalle metálico",
-            sizes: ["Único"],
-            tags: ["nuevo"],
-            colors: ["Plateado", "Dorado"]
-        },
-        {
-            id: 35,
-            name: "Jogging oversize lycra deportivo",
-            price: 71000,
+            id: 33,
+            name: "Jogging",
+            price: 10999,
             category: "ropa",
             subcategory: "pantalones",
             image: "assets/products/jogging-lycra.jpg",
-            description: "Babucha deportiva oversize en lycra, tiro alto",
+            description: "Joggin",
             sizes: ["S", "M", "L"],
             tags: ["nuevo"],
             colors: ["Negro"]
         },
         {
-            id: 36,
-            name: "Remera estampado animal sobre blanco",
-            price: 25000,
-            category: "ropa",
-            subcategory: "remeras",
-            image: "assets/products/remera-animal.jpg",
-            description: "Remera algodón blanca con estampado animal (leopardo/zebra)",
-            sizes: ["S", "M", "L"],
-            tags: ["nuevo"],
-            colors: ["Blanco"]
-        },
-        {
-            id: 37,
-            name: "Jean wide leg animal print",
-            price: 47000,
-            category: "ropa",
-            subcategory: "pantalones",
-            image: "assets/products/jean-animal.jpg",
-            description: "Jean palazzo ancho blanco con estampado animal zebra",
-            sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"],
-            tags: ["nuevo"],
-            colors: ["Blanco", "Negro"]
-        },
-        {
-            id: 38,
-            name: "Sweater oversize estampado cebra",
-            price: 45000,
-            category: "ropa",
-            subcategory: "sweaters",
-            image: "assets/products/sweater-cebra.jpg",
-            description: "Sweater lana oversize de corte amplio estampado cebra",
-            sizes: ["3XL"],
-            tags: ["nuevo"],
-            colors: ["Verde"]
-        },
-        {
-            id: 39,
+            id: 34,
             name: "Top bandeau plisado sin tirantes",
             price: 18000,
             category: "ropa",
