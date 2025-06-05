@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 6,
             name: "Buzo canguro tela peluche",
-            price: 17000,
+            price: 26999,
             category: "ropa",
             subcategory: "buzos",
             image: "buzopeluche.jpg",
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 9,
             name: "Buzo Canguro",
-            price: 25000,
+            price: 26999,
             category: "ropa",
             subcategory: "buzos",
             image: "assets/products/buzo-canguro-negro.jpg",
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 11,
             name: "Jeans Rotos Oversize",
-            price: 28999,
+            price: 24999,
             category: "ropa",
             subcategory: "pantalones",
             image: "https://example.com/jeans-rotos.jpg",
