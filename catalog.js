@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
             customizable: true
         },
         {
-            id: 6,
+            id: 8,
             name: "Buzo canguro tela peluche",
             price: 26999,
             category: "ropa",
