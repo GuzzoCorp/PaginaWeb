@@ -361,167 +361,165 @@
             }
         });
         
-        function obtenerProducto(id) {
-            const productos = {
-                1: { 
-                    name: "Remera Térmica", 
-                    price: 14999, 
-                    images: {
-                        "Negro": "Termica-negro.jpeg"
-                    }, 
-                    sizes: ["S", "M", "L", "XL"], 
-                    colors: ["Negro"] 
-                },
-                2: { 
-                    name: "Gorra", 
-                    price: 24999, 
-                    images: {
-                        "Elegir": "Gorras.jpeg",
-                        "Bulls (Negro)": "Bulls-negro.png",
-                        "Lakers (Negro)": "lakers-negro.png", 
-                        "New York (Negro)": "ny-negro.png",
-                        "Los Angeles (Beige)": "la-beige.png", 
-                        "Rocket (Rojo)": "rocket-rojo.png", 
-                        "Raptors (Gris)": "Raptors-gris.png"
-                    }, 
-                    sizes: ["Ajustable"], 
-                    colors: ["Elegir", "Bulls (Negro)", "Lakers (Negro)", "New York (Negro)", "Los Angeles (Beige)", "Rocket (Rojo)", "Raptors (Gris)"] 
-                },
-                3: { 
-                    name: "Cuellos Termicos", 
-                    price: 3999, 
-                    images: {
-                        "Negro": "cuello-negro.jpeg"
-                    }, 
-                    sizes: ["Único"], 
-                    colors: ["Negro"] 
-                },
-                11: { 
-                    name: "Pantalon Cargo Baggy", 
-                    price: 29999, 
-                    images: {
-                        "Negro": "pantaloncargo.jpeg"
-                    }, 
-                    sizes: ["38", "39", "40", "41", "42", "43", "44", "46", "48"], 
-                    colors: ["Negro"] 
-                },
-                7: { 
-                    name: "Remera Oversize", 
-                    price: 17999, 
-                    images: {
-                        "Negro": "remera-negro.jpeg",
-                        "Blanco": "remera-blanco.jpeg",
-                        "Gris": "remera-gris.jpeg",
-                        "Marron": "remera-marron.jpeg",
-                        "Violeta": "remera-violeta.jpeg",
-                        "Verde": "remera-verde.jpeg",
-                        "Bordo": "remera-bordo.jpeg",
-                        "The North Face": "north-face.png"
-                    }, 
-                    sizes: ["S", "M", "L", "XL"], 
-                    colors: ["Violeta", "Marron", "Negro", "Blanco", "Gris", "Verde", "Bordo"],
-                    estampa: ["Sin estampado", "The North Face"]
-                },
-                6: { 
-                    name: "Buzo canguro tela peluche", 
-                    price: 26999, 
-                    images: {
-                        "Gris": "assets/products/buzo-peluche.jpg"
-                    }, 
-                    sizes: ["S-M", "L-XL", "2XL-3XL"], 
-                    colors: ["Gris"] 
-                },
-                9: { 
-                    name: "Buzo Canguro", 
-                    price: 26999, 
-                    images: {
-                        "Negro": "buzocanguro-negro.jpeg"
-                        "The North Face": "north-face.png"
-
-                    }, 
-                    sizes: ["S", "M", "L", "XL"], 
-                    colors: ["Negro"],
-                    estampa: ["Sin estampado", "The North Face"]
-
-                },
-                14: { 
-                    name: "Calza One Leg", 
-                    price: 19999, 
-                    images: {
-                        "Negro": "assets/products/calza-one-leg.jpg"
-                    }, 
-                    sizes: ["S", "M", "L", "XL"], 
-                    colors: ["Negro"] 
-                },
-                15: { 
-                    name: "Calza Larga", 
-                    price: 24999, 
-                    images: {
-                        "Negro": "assets/products/calza-larga.jpg"
-                    }, 
-                    sizes: ["S", "M", "L", "XL"], 
-                    colors: ["Negro"] 
-                },
-                19: { 
-                    name: "Calza Corta Deportiva Mujer", 
-                    price: 7999, 
-                    images: {
-                        "Negro": "assets/products/calza-corta-mujer.jpg"
-                    }, 
-                    sizes: ["XS", "S", "M", "L"], 
-                    colors: ["Negro"] 
-                },
-                28: { 
-                    name: "Pantalón cargo alto con strass", 
-                    price: 71000, 
-                    images: {
-                        "Fucsia": "assets/products/pantalon-cargo-strass-fucsia.jpg",
-                        "Verde": "assets/products/pantalon-cargo-strass-verde.jpg"
-                    }, 
-                    sizes: ["S", "M", "L", "XL"], 
-                    colors: ["Fucsia", "Verde"] 
-                },
-                29: { 
-                    name: "Remera con malla transparente", 
-                    price: 20000, 
-                    images: {
-                        "Blanco": "assets/products/remera-malla.jpg"
-                    }, 
-                    sizes: ["S", "M"], 
-                    colors: ["Blanco"] 
-                },
-                33: { 
-                    name: "Top satén liso con tirantes finos", 
-                    price: 21000, 
-                    images: {
-                        "Negro": "assets/products/top-saten-negro.jpg",
-                        "Rojo": "assets/products/top-saten-rojo.jpg"
-                    }, 
-                    sizes: ["S", "M"], 
-                    colors: ["Negro", "Rojo"] 
-                },
-                37: { 
-                    name: "Jean wide leg animal print", 
-                    price: 24999, 
-                    images: {
-                        "Blanco": "assets/products/jean-animal-blanco.jpg",
-                        "Negro": "assets/products/jean-animal-negro.jpg"
-                    }, 
-                    sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"], 
-                    colors: ["Blanco", "Negro"] 
-                },
-                39: { 
-                    name: "Top bandeau plisado sin tirantes", 
-                    price: 18000, 
-                    images: {
-                        "Rosa": "assets/products/top-bandeau.jpg"
-                    }, 
-                    sizes: ["S", "M"], 
-                    colors: ["Rosa"] 
-                }
-            };
-            return productos[id];
+function obtenerProducto(id) {
+    const productos = {
+        1: { 
+            name: "Remera Térmica", 
+            price: 14999, 
+            images: {
+                "Negro": "Termica-negro.jpeg"
+            }, 
+            sizes: ["S", "M", "L", "XL"], 
+            colors: ["Negro"] 
+        },
+        2: { 
+            name: "Gorra", 
+            price: 24999, 
+            images: {
+                "Elegir": "Gorras.jpeg",
+                "Bulls (Negro)": "Bulls-negro.png",
+                "Lakers (Negro)": "lakers-negro.png", 
+                "New York (Negro)": "ny-negro.png",
+                "Los Angeles (Beige)": "la-beige.png", 
+                "Rocket (Rojo)": "rocket-rojo.png", 
+                "Raptors (Gris)": "Raptors-gris.png"
+            }, 
+            sizes: ["Ajustable"], 
+            colors: ["Elegir", "Bulls (Negro)", "Lakers (Negro)", "New York (Negro)", "Los Angeles (Beige)", "Rocket (Rojo)", "Raptors (Gris)"] 
+        },
+        3: { 
+            name: "Cuellos Termicos", 
+            price: 3999, 
+            images: {
+                "Negro": "cuello-negro.jpeg"
+            }, 
+            sizes: ["Único"], 
+            colors: ["Negro"] 
+        },
+        6: { 
+            name: "Buzo canguro tela peluche", 
+            price: 26999, 
+            images: {
+                "Gris": "assets/products/buzo-peluche.jpg"
+            }, 
+            sizes: ["S-M", "L-XL", "2XL-3XL"], 
+            colors: ["Gris"] 
+        },
+        7: { 
+            name: "Remera Oversize", 
+            price: 17999, 
+            images: {
+                "Negro": "remera-negro.jpeg",
+                "Blanco": "remera-blanco.jpeg",
+                "Gris": "remera-gris.jpeg",
+                "Marron": "remera-marron.jpeg",
+                "Violeta": "remera-violeta.jpeg",
+                "Verde": "remera-verde.jpeg",
+                "Bordo": "remera-bordo.jpeg",
+                "The North Face": "north-face.png"
+            }, 
+            sizes: ["S", "M", "L", "XL"], 
+            colors: ["Violeta", "Marron", "Negro", "Blanco", "Gris", "Verde", "Bordo"],
+            estampa: ["Sin estampado", "The North Face"]
+        },
+        9: { 
+            name: "Buzo Canguro", 
+            price: 26999, 
+            images: {
+                "Negro": "buzocanguro-negro.jpeg",
+                "The North Face": "north-face.png"
+            }, 
+            sizes: ["S", "M", "L", "XL"], 
+            colors: ["Negro"],
+            estampa: ["Sin estampado", "The North Face"]
+        },
+        11: { 
+            name: "Pantalon Cargo Baggy", 
+            price: 29999, 
+            images: {
+                "Negro": "pantaloncargo.jpeg"
+            }, 
+            sizes: ["38", "39", "40", "41", "42", "43", "44", "46", "48"], 
+            colors: ["Negro"] 
+        },
+        14: { 
+            name: "Calza One Leg", 
+            price: 19999, 
+            images: {
+                "Negro": "assets/products/calza-one-leg.jpg"
+            }, 
+            sizes: ["S", "M", "L", "XL"], 
+            colors: ["Negro"] 
+        },
+        15: { 
+            name: "Calza Larga", 
+            price: 24999, 
+            images: {
+                "Negro": "assets/products/calza-larga.jpg"
+            }, 
+            sizes: ["S", "M", "L", "XL"], 
+            colors: ["Negro"] 
+        },
+        19: { 
+            name: "Calza Corta Deportiva Mujer", 
+            price: 7999, 
+            images: {
+                "Negro": "assets/products/calza-corta-mujer.jpg"
+            }, 
+            sizes: ["XS", "S", "M", "L"], 
+            colors: ["Negro"] 
+        },
+        28: { 
+            name: "Pantalón cargo alto con strass", 
+            price: 71000, 
+            images: {
+                "Fucsia": "assets/products/pantalon-cargo-strass-fucsia.jpg",
+                "Verde": "assets/products/pantalon-cargo-strass-verde.jpg"
+            }, 
+            sizes: ["S", "M", "L", "XL"], 
+            colors: ["Fucsia", "Verde"] 
+        },
+        29: { 
+            name: "Remera con malla transparente", 
+            price: 20000, 
+            images: {
+                "Blanco": "assets/products/remera-malla.jpg"
+            }, 
+            sizes: ["S", "M"], 
+            colors: ["Blanco"] 
+        },
+        33: { 
+            name: "Top satén liso con tirantes finos", 
+            price: 21000, 
+            images: {
+                "Negro": "assets/products/top-saten-negro.jpg",
+                "Rojo": "assets/products/top-saten-rojo.jpg"
+            }, 
+            sizes: ["S", "M"], 
+            colors: ["Negro", "Rojo"] 
+        },
+        37: { 
+            name: "Jean wide leg animal print", 
+            price: 24999, 
+            images: {
+                "Blanco": "assets/products/jean-animal-blanco.jpg",
+                "Negro": "assets/products/jean-animal-negro.jpg"
+            }, 
+            sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"], 
+            colors: ["Blanco", "Negro"] 
+        },
+        39: { 
+            name: "Top bandeau plisado sin tirantes", 
+            price: 18000, 
+            images: {
+                "Rosa": "assets/products/top-bandeau.jpg"
+            }, 
+            sizes: ["S", "M"], 
+            colors: ["Rosa"] 
         }
+    };
+    return productos[id];
+}
 
         function mostrarProducto(producto) {
             // Determinar la imagen a mostrar (compatibilidad con versiones anteriores)
