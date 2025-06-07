@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 14,
             name: "Calza One Leg",
-            price: 19999,
+            price: 0,
             category: "ropa",
             subcategory: "calzas",
             image: "assets/products/calza-one-leg.jpg",
@@ -171,10 +171,10 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 15,
             name: "Calza Larga",
-            price: 24999,
+            price: 0,
             category: "ropa",
             subcategory: "calzas",
-            image: "assets/products/calza-larga.jpg",
+            image: "calzalarga.png",
             description: "Calza larga para entrenamiento",
             sizes: ["S", "M", "L", "XL"],
             tags: ["nuevo"]
