@@ -333,7 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 29,
-            name: "Campera Nike Tech Fleece",
+            name: "Conjunto Nike Tech Fleece",
             price: 249990,
             category: "ropa",
             subcategory: "abrigos",
