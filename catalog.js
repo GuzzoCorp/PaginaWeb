@@ -381,15 +381,15 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 33,
-            name: "Jogging",
-            price: 10999,
+            name: "Jogging Oversize",
+            price: 24990,
             category: "ropa",
             subcategory: "pantalones",
-            image: "assets/products/jogging-lycra.jpg",
+            image: "jogging.jpg",
             description: "Joggin",
             sizes: ["S", "M", "L"],
             tags: ["nuevo"],
-            colors: ["Negro"]
+            colors: ["Negro", "Marron", "Verde", "Gris", "Blanco", "Azul"]
         },
         {
             id: 34,
