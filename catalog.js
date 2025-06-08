@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 14,
             name: "Calza One Leg",
-            price: 0,
+            price: 20990,
             category: "ropa",
             subcategory: "calzas",
             image: "assets/products/calza-one-leg.jpg",
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
         {
             id: 15,
             name: "Calza Larga",
-            price: 0,
+            price: 20990,
             category: "ropa",
             subcategory: "calzas",
             image: "calzalarga.png",
