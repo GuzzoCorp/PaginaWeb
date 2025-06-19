@@ -222,7 +222,7 @@
                     <form id="form-compra">
                         <!-- Datos personales -->
                         <div class="selector">
-                            <label for="nombre">Nombre y Apellido:</label>
+                            <label for="nombre">Nombre (o apodo):</label>
                             <input type="text" id="nombre" name="nombre" required>
                         </div>
                         
@@ -305,7 +305,7 @@
                     <div id="resumen-detalle"></div>
                     <div id="info-pago" style="margin-top: 15px; padding: 10px; background: rgba(0, 243, 255, 0.05); border-radius: 8px; display: none;">
                         <p><strong>Alias Mercado Pago:</strong> nahuelguzzo</p>
-                        <p style="font-size: 0.8em; color: var(--neon-cyan);">(Solo para transferencias)</p>
+                        <p style="font-size: 0.8em; color: var(--neon-cyan);">(Para pagos por Mercado Pago o transferencia)</p>
                     </div>
                 </div>
                 <button type="submit" form="form-compra" class="btn-comprar">
@@ -371,7 +371,7 @@
             if(this.value === 'Tarjeta') {
                 cuotasContainer.style.display = 'block';
                 infoPago.style.display = 'none';
-            } else if(this.value === 'Transferencia') {
+            } else if(this.value === 'Transferencia' || this.value === 'MercadoPago') {
                 cuotasContainer.style.display = 'none';
                 infoPago.style.display = 'block';
             } else {
@@ -740,6 +740,7 @@ if (selectEstampa && selectEstampa.style.display !== 'none') {
         ${descuento > 0 ? `<p>Descuento: ${descuento}%</p>` : ''}
         ${metodoPago === 'Tarjeta' ? detalleCuotas : ''}
         <p>Método de pago: ${metodoPago || 'No seleccionado'}</p>
+        ${metodoPago === 'MercadoPago' || metodoPago === 'Transferencia' ? '<p><strong>Alias Mercado Pago:</strong> nahuelguzzo</p>' : ''}
         <p class="total">Total: $${total.toLocaleString('es-AR')}</p>
     `;
     
@@ -820,7 +821,7 @@ if (selectEstampa && selectEstampa.style.display !== 'none') {
                 }${
                     metodoPago === 'Tarjeta' ? `*Cuotas:* ${cuotas}\n` : ''
                 }*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${
-                    metodoPago === 'Transferencia' ? '\n\n*Alias Mercado Pago:* nahuelguzzo' : ''
+                    (metodoPago === 'Transferencia' || metodoPago === 'MercadoPago') ? '\n\n*Alias Mercado Pago:* nahuelguzzo' : ''
                 }${
                     notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''
                 }\n\n[Ver producto](${producto.images ? producto.images[color] || producto.image : producto.image})`;
