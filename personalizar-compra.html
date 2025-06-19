@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
      <div class="header-container">
@@ -220,6 +220,17 @@
                     </div>
 
                     <form id="form-compra">
+                        <!-- Datos personales -->
+                        <div class="selector">
+                            <label for="nombre">Nombre (o apodo):</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        
+                        <div class="selector">
+                            <label for="direccion">Dirección de entrega:</label>
+                            <input type="text" id="direccion" name="direccion" required>
+                        </div>
+
                         <!-- Selector de calidad -->
                         <div class="selector">
                             <label for="calidad">Calidad:</label>
@@ -292,6 +303,10 @@
                 <div class="resumen-compra">
                     <h3>Resumen de compra</h3>
                     <div id="resumen-detalle"></div>
+                    <div id="info-pago" style="margin-top: 15px; padding: 10px; background: rgba(0, 243, 255, 0.05); border-radius: 8px; display: none;">
+                        <p><strong>Alias Mercado Pago:</strong> nahuelguzzo</p>
+                        <p style="font-size: 0.8em; color: var(--neon-cyan);">(Solo para transferencias)</p>
+                    </div>
                 </div>
                 <button type="submit" form="form-compra" class="btn-comprar">
                     <i class="fab fa-whatsapp"></i> Finalizar Compra
@@ -350,12 +365,18 @@
         // Mostrar/ocultar cuotas según método de pago
         const metodoPago = document.getElementById('metodo-pago');
         const cuotasContainer = document.getElementById('cuotas-container');
+        const infoPago = document.getElementById('info-pago');
         
         metodoPago.addEventListener('change', function() {
             if(this.value === 'Tarjeta') {
                 cuotasContainer.style.display = 'block';
+                infoPago.style.display = 'none';
+            } else if(this.value === 'Transferencia') {
+                cuotasContainer.style.display = 'none';
+                infoPago.style.display = 'block';
             } else {
                 cuotasContainer.style.display = 'none';
+                infoPago.style.display = 'none';
             }
             actualizarResumen();
         });
@@ -650,6 +671,8 @@ function actualizarResumen() {
     const producto = obtenerProducto(parseInt(new URLSearchParams(window.location.search).get('producto')));
     if (!producto) return;
     
+    const nombre = document.getElementById('nombre').value;
+    const direccion = document.getElementById('direccion').value;
     const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
     const calidad = document.getElementById('calidad').value;
     const talle = document.getElementById('talle').value;
@@ -699,6 +722,8 @@ if (selectEstampa && selectEstampa.style.display !== 'none') {
     
     // Construir el resumen
     let resumenHTML = `
+        <p><strong>Cliente:</strong> ${nombre || 'No especificado'}</p>
+        <p><strong>Dirección:</strong> ${direccion || 'No especificada'}</p>
         <p>${cantidad} x ${producto.name}</p>
         <p>Calidad: ${calidadTexto}</p>
         <p>Talle: ${talle}</p>
@@ -744,6 +769,8 @@ if (selectEstampa && selectEstampa.style.display !== 'none') {
                 }
                 
                 // Obtener valores del formulario
+                const nombre = document.getElementById('nombre').value;
+                const direccion = document.getElementById('direccion').value;
                 const cantidad = parseInt(document.getElementById('cantidad').value) || 1;
                 const calidad = document.getElementById('calidad').value;
                 const talle = document.getElementById('talle').value;
@@ -786,13 +813,15 @@ if (selectEstampa && selectEstampa.style.display !== 'none') {
                 }
                 
                 // Construir mensaje
-                const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n${
+                const mensaje = `¡Hola GUZZOCORP! 👋\n\nQuiero comprar:\n\n*Nombre:* ${nombre}\n*Dirección:* ${direccion}\n\n*Producto:* ${producto.name}\n*Calidad:* ${calidadTexto}\n*Talle:* ${talle}\n*Color:* ${color}\n${
                     producto.estampa ? `*Estampa:* ${estampa}\n` : ''
                 }*Cantidad:* ${cantidad}\n*Precio unitario:* $${precioBase.toLocaleString('es-AR')}\n${
                     descuento > 0 ? `*Descuento:* ${descuento}%\n` : ''
                 }${
                     metodoPago === 'Tarjeta' ? `*Cuotas:* ${cuotas}\n` : ''
                 }*Método de pago:* ${metodoPago}\n*Total:* $${total.toLocaleString('es-AR')}${
+                    metodoPago === 'Transferencia' ? '\n\n*Alias Mercado Pago:* nahuelguzzo' : ''
+                }${
                     notas ? `\n\n*Notas adicionales (opcional):*\n${notas}` : ''
                 }\n\n[Ver producto](${producto.images ? producto.images[color] || producto.image : producto.image})`;
                 
