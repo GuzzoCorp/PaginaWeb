@@ -400,171 +400,366 @@ function obtenerProducto(id) {
         1: { 
             name: "Remera Térmica", 
             price: 14999, 
+            oldPrice: 20000,
             images: {
                 "Negro": "Termica-negro.jpeg"
             }, 
             sizes: ["S", "M", "L", "XL"], 
-            colors: ["Negro"] 
+            colors: ["Negro"],
+            tags: ["oferta"],
+            discount: 20
         },
         2: { 
             name: "Gorra", 
-            price: 24999, 
+            price: 21999,
+            oldPrice: 40000,
             images: {
-                "Elegir": "Gorras.jpeg",
-                "Bulls (Negro)": "Bulls-negro.png",
-                "Lakers (Negro)": "lakers-negro.png", 
-                "New York (Negro)": "ny-negro.png",
-                "Los Angeles (Beige)": "la-beige.png", 
-                "Rocket (Rojo)": "rocket-rojo.png", 
-                "Raptors (Gris)": "Raptors-gris.png"
+                "Elegir": "Gorras.jpeg"
             }, 
             sizes: ["Ajustable"], 
-            colors: ["Elegir", "Bulls (Negro)", "Lakers (Negro)", "New York (Negro)", "Los Angeles (Beige)", "Rocket (Rojo)", "Raptors (Gris)"] 
+            colors: ["Elegir"],
+            tags: ["oferta", "nuevo"],
+            discount: 45
         },
         3: { 
             name: "Cuellos Termicos", 
-            price: 3999, 
+            price: 3999,
+            oldPrice: 5000,
             images: {
                 "Negro": "cuello-negro.jpeg"
             }, 
             sizes: ["Único"], 
-            colors: ["Negro"] 
-        },
-        6: { 
-            name: "Buzo canguro tela peluche", 
-            price: 26999, 
-            images: {
-                "Gris": "assets/products/buzo-peluche.jpg"
-            }, 
-            sizes: ["S-M", "L-XL", "2XL-3XL"], 
-            colors: ["Gris"] 
-        },
-        7: { 
-            name: "Remera Oversize", 
-            price: 17999, 
-            images: {
-                "Negro": "remera-negro.jpeg",
-                "Blanco": "remera-blanco.jpeg",
-                "Gris": "remera-gris.jpeg",
-                "Marron": "remera-marron.jpeg",
-                "Violeta": "remera-violeta.jpeg",
-                "Verde": "remera-verde.jpeg",
-                "Bordo": "remera-bordo.jpeg",
-                "The North Face": "north-face.png"
-            }, 
-            sizes: ["S", "M", "L", "XL"], 
-            colors: ["Violeta", "Marron", "Negro", "Blanco", "Gris", "Verde", "Bordo"],
-            estampa: ["Sin estampado", "The North Face"]
-        },
-        9: { 
-            name: "Buzo Canguro", 
-            price: 26999, 
-            images: {
-                "Negro": "buzocanguro-negro.jpeg",
-                "The North Face": "north-face.png"
-            }, 
-            sizes: ["S", "M", "L", "XL"], 
             colors: ["Negro"],
-            estampa: ["Sin estampado", "The North Face"]
+            tags: ["oferta"],
+            discount: 20
         },
-        11: { 
+        4: { 
             name: "Pantalon Cargo Baggy", 
             price: 29999, 
             images: {
                 "Negro": "pantaloncargo.jpeg"
             }, 
-            sizes: ["38", "39", "40", "41", "42", "43", "44", "46", "48"], 
-            colors: ["Negro"] 
+            sizes: ["28", "30", "32", "34", "36", "38", "39"], 
+            colors: ["Negro"],
+            tags: ["nuevo"]
+        },
+        5: { 
+            name: "Puma 180", 
+            price: 169999, 
+            images: {
+                "Elegir": "puma-180.jpeg"
+            }, 
+            sizes: ["38", "39", "40", "41", "42"], 
+            colors: ["Elegir"],
+            tags: ["ultima-unidad"],
+            stock: 1
+        },
+        6: { 
+            name: "Osiris D3 2001", 
+            price: 299999, 
+            images: {
+                "Elegir": "osiris-d3.jpeg"
+            }, 
+            sizes: ["39", "40", "41", "42"], 
+            colors: ["Elegir"],
+            tags: ["ultima-unidad"],
+            stock: 1
+        },
+        7: { 
+            name: "Remera Oversize", 
+            price: 17999, 
+            images: {
+                "Violeta": "remera-violeta.jpeg"
+            }, 
+            sizes: ["S", "M", "L", "XL"], 
+            colors: ["Violeta"],
+            tags: ["mas-vendido"],
+            customizable: true
+        },
+        8: { 
+            name: "Buzo canguro tela peluche", 
+            price: 26999, 
+            images: {
+                "Gris": "buzopeluche.jpg"
+            }, 
+            sizes: ["S-M", "L-XL", "2XL-3XL"], 
+            colors: ["Gris"],
+            tags: ["mas-vendido"]
+        },
+        9: { 
+            name: "Buzo Canguro", 
+            price: 26999, 
+            images: {
+                "Negro": "buzocanguro-negro.jpeg"
+            }, 
+            sizes: ["S", "M", "L", "XL"], 
+            colors: ["Negro"],
+            tags: ["mas-vendido"],
+            customizable: true
+        },
+        10: { 
+            name: "Zapatillas Nike Air Max", 
+            price: 189999, 
+            images: {
+                "Elegir": "nikeairmax.jpeg"
+            }, 
+            sizes: ["38", "39", "40", "41", "42", "43"], 
+            colors: ["Elegir"],
+            tags: ["nuevo"],
+            stock: 5
+        },
+        11: { 
+            name: "DC Court Graffick Rosas", 
+            price: 199999, 
+            images: {
+                "Rosas": "dc-rosas.jpeg"
+            }, 
+            sizes: ["36", "37", "38", "39", "40"], 
+            colors: ["Rosas"],
+            tags: ["ultima-unidad"],
+            stock: 1
+        },
+        12: { 
+            name: "Campera De Jean", 
+            price: 39999, 
+            images: {
+                "Elegir": "camperajean.jpeg"
+            }, 
+            sizes: ["S", "M", "L", "XL"], 
+            colors: ["Elegir"],
+            tags: ["nuevo"]
+        },
+        13: { 
+            name: "Mochila The North Face", 
+            price: 54999, 
+            images: {
+                "Elegir": "mochilathenorth.jpeg"
+            }, 
+            colors: ["Elegir"],
+            tags: ["nuevo"]
         },
         14: { 
             name: "Calza One Leg", 
-            price: 20999, 
+            price: 20990, 
             images: {
                 "Negro": "assets/products/calza-one-leg.jpg"
             }, 
             sizes: ["S", "M", "L", "XL"], 
-            colors: ["Negro"] 
+            colors: ["Negro"],
+            tags: ["nuevo"]
         },
         15: { 
-            name: "Calza Larga Mujer", 
-            price: 20999, 
+            name: "Calza Larga", 
+            price: 20990, 
             images: {
                 "Negro": "calzalarga.png"
             }, 
             sizes: ["S", "M", "L", "XL"], 
-            colors: ["Negro"] 
+            colors: ["Negro"],
+            tags: ["nuevo"]
+        },
+        16: { 
+            name: "Pelota de Basquet Molten BG4500", 
+            price: 129999, 
+            images: {
+                "Elegir": "molten.jpeg"
+            }, 
+            colors: ["Elegir"],
+            tags: ["nuevo"]
+        },
+        17: { 
+            name: "Nike Lebron XXI", 
+            price: 259999, 
+            images: {
+                "Elegir": "lebron-xxi.jpeg"
+            }, 
+            sizes: ["39", "40", "41", "42", "43", "44"], 
+            colors: ["Elegir"],
+            tags: ["nuevo"],
+            stock: 0
+        },
+        18: { 
+            name: "Nike Lebron Witness 7", 
+            price: 259999, 
+            images: {
+                "Elegir": "lebron-witness7.jpeg"
+            }, 
+            sizes: ["39", "40", "41", "42", "43", "44"], 
+            colors: ["Elegir"],
+            tags: ["nuevo"],
+            stock: 0
         },
         19: { 
             name: "Calza Corta Deportiva Mujer", 
-            price: 5990, 
+            price: 7999, 
             images: {
                 "Negro": "assets/products/calza-corta-mujer.jpg"
             }, 
             sizes: ["XS", "S", "M", "L"], 
-            colors: ["Negro"] 
+            colors: ["Negro"],
+            tags: ["nuevo"]
         },
-        28: { 
+        20: { 
+            name: "Giannis Immortality 4", 
+            price: 149999, 
+            images: {
+                "Elegir": "giannis-immortality4.jpeg"
+            }, 
+            sizes: ["39", "40", "41", "42", "43", "44"], 
+            colors: ["Elegir"],
+            tags: ["nuevo"],
+            stock: 0
+        },
+        21: { 
+            name: "Nike G.T. Cut Academy", 
+            price: 119999, 
+            images: {
+                "Elegir": "nikegtcut2.jpg"
+            }, 
+            sizes: ["39", "40", "41", "42", "43", "44"], 
+            colors: ["Elegir"],
+            tags: ["nuevo"],
+            stock: 0
+        },
+        22: { 
+            name: "Jordan Tatum 2", 
+            price: 219999, 
+            images: {
+                "Elegir": "jordantatum2.jpg"
+            }, 
+            sizes: ["39", "40", "41", "42", "43", "44", "45"], 
+            colors: ["Elegir"],
+            tags: ["nuevo"],
+            stock: 3
+        },
+        23: { 
+            name: "Air Jordan XXXVIII", 
+            price: 319999, 
+            images: {
+                "Elegir": "jordanairxxxviii.jpeg"
+            }, 
+            sizes: ["40", "41", "42", "43", "44"], 
+            colors: ["Elegir"],
+            tags: ["nuevo"],
+            stock: 2
+        },
+        24: { 
+            name: "Kobe VIII Protro", 
+            price: 289999, 
+            images: {
+                "Elegir": "kobe8proto.jpeg"
+            }, 
+            sizes: ["39", "40", "41", "42", "43"], 
+            colors: ["Elegir"],
+            tags: ["nuevo", "coleccionista"],
+            stock: 1
+        },
+        25: { 
+            name: "iPhone 16 128GB - Sellado -", 
+            price: 1199999, 
+            images: {
+                "Elegir": "iphone16.jpeg"
+            }, 
+            colors: ["Elegir"],
+            tags: ["nuevo"],
+            stock: 5
+        },
+        26: { 
+            name: "Botas Bucaneras (gamuza sintética)", 
+            price: 39000, 
+            images: {
+                "Negro": "botasbucaneras.jpeg"
+            }, 
+            sizes: ["36", "37", "38", "39", "40"], 
+            colors: ["Negro"],
+            tags: ["mas-vendido"]
+        },
+        27: { 
             name: "Pantalón cargo alto con strass", 
             price: 71000, 
             images: {
-                "Fucsia": "assets/products/pantalon-cargo-strass-fucsia.jpg",
-                "Verde": "assets/products/pantalon-cargo-strass-verde.jpg"
+                "Fucsia": "assets/products/pantalon-cargo-strass.jpg",
+                "Verde": "assets/products/pantalon-cargo-strass.jpg"
             }, 
             sizes: ["S", "M", "L", "XL"], 
-            colors: ["Fucsia", "Verde"] 
+            colors: ["Fucsia", "Verde"],
+            tags: ["nuevo"]
         },
-        29: { 
+        28: { 
             name: "Remera con malla transparente", 
             price: 20000, 
             images: {
                 "Blanco": "assets/products/remera-malla.jpg"
             }, 
             sizes: ["S", "M"], 
-            colors: ["Blanco"] 
+            colors: ["Blanco"],
+            tags: ["nuevo"]
+        },
+        29: { 
+            name: "Conjunto Nike Tech Fleece", 
+            price: 249990, 
+            images: {
+                "Negro": "conjuntonikee.jpg"
+            }, 
+            sizes: ["L", "XL", "XXL"], 
+            colors: ["Negro"],
+            tags: ["nuevo"]
+        },
+        30: { 
+            name: "Campera puffer acolchonada", 
+            price: 48000, 
+            images: {
+                "Negro": "camperapuff.jpeg"
+            }, 
+            sizes: ["S", "M", "L"], 
+            colors: ["Negro"],
+            tags: ["mas-vendido"]
+        },
+        31: { 
+            name: "Top algodón manga larga", 
+            price: 12000, 
+            images: {
+                "Negro": "assets/products/top-oversize.jpg"
+            }, 
+            sizes: ["S", "M"], 
+            colors: ["Negro"],
+            tags: ["nuevo"]
         },
         32: { 
             name: "Top satén liso con tirantes finos", 
             price: 21000, 
             images: {
-                "Negro": "assets/products/top-saten-negro.jpg",
-                "Rojo": "assets/products/top-saten-rojo.jpg"
+                "Negro": "assets/products/top-saten.jpg",
+                "Rojo": "assets/products/top-saten.jpg"
             }, 
             sizes: ["S", "M"], 
-            colors: ["Negro", "Rojo"] 
+            colors: ["Negro", "Rojo"],
+            tags: ["nuevo"]
         },
         33: { 
             name: "Jogging Oversize", 
             price: 24990, 
             images: {
                 "Negro": "jogging.jpg",
-                "Blanco": "joggingblanco.jpg"
+                "Blanco": "jogging.jpg"
             }, 
             sizes: ["S", "M", "L"], 
-            colors: ["Negro", "Marron", "Verde", "Gris", "Blanco", "Azul"] 
+            colors: ["Negro", "Marron", "Verde", "Gris", "Blanco", "Azul"],
+            tags: ["nuevo"]
         },
-        37: { 
-            name: "Jean wide leg animal print", 
-            price: 24999, 
-            images: {
-                "Blanco": "assets/products/jean-animal-blanco.jpg",
-                "Negro": "assets/products/jean-animal-negro.jpg"
-            }, 
-            sizes: ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"], 
-            colors: ["Blanco", "Negro"] 
-        },
-        39: { 
+        34: { 
             name: "Top bandeau plisado sin tirantes", 
             price: 18000, 
             images: {
                 "Rosa": "assets/products/top-bandeau.jpg"
             }, 
             sizes: ["S", "M"], 
-            colors: ["Rosa"] 
+            colors: ["Rosa"],
+            tags: ["nuevo"]
         }
     };
     return productos[id];
 }
-
         function mostrarProducto(producto) {
             // Determinar la imagen a mostrar (compatibilidad con versiones anteriores)
             let imagenMostrar = producto.image;
