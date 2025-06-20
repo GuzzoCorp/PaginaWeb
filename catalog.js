@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
             price: 7999,
             category: "ropa",
             subcategory: "calzas",
-            image: "assets/products/calza-corta-mujer.jpg",
+            image: "sarita.png",
             description: "Calza deportiva para mujer",
             sizes: ["XS", "S", "M", "L"],
             tags: ["nuevo"]
