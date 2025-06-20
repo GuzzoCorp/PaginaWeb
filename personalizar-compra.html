@@ -7,16 +7,13 @@
     <title>Personalizar Compra - GUZZOCORP</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        /* ESTILOS PARA LA ESTRUCTURA GRID */
         .product-grid {
             display: grid;
             grid-template-columns: 300px 1fr 300px;
             gap: 30px;
             align-items: start;
         }
-        
         .product-image-section {
             grid-column: 1;
             display: flex;
@@ -402,24 +399,28 @@ function obtenerProducto(id) {
             price: 14999, 
             oldPrice: 20000,
             images: {
-                "Negro": "Termica-negro.jpeg"
+                "Negro": "Termica-negro.jpeg",
+                "Blanco": "Termica-blanco.jpeg"
             }, 
             sizes: ["S", "M", "L", "XL"], 
-            colors: ["Negro"],
+            colors: ["Negro", "Blanco"],
             tags: ["oferta"],
             discount: 20
         },
         2: { 
             name: "Gorra", 
-            price: 21999,
-            oldPrice: 40000,
+            price: 24999, 
             images: {
-                "Elegir": "Gorras.jpeg"
+                "Elegir": "Gorras.jpeg",
+                "Bulls (Negro)": "Bulls-negro.png",
+                "Lakers (Negro)": "lakers-negro.png", 
+                "New York (Negro)": "ny-negro.png",
+                "Los Angeles (Beige)": "la-beige.png", 
+                "Rocket (Rojo)": "rocket-rojo.png", 
+                "Raptors (Gris)": "Raptors-gris.png"
             }, 
             sizes: ["Ajustable"], 
-            colors: ["Elegir"],
-            tags: ["oferta", "nuevo"],
-            discount: 45
+            colors: ["Elegir", "Bulls (Negro)", "Lakers (Negro)", "New York (Negro)", "Los Angeles (Beige)", "Rocket (Rojo)", "Raptors (Gris)"] 
         },
         3: { 
             name: "Cuellos Termicos", 
@@ -469,12 +470,18 @@ function obtenerProducto(id) {
             name: "Remera Oversize", 
             price: 17999, 
             images: {
-                "Violeta": "remera-violeta.jpeg"
+                "Negro": "remera-negro.jpeg",
+                "Blanco": "remera-blanco.jpeg",
+                "Gris": "remera-gris.jpeg",
+                "Marron": "remera-marron.jpeg",
+                "Violeta": "remera-violeta.jpeg",
+                "Verde": "remera-verde.jpeg",
+                "Bordo": "remera-bordo.jpeg",
+                "The North Face": "north-face.png"
             }, 
             sizes: ["S", "M", "L", "XL"], 
-            colors: ["Violeta"],
-            tags: ["mas-vendido"],
-            customizable: true
+            colors: ["Violeta", "Marron", "Negro", "Blanco", "Gris", "Verde", "Bordo"],
+            estampa: ["Sin estampado", "The North Face"]
         },
         8: { 
             name: "Buzo canguro tela peluche", 
@@ -490,12 +497,13 @@ function obtenerProducto(id) {
             name: "Buzo Canguro", 
             price: 26999, 
             images: {
-                "Negro": "buzocanguro-negro.jpeg"
+                "Negro": "buzocanguro-negro.jpeg",
+                "The North Face": "north-face.png"
             }, 
             sizes: ["S", "M", "L", "XL"], 
             colors: ["Negro"],
-            tags: ["mas-vendido"],
-            customizable: true
+            estampa: ["Sin estampado", "The North Face"],
+            tags: ["mas-vendido"]
         },
         10: { 
             name: "Zapatillas Nike Air Max", 
