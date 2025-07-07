@@ -402,11 +402,20 @@ document.addEventListener('DOMContentLoaded', function() {
             sizes: ["S", "M"],
             tags: ["nuevo"],
             colors: ["Rosa"]
+        },
+        {
+            id: 35,
+            name: "Pantalon Corto Deportivo",
+            price: 10000,
+            category: "ropa",
+            subcategory: "pantalones",
+            image: "pantaloncorto.jpeg",
+            description: "Pantalon Corto Deportivo, versatil para cualquier deporte",
+            sizes: ["S", "M", "L", "XL", "XXL"],
+            tags: ["nuevo"],
+            colors: ["Negro", "Azul", "Blanco"]
         }
     ];
-
-    // Resto del código permanece igual...
-    // Elementos del DOM
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.getElementById('search-btn');
     const filterBtns = document.querySelectorAll('.filter-btn');
